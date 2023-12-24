@@ -46,7 +46,7 @@ const config: DocsThemeConfig = {
     return (
       <>
         <title>{title || 'Documentation'} | MindPal</title>
-        <meta property="og:title" content={title || 'MindPal'} />
+        <meta property="og:title" content={title + " | MindPal" || 'Documentation | MindPal'} />
         <meta
           name='description'
           content={frontMatter.description || 'Double your brainpower, Get Things Done 10x faster with an AI-powered second brain that knows it all and does it all.'}
