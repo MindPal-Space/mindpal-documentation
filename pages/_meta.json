@@ -1,6 +1,11 @@
 {
   "index": "Introduction",
-  "getting-started": "Getting Started",
+  "getting-started": "Getting started",
+  "quick-start": "Quick start",
+  "faqs": "Frequently asked questions",
+  "whats-new": "What's new?",
+  "features": "Features",
+  "tutorials-and-use-cases": "Tutorials & Use cases",
   "about": {
     "title": "Home",
     "type": "page",
