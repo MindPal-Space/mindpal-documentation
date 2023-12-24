@@ -2,13 +2,15 @@
   "index": "Introduction",
   "getting-started": "Getting Started",
   "about": {
-    "title": "About",
-    "type": "page"
+    "title": "Home",
+    "type": "page",
+    "href": "https://mindpal.space",
+    "newWindow": true
   },
   "contact": {
     "title": "Contact ↗",
     "type": "page",
-    "href": "https://www.linkedin.com/company/mindpal-space",
+    "href": "mailto:hi.mindpal@gmail.com",
     "newWindow": true
   }
 }
