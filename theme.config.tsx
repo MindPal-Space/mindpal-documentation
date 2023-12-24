@@ -2,16 +2,16 @@ import React from 'react'
 import { DocsThemeConfig } from 'nextra-theme-docs'
 
 const config: DocsThemeConfig = {
-  logo: <span>My Project</span>,
+  logo: <span>MindPal</span>,
   project: {
-    link: 'https://github.com/shuding/nextra-docs-template',
+    link: 'https://mindpal.space',
   },
   chat: {
-    link: 'https://discord.com',
+    link: 'https://discord.gg/yHF76PEsUE',
   },
-  docsRepositoryBase: 'https://github.com/shuding/nextra-docs-template',
+  docsRepositoryBase: 'https://mindpal.space',
   footer: {
-    text: 'Nextra Docs Template',
+    text: 'MindPal - Your AI Second Brain',
   },
 }
 
