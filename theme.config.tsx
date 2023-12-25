@@ -28,6 +28,7 @@ const config: DocsThemeConfig = {
     dark: 31,
   },
   // LINKS
+  logoLink: "https://mindpal.space/",
   project: {
     link: 'https://github.com/MindPal-Space/mindpal-documentation',
   },
