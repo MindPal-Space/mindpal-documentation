@@ -21,11 +21,11 @@ const config: DocsThemeConfig = {
   logo,
   primaryHue: {
     light: 240,
-    dark: 236,
+    dark: 252,
   },
   primarySaturation: {
     light: 100,
-    dark: 31,
+    dark: 58,
   },
   // LINKS
   logoLink: "https://mindpal.space/",
