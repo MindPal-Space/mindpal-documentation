@@ -1,3 +1,8 @@
 {
-  "index": "Overview"
+  "index": "Overview",
+  "what-it-is": "What it is",
+  "how-to-build-an-ai-agent": "How to build an AI agent",
+  "best-practices-for-designing-agent-instructions": "Best practices for designing Agent instructions",
+  "best-practices-for-configuring-agent-model-settings": "Best practices for configuring Agent model settings",
+  "agent-templates": "Agent templates"
 }
