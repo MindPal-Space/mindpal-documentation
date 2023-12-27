@@ -1,0 +1,39 @@
+# How to build an AI Agent on MindPal
+
+Building an agent on MindPal involves five key components. Understanding these components will help you create a customized AI agent that perfectly fits your specific needs.
+
+## 1. Instruction or System Message
+
+The instruction for an agent is like a job description. It defines the specific goal or objective the agent is designed to achieve. In this section, you have the opportunity to share your knowledge, expertise, and insights to help the agent perform its task to the best of its abilities. There are no restrictions on what you can include in the instruction, but it's generally recommended to be clear and specific. Stay tuned for a future article where we will share best practices on designing high-quality instructions for agents.
+
+## 2. Output Settings
+
+Customize how you want the output of your agent to be. MindPal offers several factors for customization:
+
+- **Language**: Choose the language in which the output will be generated.
+
+- **Tone**: Select the desired tone for the output, such as authoritative, casual, clinical, or confident.
+
+- **Style**: Determine the writing style, whether it should be academic, analytical, argumentative, conversational, or any other style that suits your needs.
+
+- **Format**: Decide the format of the output, whether it should be a blog, an essay, a report, a table, or any other format that fits your requirements.
+
+## 3. Model Settings
+
+The model settings may seem technical, but you don't need to customize them extensively. The default settings provided by MindPal are sufficient for most tasks. Here's a brief introduction to each factor in this section:
+
+- **Model**: The Large Language Model to be used for this agent. The default model is GPT 3.5 Turbo 16k by OpenAI, but you can also select other models from not only OpenAI but also Anthropic, Mistral, and more. Different models may be better at different things, so you can choose the one that best fits the task at hand.
+
+- **Max tokens**: The maximum number of tokens to generate shared between the prompt and completion. The exact limit varies by model. (One token is roughly 4 characters for standard English text.)
+
+- **Temperature**: Temperature dictates randomness of the response. Lowering results in less random completions. As the temperature approaches 0, the model will become deterministic and repetitive.
+
+## 4. Default Knowledge Sources Settings
+
+The default knowledge sources settings refer to default knowledge sources. Later on when you summon an agent with these default knowledge sources, they will come preloaded with the specified knowledge sources. This eliminates the need to repeatedly select them.
+
+MindPal allows you to connect the agent to internal knowledge sources as well as external sources like Google, Wikipedia, YouTube, Pixels, or Arxiv.
+
+## 5. Training Examples
+
+By providing the agent with training messages and examples of good responses, you establish a benchmark for what constitutes a good output. This helps the agent learn and improve its performance.
