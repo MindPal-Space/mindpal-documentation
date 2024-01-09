@@ -15,6 +15,6 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lib/gtag.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lib/gtag.js", "pages/_app.tsx"],
   "exclude": ["node_modules"]
 }
