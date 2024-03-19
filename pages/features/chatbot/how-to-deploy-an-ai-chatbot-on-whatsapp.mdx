@@ -1,0 +1,72 @@
+# How to Deploy your MindPal Chatbot on Whatsapp
+
+Here's a detailed step-by-step guide on how to deploy your MindPal chatbot on Whatsapp.
+
+## Step 1: Create a WhatsApp Meta app
+
+### 1. Create a Facebook Business account
+
+1. Head over to https://business.facebook.com and log in
+2. Create a new business account on the left side bar
+
+### 2. Create a Meta app
+
+1. Head over to https://developers.facebook.com/apps
+2. Click on Create App
+3. “What do you want your app to do?”, select `Other`.
+4. Select `Business` type
+5. Give it any name and select your newly created Business Account
+6. On the app page, look for `WhatsApp` product and enable it
+
+### 3. You should be able to get to this page
+
+![Whatsapp Meta App Page](/features/chatbot/whatsapp-meta-app-page.png)
+
+## Step 2: Generate a System User Token
+
+1. Go to your [System users page](https://business.facebook.com/settings/system-users).
+2. Create a new user by clicking on `Add`.
+3. Fill it with any name and give it the `Admin` role.
+4. Click on `Add assets`. Under `Apps`, look for your previously created app, select it and check `Manage app` like this:
+
+![Whatsapp Meta System User Assets](/features/chatbot/meta-system-user-assets.png)
+
+5. Now, click on `Generate new token`. Select your app.
+
+- Token expiration: `Never`
+- Available Permissions: `whatsapp_business_messaging`, `whatsapp_business_management`
+
+6. Copy and paste the generated token into the input "System User Token" in your MindPal chatbot's share modal like this:
+
+![System User Token Input](/features/chatbot/system-user-token-input.png)
+
+## Step 3: Get your Phone Number ID
+
+1. Go to your [WhatsApp Dev Console](https://developers.facebook.com/apps/399578552622499/whatsapp-business/wa-dev-console).
+
+2. Add your phone number by clicking on the `Add phone number` button.
+
+3. Select a phone number and paste the associated `Phone number ID` into the input "Phone Number ID" in your MindPal chatbot's share modal like this:
+
+![WhatsApp Phone Selection](/features/chatbot/whatsapp-phone-selection.png)
+![Phone Number ID Input](/features/chatbot/phone-number-id-input.png)
+
+## Step 4: Set up Web Hook
+
+In your [WhatsApp Settings Page](https://developers.facebook.com/apps/399578552622499/whatsapp-business/wa-settings), click on the Edit button and insert the following values:
+
+1. Callback URL: You can get from your MindPal chatbot's share modal (see photo below).
+
+2. Verify Token: You can get from your MindPal chatbot's share modal (see photo below).
+
+3. Webhook fields: check `messages`.
+
+![Webhook Setup Values](/features/chatbot/webhook-setup-values.png)
+
+## Step 5: Done!
+
+Once everything is set up correctly, you can start chatting with your MindPal chatbot on Whatsapp. Congrats!
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />

@@ -1,0 +1,37 @@
+# When to use Agent vs. Multi-Agent Assembly?
+
+## Answer
+
+If the job to be done satisfies any of these criteria, you should build an assembly for that job, instead of just one single agent:
+
+1. You expect the result to be long + in great detail.
+2. The final result is expected to be well-structured and can be broken down to distinct steps.
+3. The prompt for the agent would be too long/complicated to manage if the whole job is to be done by just one agent.
+
+## Explanation
+
+Both agents and multi-agent assemblies provide you a way to create automation engines that can be reused multiple times for different context at hand, to help you get things done faster.
+
+However, since an assembly is a CHAIN that involves multiple steps, which can be executed by a different agent, instead of just one agent, it is more well-versed to perform complex tasks.
+
+Understanding this difference and choosing the suitable kind of "engine" for your task will surely help you get better responses, hence more value from MindPal.
+
+Related:
+
+- [What is an AI agent on MindPal?](/features/agent/what-it-is)
+- [What is an AI assembly on MindPal?](/features/assembly/what-it-is)
+
+## Examples
+
+| Job to be done                                                                  | Suitable engine                                              |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Brainstorm marketing campaign names                                             | Agent                                                        |
+| Develop a whole marketing campaign                                              | Multi-Agent Assembly, each step for one part of the campaign |
+| Write a tweet                                                                   | Agent                                                        |
+| Repurpose a piece of info into various kinds of content for different platforms | Multi-Agent Assembly, each step for one platform             |
+| Look for relevant articles given a topic                                        | Agent                                                        |
+| Write a whole research paper                                                    | Multi-Agent Assembly, each step for one section of the paper |
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />
