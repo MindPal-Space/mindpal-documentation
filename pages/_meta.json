@@ -1,14 +1,10 @@
 {
-  "index": "Introduction",
-  "getting-started": "Getting started",
-  "quick-start": "Quick start",
-  "faqs": "Frequently asked questions",
-  "whats-new": "What's new?",
-  "features": "Features",
-  "tutorials-and-use-cases": "Tutorials & Use cases",
-  "alternative": "Alternative",
-  "case-study": "Case Studies",
-
+  "index": "Intro to AI for Work",
+  "why-ai": "Why care about AI",
+  "use-cases": "Use cases of AI",
+  "how-to-get-started-with-ai": "How to get started with AI",
+  "how-to-get-started-with-mindpal": "How to get started with MindPal",
+  "features": "Product guides",
   "about": {
     "title": "Home",
     "type": "page",
