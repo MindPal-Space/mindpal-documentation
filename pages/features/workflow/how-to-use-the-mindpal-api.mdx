@@ -30,8 +30,8 @@ To trigger a workflow, you'll need to make a POST request. Here’s how you can 
     
 3.  **Prepare Input Data**: Format your input data as a JSON object. Each key should be the input name, and the corresponding value should be the field value.
     
+4.  **For Images or File Input**: With file and image input, you need to upload them into the endpoint /api/file/upload and /api/image/upload. Then use the returned file content or image url to feed into your data object.
 
-_Note: File Input is currently not supported in the public API_
 
 ### Example API Request
 
