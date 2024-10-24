@@ -16,7 +16,17 @@ The trigger input initiates the workflow, accepting text files or URLs to kickst
 
 ### 2. Workflow Steps
 
-Once the trigger input is established, you can incorporate specific steps into the workflow. You can add as many steps as needed, assigning agents to carry out each step and defining the task for them. Tasks can reference input values or outputs from previous steps, facilitating a seamless flow of data among agents.
+Once the trigger input is established, you can incorporate specific steps into the workflow. Each workflow step consists of two main components:
+
+#### Agent Selection
+Choose the AI agent best suited for the specific task in that step. For instance, in a social media content workflow, you might assign a LinkedIn Post Writer agent for creating LinkedIn-specific content. The agent provides the foundational knowledge and expertise needed for the task.
+
+#### Prompt Configuration
+The prompt is where you provide detailed instructions for the agent. While the agent brings the background knowledge, the prompt guides how this knowledge should be applied to your specific needs. You can reference:
+- Trigger input variables using the `@` syntax (e.g., @main_topic)
+- Outputs from previous workflow steps using the `#` syntax (e.g., #step1_output)
+
+This allows for seamless data flow between steps and ensures each agent has access to necessary context from earlier steps.
 
 ## Easy starter methods
 
@@ -28,9 +38,9 @@ Once your AI workflows are set up, you can execute them anytime, anywhere by inp
 
 ## Share your workflow
 
-You can also your workflows with others via a shareable link, enabling anyone to utilize the workflow without an account on MindPal. All executed workflows are conveniently stored for quick access and overview.
+You can also share your workflows with others via a shareable link, enabling anyone to utilize the workflow without an account on MindPal. All executed workflows are conveniently stored for quick access and overview.
 
-And that’s a wrap! You’ve just mastered how to leverage MindPal for 10x productivity at work! Congratulations on learning about MindPal. Now it’s your turn to build your own AI second brain on MindPal, and leverage it for your work!
+And that's a wrap! You've just mastered how to leverage MindPal for 25x productivity at work! Congratulations on learning about MindPal. Now it's your turn to build your own AI second brain on MindPal, and leverage it for your work!
 
 import PageFooter from "components/PageFooter";
 
