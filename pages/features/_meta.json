@@ -1,3 +1,5 @@
 {
-  "workflow": "Workflow"
+  "agent": "Agent",
+  "workflow": "Workflow",
+  "smart-note": "Smart Note"
 }
