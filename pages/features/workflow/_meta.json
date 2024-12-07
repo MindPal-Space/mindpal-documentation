@@ -1,5 +1,7 @@
 {
-  "how-to-set-up-a-webhook-upon-completion-for-mindpal-workflows": "How to add a webhook after a workflow run on MindPal",
-  "how-to-use-the-mindpal-api": "How to Use the MindPal API (Beta)",
-  "understanding-MindPal-workflow-run-modes": "Understanding MindPal's Workflow Run Modes"
+  "ai-workflow-basics": "AI Workflow Basics",
+  "how-to-set-up-a-webhook-upon-completion-for-mindpal-workflows": "Webhook Setup",
+  "how-to-use-the-mindpal-api": "MindPal API (Beta)",
+  "understanding-MindPal-workflow-run-modes": "Workflow Run Modes"
+
 }
