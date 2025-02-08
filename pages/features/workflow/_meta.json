@@ -1,5 +1,11 @@
 {
-  "how-to-set-up-a-webhook-upon-completion-for-mindpal-workflows": "How to add a webhook after a workflow run on MindPal",
-  "how-to-use-the-mindpal-api": "How to Use the MindPal API (Beta)",
-  "understanding-MindPal-workflow-run-modes": "Understanding MindPal's Workflow Run Modes"
+  "human-input-node": "🧑 Human Input Node",
+  "agent-node": "🤖 Agent Node",
+  "loop-node": "🔄 Loop Node",
+  "gate-node": "🚪 Gate Node",
+  "router-node": "🔀 Router Node",
+  "orchestrator-worker-node": "🎭 Orchestrator-Worker Node",
+  "executor-optimizer-node": "⚡ Executor-Optimizer Node",
+  "publish": "📤 Publish Workflow",
+  "best-practices": "✨ Best Practice to design workflow"
 }
