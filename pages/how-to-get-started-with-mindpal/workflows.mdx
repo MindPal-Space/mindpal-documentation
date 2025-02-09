@@ -1,47 +1,33 @@
-# Checkpoint 5/6 — Workflows
+# **Introduction to Multi-Agent Workflow on MindPal**
 
-In your journey of leveraging AI agents on MindPal for various work tasks, you may encounter complex processes that require multiple steps beyond the capacity of a single agent. While individual agents excel at specific tasks, there are scenarios where a collaborative approach is needed to tackle more intricate workflows effectively.
 
-Imagine scenarios where crafting a comprehensive social media campaign involves creating distinct posts for various platforms or generating holistic feedback for a student essay across different facets. These scenarios share one common trait: They involve multiple steps that could be standardized into a process. This is where MindPal's Multi-Agent Workflow steps in.
+Multi-Agent Workflow is a powerful feature designed to help you automate complex business processes by connecting multiple AI agents together. This feature enables you to build customized workflows that streamline tasks, improve efficiency, and enhance productivity.
 
-Imagine a series of interconnected AI agents collaborating fluidly to tackle tasks that surpass the limits of a standalone agent.
+## **What is Multi-Agent Workflow?**
 
-## How to build a workflow
 
-Creating a multi-agent workflow consists of two key elements:
 
-### 1. Trigger Input
+Multi-Agent Workflow is a feature that allows you to create a sequence of tasks that are performed by multiple AI agents. These agents can work together in various ways, such as:
 
-The trigger input initiates the workflow, accepting text files or URLs to kickstart the process. You can define as many fields as you want to.
+- **Sequentially**: Like an assembly line, where each agent completes a task before passing it on to the next agent.
+- **Task assignment**: One agent initiates a task and assigns it to other agents for completion.
+- **Loops**: Agents can perform the same task on a list of items, automating repetitive processes.
+- **Optimization**: One agent can continuously refine and optimize results until they meet a specific criteria.
 
-### 2. Workflow Steps
+## **Workflow Nodes**
 
-Once the trigger input is established, you can incorporate specific steps into the workflow. Each workflow step consists of two main components:
 
-#### Agent Selection
-Choose the AI agent best suited for the specific task in that step. For instance, in a social media content workflow, you might assign a LinkedIn Post Writer agent for creating LinkedIn-specific content. The agent provides the foundational knowledge and expertise needed for the task.
+In MindPal's Multi-Agent Workflow, different nodes represent various ways that AI agents can work together. These nodes are the building blocks of your workflow, and you can configure them to create a customized process that suits your business needs.
 
-#### Prompt Configuration
-The prompt is where you provide detailed instructions for the agent. While the agent brings the background knowledge, the prompt guides how this knowledge should be applied to your specific needs. You can reference:
-- Trigger input variables using the `@` syntax (e.g., @main_topic)
-- Outputs from previous workflow steps using the `#` syntax (e.g., #step1_output)
+## **Getting Started**
 
-This allows for seamless data flow between steps and ensures each agent has access to necessary context from earlier steps.
+Creating a multi-agent workflow on MindPal is a straightforward process. Here is a tutorial to get started:
 
-## Easy starter methods
-
-Crafting a workflow from scratch may seem daunting due to its complexity. To simplify this process, MindPal offers pre-designed templates that can be duplicated. You can even generate an entire workflow using AI. Just outline the purpose of the workflow, and let MindPal effortlessly craft the first version for you so you could iterate from there.
-
-## Run your workflow
-
-Once your AI workflows are set up, you can execute them anytime, anywhere by inputting the requisite values in the trigger input and start the operation. Each step in the workflow executes sequentially, giving the comprehensive result you need.
-
-## Share your workflow
-
-You can also share your workflows with others via a shareable link, enabling anyone to utilize the workflow without an account on MindPal. All executed workflows are conveniently stored for quick access and overview.
-
-And that's a wrap! You've just mastered how to leverage MindPal for 25x productivity at work! Congratulations on learning about MindPal. Now it's your turn to build your own AI second brain on MindPal, and leverage it for your work!
-
-import PageFooter from "components/PageFooter";
-
-<PageFooter />
+<iframe
+  style={{ width: "100%", aspectRatio: "16/9", marginTop: "32px" }}
+  src="https://www.youtube.com/embed/FdyVchjE4WY?si=r6Dd1ajQUc9FrTc4"
+  title="YouTube video player"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowFullScreen
+></iframe>
