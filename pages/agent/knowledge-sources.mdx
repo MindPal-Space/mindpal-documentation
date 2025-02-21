@@ -1,0 +1,55 @@
+import PageFooter from "components/PageFooter";
+
+# Knowledge Sources
+
+All AI agents have common sense knowledge. But what if you want your agent to understand your company's products, policies, or unique processes? That's where knowledge sources come in - they let you give agents information and data specific to your organization that they can learn from and use.
+
+## What are Knowledge Sources?
+
+Knowledge sources are data collections that provide your AI agent with essential business context. They serve as your agent's long-term memory, allowing it to access and reference your organization's information when needed.
+
+There are two main types of knowledge sources:
+
+1. **Website & File Uploads**: Static content from various sources
+2. **Notes**: Dynamic, easily updatable content that can be created and edited within MindPal
+
+## How Knowledge Sources Work
+
+![How Knowledge Sources Work](/features/knowledge-source/how-knowledge-source-work.png)
+
+Knowledge sources are processed and stored in a way that makes them easily accessible to your AI agent:
+
+1. When you upload content, it's automatically processed and segmented into manageable chunks
+2. These chunks are then vectorized and stored in the database
+3. When your agent needs information, it searches through these chunks using semantic similarity
+4. The most relevant information is then used by the agent to provide accurate responses
+
+## Configuring Knowledge Sources
+
+### Uploading Files & URLs
+
+You can upload files and URLs as knowledge sources by navigating to "Assets" → "Knowledge Sources".
+
+For URLs, you can fetch sub-pages of the URL by clicking the "List all sub pages" button. Later on, if you wish to update the content of a URL, you can click the "Relearn" button available for each URL in the "Knowledge Sources" page.
+
+For each knowledge source, you can optionally fine-tune the following parameters, which control how MindPal processes and uses the knowledge:
+
+- **Chunk Size**: Determines the maximum size of each content segment when MindPal splits your knowledge source
+- **Chunk Overlap**: Specifies how much overlap occurs between consecutive chunks to maintain context
+- **Separators**: Defines special characters that guide the system in splitting your knowledge appropriately
+
+### Creating Notes
+
+You can create notes by navigating to "Assets" → "Notes".
+
+Notes are dynamic and easily updatable, allowing you to add, edit, or remove information as needed.
+
+### Assigning Knowledge Sources & Notes to Agents
+
+After you have uploaded your knowledge sources and notes, you can assign them to agents in the agent settings.
+
+You can assign multiple knowledge sources and notes to an agent.
+
+For knowledge sources, you can select individual items or folders. If you select a folder, all items within that folder will be assigned to the agent and any changes made to the folder (addition, update, or removal of items) will be automatically applied to the assigned agents.
+
+<PageFooter />{" "}

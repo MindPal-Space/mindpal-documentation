@@ -1,0 +1,62 @@
+# Router Node
+
+Ever needed to send different types of tasks to different specialized agents? That's where the Router Node comes in. It acts like a smart traffic controller, examining each input and directing it to the most appropriate path for processing - ensuring that each type of task gets handled by the right specialist.
+
+## What is a Router Node?
+
+A Router Node is a specialized component in MindPal's Multi-Agent Workflow that:
+
+1. **Examines inputs** based on defined decision logic
+2. **Classifies** the input into distinct categories
+3. **Directs** the flow to appropriate downstream agents
+
+This creates an efficient system for handling diverse inputs while maintaining specialized processing for each type.
+
+## When to use a Router Node?
+
+Consider using the Router Node when:
+
+- You have different types of inputs requiring different handling
+- Different scenarios require different specialized agents
+
+Here are some common scenarios where Router Node excels:
+
+| Scenario                   | Example                                                                                                          |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Customer Support           | Routing different types of support tickets (billing, technical, general inquiries) to specialized support agents |
+| Content Processing         | Directing different content types (articles, social posts, documentation) to appropriate content specialists     |
+| Job Application Processing | Routing different hiring decisions (acceptance, rejection) to appropriate post-decision actions                  |
+
+## How a Router Node Works
+
+The Router Node operates through a systematic process:
+
+1. Receives an input that needs classification
+2. Applies the configured decision logic to evaluate the input
+3. Selects the appropriate path based on the evaluation
+4. Directs the flow to the corresponding downstream node
+
+## Configuring a Router Node
+
+To set up a Router Node, you need to configure these essential components:
+
+### 1. Decision Logic Setup
+
+The decision logic is your classification criteria:
+
+- Define clear instructions for how inputs should be evaluated
+- Specify the conditions for selecting each path
+- Ensure the logic covers all possible input scenarios
+- Reference human input values or previous node outputs via [variables](/workflow/build/variables) if needed
+
+### 2. Path Configuration
+
+For each possible classification:
+
+- Create a distinct path
+- Specify the next node for that path
+- Add a clear description of when this path should be taken
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />{" "}

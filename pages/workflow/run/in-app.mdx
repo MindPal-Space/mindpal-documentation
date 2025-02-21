@@ -1,0 +1,103 @@
+# Running Workflows In App
+
+MindPal offers multiple ways to run workflows within your workspace, each designed for different use cases and levels of control. Let's explore each run mode in detail.
+
+## Default Mode
+
+### What is it?
+
+Default mode is the standard way to run workflows, processing one set of inputs at a time and providing real-time results as the workflow progresses. You must keep the workflow window open for it to run.
+
+### When to use it?
+
+- When you want to see results immediately as they come in
+- For simple workflows that don't require oversight
+- For workflows you've tested thoroughly and trust to run independently
+
+### How it works?
+
+1. Input your data in the workflow form
+2. Click "Run" to start the workflow
+3. Watch the progress in real-time as each node executes
+4. Get results immediately upon completion
+
+### Example
+
+A content creation workflow where you input a topic and receive a blog post outline, draft, and final version in real-time. You can see how each agent contributes to the final piece, making it easy to identify any issues in the process.
+
+## Supervised Mode
+
+### What is it?
+
+Supervised mode gives you complete control over the workflow execution by requiring manual approval at each step. You can review and edit responses before moving to the next node. You must keep the workflow window open for it to run.
+
+### When to use it?
+
+- When quality control is crucial
+- When you need to review, fine-tune, and approve responses at each step
+- When the output of next nodes depends on the output of the previous nodes, hence human oversight is needed to prevent compound errors
+
+### How it works?
+
+1. Start the workflow with your inputs and select mode "Supervised"
+2. After each node is completed, the workflow will pause and you can review the output of the last step and regenerate or make edits if needed
+3. Only when you are happy with the output, you can click "Approve" and the workflow will continue to the next node
+4. Proceed through each step until completion
+
+### Example
+
+A legal document review workflow where each stage (contract analysis, risk assessment, recommendation) requires expert oversight. The supervisor can adjust the AI's analysis at each step to ensure accuracy and compliance.
+
+## In Background Mode
+
+### What is it?
+
+In background mode, the workflow runs while you work on other tasks. You can close the window and return later to check results. You don't need to keep the workflow window open.
+
+### When to use it?
+
+- For long-running workflows for which waiting is time-consuming
+- When you prefer asynchronous execution or real-time monitoring is not needed
+- When you want to have multiple workflow runs going on at the same time and don't want to wait for each one to complete before starting the next one
+
+### How it works?
+
+1. Start the workflow and select "Run in Background"
+2. Continue working on other tasks
+3. Receive an email notification when the workflow completes with the link to view the results
+
+### Example
+
+A data analysis workflow processing hundreds of customer feedback responses. You start the workflow, continue with other work, and return later to find a comprehensive analysis report ready for review.
+
+## Bulk Run Mode
+
+### What is it?
+
+Bulk run mode enables processing multiple workflow instances simultaneously by uploading batch inputs, perfect for scaling operations.
+
+### When to use it?
+
+- When processing large datasets
+- For repetitive tasks with different inputs
+
+### How it works?
+
+1. Prepare your inputs in a CSV or spreadsheet format, following the exact format required as shown in the sample CSV you can download from the workflow runner
+2. Upload the file with multiple input sets
+3. Start the bulk run
+4. Monitor progress in the workflow's "Run History" page. An email will be sent to you when each set of inputs completes with the link to view the results
+
+### Example
+
+A social media content workflow where you need to create posts for 50 different products:
+
+1. Upload a CSV with product details (name, features, target audience)
+2. The workflow processes each product in parallel
+3. Get back 50 sets of social media posts, each tailored to the specific product
+
+Remember that you can switch between modes as needed, even for the same workflow, depending on your specific needs at the time.
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />{" "}

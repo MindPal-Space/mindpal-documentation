@@ -1,0 +1,67 @@
+# Member Management
+
+MindPal workspaces support three member roles - OWNER, EDITOR, and USER - each with different levels of access and capabilities. This guide explains how to manage your team members and their permissions effectively.
+
+## Member Roles
+
+### OWNER
+
+Full workspace control with unrestricted access:
+
+- Run, create, edit and delete all agents, workflows and assets
+- Full access to workspace settings and team management
+- Cannot be removed from the workspace
+
+### EDITOR
+
+Agent & workflow creation with limited administrative access:
+
+- Run, create and edit all agents, workflows and assets
+- Can only delete items they personally created
+- Can view team members but cannot modify workspace settings
+- Perfect for team members who need to create and manage AI solutions
+
+### USER
+
+Restricted run-only access:
+
+- Can run agents & workflows but cannot create, edit or delete content
+- No access to workspace settings
+- Access can be controlled via Access Control Tags
+- Ideal for clients or team members who only need to use existing solutions
+
+## Access Control Tags
+
+Access Control Tags help you manage USER members' permissions by:
+
+- Restricting which agents and workflows specific users can access
+- Setting AI credit limits per user per month
+- Grouping users with similar access needs
+
+To create or modify an access control tag:
+
+1. Click the "New tag" button
+2. Set the tag name
+3. Select accessible agents and workflows
+4. Enable and set AI credit limits if needed
+5. Apply the tag to relevant users
+
+## Managing Members
+
+To invite new members:
+
+1. Click the "Invite member" button
+2. Enter their email address
+3. Select their role (OWNER, EDITOR, or USER)
+4. For USERS, assign appropriate Access Control Tags if needed
+5. Send the invitation
+
+For existing members, you can:
+
+- Edit their role
+- Modify their Access Control Tags (for USERS)
+- Remove them from the workspace
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />{" "}

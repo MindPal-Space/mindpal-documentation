@@ -1,0 +1,48 @@
+# Human Input Node
+
+When running a multi-agent workflow, you sometimes need to pause and let humans weigh in with their thoughts, decisions, or data. That's exactly why the Human Input Node exists - it's your way of making workflows more interactive and human-centered.
+
+## What is a Human Input Node?
+
+A Human Input Node is a special type of node that creates interactive touchpoints in your workflow. It's your way to manually input data, provide context and instructions, make decisions, or give feedback to AI agents. You can think of it as a "pause and ask" moment in your workflow where human judgment and input are needed.
+
+## When to use a Human Input Node
+
+Here are some common scenarios where a Human Input Node shines:
+
+1. **Workflow Triggers**
+   Use it as your first node to kickstart a workflow, especially when you need to input initial content or data. For example, you might use it to input a blog post that needs to be repurposed.
+
+2. **Decision Making**
+   Perfect for moments when you need to choose between options or select which direction to take in a workflow. A common example is selecting the best content idea from AI-generated suggestions.
+
+3. **Feedback Collection**
+   When AI outputs need human refinement, use this node to provide feedback, adjust the workflow's direction, or add important context and clarification.
+
+## How Human Input Nodes Work
+
+When your workflow reaches a Human Input Node, it pauses and waits for your input. Think of it like a form that needs to be filled out before the workflow can continue. Once you submit your input, the workflow automatically resumes, and your data flows into the next nodes.
+
+## Configuring a Human Input Node
+
+Start by adding a Human Input Node to your workflow. For each field you want to create, give it a clear label (e.g., "Question 1") and choose its type.
+
+You can choose from these field types:
+| Field Type | Description | Additional Configuration |
+| --- | --- | --- |
+| TEXT | For free-form text input | Character limit, placeholder text |
+| BOOLEAN | For yes/no questions | |
+| NUMBER | For numerical input | |
+| SELECT | For single-choice options | List of options (one per line) |
+| MULTI SELECT | For multiple-choice options | List of options (one per line) |
+| DOCUMENT | For document uploads | Max number of files, Allowed file types |
+| IMAGE | For image uploads | Max number of images |
+| URL | For web links | Max number of URLs |
+
+Mark fields as required if needed.
+
+Your workflow can be as flexible as you need - add multiple Human Input Nodes anywhere in the sequence, and each node can have multiple fields of different types. This flexibility lets you create interactive workflows that pause for human input exactly where needed.
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />{" "}

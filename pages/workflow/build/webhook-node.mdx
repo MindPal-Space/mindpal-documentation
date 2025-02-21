@@ -1,0 +1,87 @@
+# Webhook Node
+
+If you need to send your workflow results to another system or app, the Webhook Node is the perfect tool for the job. It acts as a messenger that takes all the important information from your workflow, up to the point where the Webhook Node is added, and delivers it wherever you need it to go - whether that's a cross-app integration platform like Zapier or Make, your own backend, a third-party service, or any other system that can receive web requests.
+
+## What is a Webhook Node?
+
+A Webhook Node is a specialized component that:
+
+1. Collects results from your workflow up to that point
+2. Organizes the data in a consistent, structured format
+3. Sends this information to your specified URL endpoint
+
+This creates a bridge between your MindPal workflow and other systems, making it easy to integrate with your existing tools and services.
+
+## When to use a Webhook Node?
+
+Consider using the Webhook Node when:
+
+- You need to send workflow results to another system
+- You want to trigger actions in external applications
+- You want to store or process workflow results elsewhere
+
+Here are some common scenarios where Webhook Node excels:
+
+| Scenario        | Example                                                        |
+| --------------- | -------------------------------------------------------------- |
+| Data Collection | Sending customer info collected from a form to your CRM system |
+| Integration     | Triggering actions in your backend when a workflow completes   |
+| Automation      | Automatically updating external systems with workflow results  |
+| Distribution    | Sending workflow outcomes to a third-party service to publish  |
+
+## How a Webhook Node Works
+
+The Webhook Node operates through a simple process:
+
+1. Collects all workflow data up to the current point
+2. Structures the data in a consistent JSON format
+3. Sends a POST request to your specified webhook URL
+
+The webhook will send data in this structured format:
+
+```json
+{
+  "workflow_run_id": "string", // The ID of the workflow run
+  "workflow_id": "string", // The ID of the workflow
+  "workflow_title": "string", // The title of the workflow
+  "workflow_run_input": [
+    {
+      "index": number, // The index of the input
+      "title": "string", // The title of the input
+      "type": "string", // The type of the input (e.g., "TEXT", "NUMBER", "DATE", "SELECT", etc.)
+      "content": "string" // A stringified version of the input
+    } // An array of all the inputs to the workflow up to the Webhook Node
+  ],
+  "workflow_run_output": [
+    {
+      "index": number, // The index of the output
+      "title": "string", // The title of the output
+      "type": "string", // The type of the node (e.g., "AGENT", "ORCHESTRATOR_WORKER", "LOOP", "EVALUATOR_OPTIMIZER", etc.)
+      "content": "string" // A stringified version of the output
+    } // An array of all the outputs from the workflow up to the Webhook Node
+  ]
+}
+```
+
+## Configuring a Webhook Node
+
+One workflow can have multiple Webhook Nodes. To set up a Webhook Node, you need to configure these essential components:
+
+### 1. Webhook URL Setup
+
+The first and most important step is providing your webhook URL:
+
+- Create a webhook URL in the destination system (e.g. Zapier, Make, your own backend, etc.)
+- Enter the full URL where you want to receive the data
+
+### 2. Testing Your Webhook
+
+Before running your workflow:
+
+- Use the "Send test data" button to verify your endpoint
+- Check if your endpoint correctly receives and processes the data
+- Verify the data format matches your expectations
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />{" "}

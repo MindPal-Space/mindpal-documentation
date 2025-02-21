@@ -1,0 +1,71 @@
+# Schedule Trigger
+
+Ever wished your workflows could run on autopilot on a recurring basis, like having a reliable assistant who knows exactly when to kick off important tasks? That's exactly what Schedule triggers do - they let you automate your workflows to run at specific times, whether it's daily check-ins, weekly reports, or monthly analyses.
+
+## What is a Schedule Trigger?
+
+A Schedule trigger is a way to start your workflow at predetermined, recurring times. It acts like a smart alarm clock for your workflows, ensuring they run consistently without manual intervention.
+
+## When to use a Schedule Trigger?
+
+Use Schedule triggers when you want workflows to run automatically at specific times, such as:
+
+- Daily morning briefings
+- Weekly social media content planning
+- Monthly performance report generation
+- Periodic data backups
+- Regular customer follow-ups
+
+Here are some common scenarios where Schedule triggers excel:
+
+| Scenario         | Example                                                  |
+| ---------------- | -------------------------------------------------------- |
+| Content Planning | Trigger content ideation workflow every Monday morning   |
+| Reporting        | Generate weekly analytics reports every Friday afternoon |
+
+## How Schedule Triggers work
+
+The Schedule trigger operates through a straightforward process:
+
+1. You set up a schedule specifying when the workflow should run (e.g., every day at 9:00)
+2. You configure the timezone to ensure the workflow runs at the right time for your location
+3. You can optionally set up human input that will be used each time the workflow runs
+4. At the scheduled time, the workflow automatically starts with the configured input
+
+## Configuring a Schedule Trigger
+
+To set up a Schedule trigger, you need to configure these essential components:
+
+### 1. Schedule Setup
+
+First, define when your workflow should run:
+
+- Choose the frequency (every day, week, month)
+- Set the specific time
+- Select your timezone to ensure accurate timing
+
+### 2. Human Input Configuration
+
+If your workflow needs specific input each time it runs:
+
+- Define the input fields your workflow needs
+- The input will be used consistently for each scheduled run
+- You can modify these inputs anytime by editing the trigger
+
+import { Callout } from "nextra/components";
+
+<Callout emoji="💡">
+Did you know you can set up multiple schedules for a single workflow? This means you can:
+
+- Run the same workflow at different times (e.g., daily at 9am and 5pm)
+- Use different input data for each schedule (e.g., different prompts for content generation)
+- Manage each schedule separately without affecting others
+- Adapt one workflow for multiple use cases (e.g., generate reports for different teams)
+
+For example, you could have a content creation workflow that runs daily at 9am to create blog posts, and again at 2pm to create social media content - each with its own specific inputs and parameters.
+
+</Callout>
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />{" "}

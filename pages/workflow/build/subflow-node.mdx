@@ -1,0 +1,66 @@
+# Subflow Node
+
+Ever had a workflow that you want to reuse in different places? Maybe you've built a perfect content review process or a social media post generator that you'd love to plug into other workflows? That's exactly what the Subflow Node is for. Think of it as your favorite workflow recipe that you can easily drop into any other workflow - saving you time and keeping things consistent across your projects.
+
+## What is a Subflow Node?
+
+A Subflow Node is a special component that lets you:
+
+1. Insert an existing workflow into another workflow
+2. Reuse proven processes without rebuilding them
+3. Keep your workflows organized and maintainable
+
+This creates a modular system where you can build complex workflows from simpler, reusable building blocks.
+
+## When to use a Subflow Node?
+
+Consider using the Subflow Node when:
+
+- You have a process that you frequently reuse
+- You want to maintain consistency across different workflows
+- You need to break down complex workflows into manageable pieces
+- You want to update multiple workflows by changing just one subflow
+
+Here are some common scenarios where Subflow Node excels:
+
+| Scenario        | Example                                                                         |
+| --------------- | ------------------------------------------------------------------------------- |
+| Content Review  | Using a standardized review process across different content creation workflows |
+| Data Processing | Applying the same data cleaning and validation steps in various data workflows  |
+| Quality Checks  | Implementing consistent quality control processes across different outputs      |
+| Social Media    | Reusing post formatting and scheduling logic across marketing campaigns         |
+
+## How a Subflow Node Works
+
+The Subflow Node operates through a straightforward process:
+
+1. Selects a pre-built workflow to run as part of the current workflow
+2. Passes relevant inputs from the main workflow to the subflow
+3. Executes the subflow with those inputs
+4. Returns the subflow's output back to the main workflow
+
+## Configuring a Subflow Node
+
+To set up a Subflow Node, you need to configure these essential components:
+
+### 1. Workflow Selection
+
+The first step is choosing which workflow to run:
+
+- Select from your existing workflows in the dropdown
+- The selected workflow will run as part of your current workflow
+- Make sure the chosen workflow is compatible with your needs
+
+### 2. Pre-fill Initial Inputs (optional)
+
+If the subflow uses inputs from the main workflow, you can pre-fill them here so the human doesn't have to re-enter them:
+
+- Map inputs from your main workflow to the subflow's required fields
+- Use [variables](/workflow/build/variables) to reference human inputs or previous node outputs
+- Ensure all required fields are properly connected
+
+You don't have to pre-fill all inputs. If you don't need to pre-fill any inputs, you can safely skip this step.
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />{" "}

@@ -1,0 +1,88 @@
+# Language Model Settings
+
+AI agents need powerful language models to understand and respond to requests. But different tasks require different levels of capability - a simple chatbot might only need basic comprehension, while a complex analysis tool needs advanced reasoning. That's where language model settings come in - they let you choose and configure the AI engine that powers your agent, ensuring you get the right balance of performance and efficiency for your specific needs.
+
+## What are Language Model Settings?
+
+Language model settings control which AI model powers your agent and how it works, directly affecting the quality, speed, and cost of your agent's responses.
+
+Every agent needs a language model to work.
+
+## How Language Model Settings Work
+
+When you run an agent, your request is processed according to your chosen model and settings to generate the most appropriate response for your needs.
+
+## Configuring Language Model Settings
+
+### 1. Choose a Model
+
+#### Available Models
+
+MindPal offers all state-of-the-art AI models to choose from. As of February 2024, here's our model lineup:
+
+| Provider    | Top Models                   |
+| ----------- | ---------------------------- |
+| OpenAI      | o3 mini, o1, o1 mini, gpt-4o |
+| Anthropic   | Claude 3.5 Sonnet            |
+| Google      | Gemini 2.0 Flash             |
+| Together AI | DeepSeek R1                  |
+| Groq        | Meta LLaMa                   |
+
+import { Callout } from "nextra/components";
+
+<Callout emoji="💡">
+  If you don't pick a model, we'll use a default model. As of February 2024,
+  that's GPT-4o Mini.
+</Callout>
+
+#### How to Choose a Model
+
+Consider these rules of thumbs when selecting a model:
+
+1. **Check Model Capabilities**
+
+   Make sure the selected model's capabilities match the requirements of the agent's job. Look for these key features in the model tooltip:
+   | Parameter | Description |
+   | --- | --- |
+   | Context window | How much information the model can process at once, including your input and its memory of the conversation |
+   | Maximum output length | The longest response the model can generate in a single turn |
+   | Image processing ability | Whether the model can understand and analyze images you provide |
+   | Tool usage support | Whether the model can use external tools provided in the "Tools" settings of your agent |
+
+2. **Don't Overkill**
+
+   For simple tasks, cheaper models like GPT-4.0 Mini or Claude 3.5 Haiku are often sufficient. There's no need to use more expensive models for simple tasks, as they'll cost you more unnecessarily.
+
+3. **Consider Model Strengths**
+
+   If multiple models meet your requirements, consider their unique strengths:
+
+   | Model Family                 | Key Strengths                                                                                               |
+   | ---------------------------- | ----------------------------------------------------------------------------------------------------------- |
+   | Models from OpenAI           | • Excellent at following instructions<br/>• Consistent output quality<br/>• Strong at structured data tasks |
+   | Claude Models from Anthropic | • Superior coding abilities<br/>• Nuanced writing and analysis<br/>• Great at technical documentation       |
+   | Gemini Models from Google    | • Powerful visual understanding<br/>• Strong reasoning capabilities<br/>• Efficient with large contexts     |
+   | DeepSeek                     | • Specialized in coding tasks<br/>• Good balance of speed and quality                                       |
+   | LLaMa Models from Meta       | • Cost-effective<br/>• Open-source foundation<br/>• Good for general tasks                                  |
+
+### 2. Set Maximum Output Length
+
+Control how long your agent's responses should be by setting the maximum output tokens.
+
+For your reference, 1,000 tokens is about 750 words.
+
+If you don't set a specific value and use "Auto", the model will adjust the length based on what you're asking it to do.
+
+### 3. Control Creativity Level
+
+Adjust how creative your agent's responses are by setting the temperature.
+
+The higher the temperature, the more varied and creative the model's responses will be. Good for brainstorming and creative work.
+
+The lower the temperature, the more consistent and predictable the model's responses will be. Good for fact-based tasks.
+
+Pick "Auto" and the model will adjust creativity based on your task.
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />
