@@ -1,0 +1,42 @@
+# Payment Node
+
+Turn your workflows into a revenue stream by adding payment checkpoints. The Payment Node lets you monetize your expertise by requiring payment before users can access specific parts of your workflow.
+
+## What is a Payment Node?
+
+A Payment Node:
+
+- Gates access to workflow steps until payment is completed
+- Processes payments through your Stripe account
+- Continues workflow automatically after successful payment
+
+## When to Use a Payment Node?
+
+Add a Payment Node when you want to monetize your workflow with a one-time payment.
+
+## How Payment Nodes Work
+
+When users reach a Payment Node in your workflow:
+
+1. **Payment form**: A secure Stripe checkout form appears, requesting the one-time payment you configured
+2. **Gated access**: Users cannot view or access any workflow steps after the Payment Node until payment is completed
+3. **Secure processing**: All payments are processed securely through Stripe, connected directly to your account
+4. **Full revenue**: You receive 100% of each payment - MindPal charges no platform fees or commissions (as of February 2025)
+5. **Automatic continuation**: Once payment is successful, users gain immediate access to continue the workflow
+
+## Configuring a Payment Node
+
+### 1. Connect your Stripe to MindPal
+
+Connect your Stripe account to your MindPal workspace by bringing your Stripe publishable key & secret/restricted key to the your workspace settings' "Keys & Credentials" tab.
+
+Please make sure your credentials are correct, otherwise the payment will fail to be processed.
+
+### 2. Set the price amount & currency
+
+- Set amount
+- Choose currency (USD, etc.)
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />{" "}

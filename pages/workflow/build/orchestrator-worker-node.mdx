@@ -1,0 +1,73 @@
+# Orchestrator-Worker Node
+
+Ever found yourself tackling a complex project where you're not quite sure about all the steps needed until you dig in deeper? That's exactly where the Orchestrator-Worker Node shines. Think of it as having a smart project manager (the orchestrator) who breaks down big tasks into smaller pieces and assigns them to specialized team members (the workers) - all while adapting the plan as new information comes to light.
+
+## What is an Orchestrator-Worker Node?
+
+The Orchestrator-Worker Node is a dynamic task planning & execution system that consists of:
+
+1. **Orchestrator Agent**: A central planner that breaks down complex tasks into manageable subtasks
+2. **Worker Agents**: Specialized agents that execute the individual subtasks
+
+This creates a flexible system where complex tasks can be handled efficiently through intelligent task distribution and management.
+
+## When to use an Orchestrator-Worker Node?
+
+Consider using the Orchestrator-Worker Node when:
+
+- The full scope of work isn't clear at the start
+- Tasks require dynamic planning and adjustment
+- Work can be broken down into smaller subtasks
+- Different subtasks need different types of expertise
+
+Here are some common scenarios where Orchestrator-Worker Node excels:
+
+| Scenario         | Example                                                                                                                                     |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| Content Creation | Managing a content campaign where topics, formats, and distribution channels need to be planned and executed by different specialists       |
+| Market Analysis  | Coordinating market research where questions to ask are not clear at the start and will be determined based on the product/service provided |
+
+## How an Orchestrator-Worker Node Works
+
+The Orchestrator-Worker Node operates through a systematic process:
+
+1. The orchestrator agent analyzes the main task and creates an initial breakdown of subtasks as well as instructions for each subtask
+2. The orchestrator agent assigns the subtasks to the appropriate worker agents
+3. The worker agents execute their assigned tasks and report back
+
+## Configuring an Orchestrator-Worker Node
+
+To set up an Orchestrator-Worker Node, you need to configure these essential components:
+
+### 1. Orchestrator Agent Setup
+
+The orchestrator agent is your project manager:
+
+- Select an agent with strong analytical and planning capabilities
+- Provide clear instructions for the overall objective and for how tasks should be broken down with references to human inputs or previous node outputs via [variables](/workflow/build/variables) if needed
+
+### 2. Worker Agents Selection
+
+Choose your team of specialized workers:
+
+- Select agents with different expertise relevant to potential subtasks
+
+### 3. Execution Parameters
+
+Set the operational parameters:
+
+- Maximum number of subtasks to create
+
+## Loop vs. Orchestrator-Worker Node
+
+When dealing with tasks that involve multiple steps or items, you might wonder whether to use a Loop Node or an Orchestrator-Worker Node. Here's how to choose:
+| When to use | Loop Node | Orchestrator-Worker Node |
+| --------------- | ------------------------------------------------------ | ------------------------------------------------------ |
+| What you have | A list of similar items that need the same treatment | A big task that needs to be broken down into pieces |
+| What you know | You know exactly what needs to be done for each item | You're not sure about all the steps needed at the start |
+| Who does it | One agent can handle everything | You need different experts for different parts |
+| Example | Given a list of topics, create a blog post for each topic by Blog Post Writer Agent | Given a blog post, repurpose it for different social media platforms, selected by the human at the time of execution, by a team of 10+ content creator agents|
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />{" "}

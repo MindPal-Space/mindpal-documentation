@@ -1,0 +1,74 @@
+# Gate Node
+
+Need to make sure your workflow only proceeds when certain conditions are met? That's where the Gate Node comes in. It acts as a smart gatekeeper, evaluating conditions and deciding whether to let the workflow continue or stop it in its tracks - perfect for controlling costs and ensuring quality in your AI workflows.
+
+## What is a Gate Node?
+
+A Gate Node is a specialized component in MindPal's Multi-Agent Workflow that:
+
+1. **Evaluates** specific conditions based on defined logic
+2. **Decides** whether to allow the workflow to continue
+3. **Stops** the workflow immediately if conditions aren't met
+
+This creates an efficient system for controlling workflow progression and managing AI credit consumption.
+
+## When to use a Gate Node?
+
+Consider using the Gate Node when:
+
+- You need to validate inputs before proceeding with expensive operations
+- Quality checks are required before continuing the workflow
+- Cost control is essential for your AI operations
+
+Here are some common scenarios where Gate Node excels:
+
+| Scenario         | Example                                                                                         |
+| ---------------- | ----------------------------------------------------------------------------------------------- |
+| Input Validation | Ensuring all required information is valid before proceeding with complex processing            |
+| Quality Control  | Checking if generated content meets specific quality criteria before proceeding to distribution |
+
+## How a Gate Node Works
+
+The Gate Node operates through a systematic process:
+
+1. Receives input that needs to be evaluated
+2. Uses the configured agent to assess the conditions
+3. Makes a binary decision: continue or stop
+4. Either allows the workflow to proceed or terminates it immediately
+
+## Configuring a Gate Node
+
+To set up a Gate Node, you need to configure these essential components:
+
+### 1. Agent Selection
+
+Choose the agent that will evaluate the conditions:
+
+- Select an agent with appropriate analytical capabilities
+- Ensure the agent understands your evaluation criteria
+- Can be left blank if the evaluation is simple and doesn't require a specialized agent
+
+### 2. Decision Logic Setup
+
+Define the logic for the continuation decision:
+
+- Specify clear conditions that must be met
+- Write precise instructions for evaluation
+- Use [variables](/workflow/build/variables) to reference inputs or previous node outputs if needed
+- Include specific criteria for both continuation and termination
+
+## Gate vs. Router Node
+
+When dealing with workflow control based on conditions, you might wonder whether to use a Gate Node or a Router Node. Here's how to choose:
+
+| When to use      | Gate Node                                                                                                                                                         | Router Node                                                                                                                                                         |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Primary Purpose  | Make a binary decision: continue or stop the workflow                                                                                                             | Direct workflow to different paths based on input type                                                                                                              |
+| Decision Type    | Yes/No decision                                                                                                                                                   | Multiple possible outcomes                                                                                                                                          |
+| Flow Control     | Can terminate the workflow                                                                                                                                        | Always continues the workflow, just through different paths                                                                                                         |
+| Use Case Example | If you have a web page audit workflow that can process 2 types of pages (landing page and ecommerce product page), force stop if it doesn't belong to either type | Also a web page audit workflow, but you direct the input to different evaluation agents (one optimized for landing pages and the other for ecommerce product pages) |
+| Impact           | Prevents unnecessary resource consumption by stopping early                                                                                                       | Optimizes performance by ensuring proper specialist handling                                                                                                        |
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />{" "}

@@ -1,0 +1,77 @@
+# Tools
+
+By default, AI agents can only generate text based on the information they've been trained on. But what if you want your agent to check today's weather, create images, or update your company's database? That's where tools come in.
+
+## What are Tools?
+
+Tools extend the capabilities of your AI agents by connecting them to external services via APIs.
+
+Here are some of the capabilities that tools can provide:
+
+| Capability                 | Use Cases                                                                                                                                                                      |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Generate Other Media Types | • Create images using DALL-E, Stable Diffusion, or Midjourney<br/>• Generate videos with Gen-2 or other video AI models<br/>• Produce audio content with text-to-speech models |
+| Fetch External Data        | • Access real-time market data<br/>• Query niche industry databases<br/>• Connect to your company's internal databases<br/>• Search the internet for current information       |
+| Take Actions               | • Push data to CRM systems<br/>• Send notifications<br/>• Update databases<br/>• Trigger workflows in other systems                                                            |
+
+## How Tools Work
+
+When you connect a tool to your AI agent, you're essentially giving it an interface to interact with external services. Here's the process:
+
+1. The agent receives a query or task
+2. It determines if external data or actions are needed
+3. If required, it calls the appropriate tool via API
+4. The tool performs the action and returns results
+5. The agent incorporates this information into its response
+
+An agent can use multiple different tools together (e.g., use multiple data sources to generate a response) or use multiple instances of the same tool (e.g., generating different images with DALL-E).
+
+## Configuring Tools
+
+<iframe
+  width="100%"
+  height="400"
+  src="https://www.youtube.com/embed/dukwBTra4NA"
+  title="MindPal Tools Guide"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+></iframe>
+
+### Creating a New Tool
+
+You can create and manage your tools in "Assets" → "Tools".
+
+When creating a new tool, you'll need to configure these essential components:
+
+| Fields           | Description                                                                                                                           |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Title            | A human-readable name for your tool (e.g., "Tavily Web Search API")                                                                   |
+| Name             | A unique identifier for the tool (e.g., "tavily_search_123")                                                                          |
+| Description      | A brief explanation of what the tool does                                                                                             |
+| API Endpoint     | The URL where the API request will be sent                                                                                            |
+| Method           | The HTTP method to use (GET, POST, PUT, DELETE, etc.)                                                                                 |
+| Headers          | Headers as required by the API                                                                                                        |
+| Query Parameters | Add URL parameters that will be appended to the API endpoint. Each parameter needs a key, value, and description                      |
+| Request Body     | The data to be sent with the request (for POST/PUT methods). Can be form data or JSON. Each field needs a key, value, and description |
+
+For each item in the `Headers`, `Query Parameters`, and `Request Body` fields, you can set whether the value should be `Determined by AI` or not:
+
+- `Determined by AI`: The value will be determined by the AI agent when the tool is used, based on the current chat context.
+- Not `Determined by AI`: The value will be a fixed value that you must pre-define.
+
+### Adding Tools to Your Agent
+
+Tools can be added to your agent by going to the "Tools" section in the agent settings.
+
+After adding tools, you can guide your agent on how to use them. Even though each tool has its own instructions, you can add extra directions in your agent's system instructions, especially instructions on how to use the tools in this specific context or how to use them together, things like:
+
+- Whether to use tools one at a time or together
+- Which tools are must-use for specific tasks
+- How to combine different tools for better results
+
+Think of it like giving your agent a playbook - the clearer your instructions, the better it'll handle tasks using these tools.
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />{" "}

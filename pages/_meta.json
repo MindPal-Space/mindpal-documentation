@@ -1,8 +1,9 @@
 {
-  "index": "Introduction to MindPal",
-  "how-to-get-started-with-mindpal": "Quick Start",
-  "features": "Product guides",
-  "ai-workforce-setup-service": "AI Workforce Setup Service",
+  "index": "Quick Start",
+  "agent": "Agent",
+  "workflow": "Multi-Agent Workflow",
+  "workspace": "Workspace Management",
+  "affiliate": "Affiliate",
   "about": {
     "title": "Home",
     "type": "page",

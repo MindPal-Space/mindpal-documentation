@@ -1,0 +1,96 @@
+# Chatbots
+
+So far, we've discussed how to build powerful AI agents with custom knowledge and capabilities. But what if you want to share your agent so anyone can use it, even without a MindPal account? That's where chatbots come in.
+
+## What are Chatbots?
+
+Chatbots are the publishable version of your AI agents. They provide a user-friendly chat interface that allows anyone to interact with your agent's capabilities. Think of it as turning your agent into a public-facing service that can be:
+
+- Embedded on your website
+- Shared via a public link
+- Accessed through a chat bubble
+- Hosted on your custom domain
+
+## How Chatbots Work
+
+When you publish an agent as a chatbot:
+
+1. **Interface Layer**: Your agent gets wrapped in a customizable chat interface
+2. **Public Access**: Users can interact without needing a MindPal account
+3. **Secure Processing**: All interactions are still powered by your configured agent
+4. **Data Collection**: Optional user information can be gathered
+5. **Usage Tracking**: All conversations can be monitored and analyzed
+
+One agent can be published as multiple chatbots, each with its own unique interface and settings.
+
+## Configuring Chatbots
+
+<iframe
+  width="100%"
+  height="400"
+  src="https://www.youtube.com/embed/ZPRU2-UvJtU"
+  title="MindPal Chatbot Guide"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+></iframe>
+
+### Set Up the Chatbot Interface
+
+Navigate to the chatbot tab to configure these settings:
+
+#### 1. General Information
+
+- **Name**: Give your chatbot a clear, identifiable name
+- **Avatar URL**: Add a profile picture (supports image URLs)
+- **Tags**: Organize your chatbots with relevant tags
+- **Description**: Explain what your chatbot can help with
+
+#### 2. Functional Settings
+
+- **Agent**: Select the AI agent that will power this chatbot
+- **Notifications**: Toggle to receive alerts when new chats are created
+
+#### 3. User Info Collection
+
+- Enable/disable user information collection
+- Configure custom fields:
+  - Field title (e.g., "First name", "Email")
+  - Field type (Text, Email, etc.)
+  - Required/Optional status
+- Option to send collected data to a webhook
+
+#### 4. Chat Interface
+
+- **Branding**: Option to hide MindPal branding
+- **Brand Color**: Customize the chat interface colors
+- **Initial Message**: Set a welcome message (e.g., "Hi there! How can I help you today?")
+- **Message Suggestions**: Add clickable suggestions for users
+- **UX Copywriting**: Customize the chat interface copywriting like the submit button text, placeholder text, and more
+
+#### 5. Access & Security
+
+- **Custom URL**: Get a unique chatbot URL (chatbot.mindpal.space/your-chatbot)
+- **Custom Domain**: Option to use your own domain
+- **Embedding Restrictions**: Limit which domains can embed your chatbot
+- **Rate Limits**: Set maximum conversations per user/minute
+
+### Deploy & Share
+
+After configuring, you can:
+
+- Copy your public chatbot link
+- Get embed code for iframe implementation
+- Add chat bubble widget code to your website
+- Connect your custom domain
+
+### View Conversation Logs
+
+Monitor your chatbot's performance through the logs section:
+
+- View complete chat histories
+- Access collected user information
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />{" "}

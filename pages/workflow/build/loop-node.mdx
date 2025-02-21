@@ -1,0 +1,75 @@
+# Loop Node
+
+In many workflow scenarios, you'll find yourself needing to perform the same task multiple times with different inputs - like writing social media posts for multiple product features or analyzing feedback from different customers. The Loop Node is designed exactly for these situations, making it easy to process a list of items without creating redundant workflow steps.
+
+## What is a Loop Node?
+
+A Loop Node is a specialized component that automates repetitive tasks by:
+
+1. Taking a list of items as input
+2. Using a designated agent to process each item
+3. Following specific instructions for handling each item
+
+This creates an efficient system for handling multiple similar tasks without creating separate nodes for each item.
+
+## When to use a Loop Node?
+
+Consider using the Loop Node when:
+
+- You have a list of similar items that need the same processing
+- A task needs to be repeated multiple times with different inputs
+- You want to automate repetitive operations
+- You need to process data in batches
+- You want to maintain consistency across multiple outputs
+
+Here are some common scenarios where Loop Node excels:
+
+| Scenario         | Example                                                                         |
+| ---------------- | ------------------------------------------------------------------------------- |
+| Content Creation | Processing a list of blog post ideas to generate full articles for each topic   |
+| Social Media     | Creating LinkedIn posts for multiple product features or announcements          |
+| Data Processing  | Analyzing customer feedback from multiple sources using the same criteria       |
+| Documentation    | Generating documentation for multiple API endpoints following the same template |
+
+## How a Loop Node Works
+
+The Loop Node operates through a systematic process:
+
+1. Extracts a list of items from some source, which can be a human input, a previous node output, or both
+2. Processes each item individually using the configured agent with the same instructions
+
+## Configuring a Loop Node
+
+To set up a Loop Node, you need to configure these three essential components:
+
+### 1. The List Setup
+
+The first thing you'll see when creating a Loop Node is the "For each item in" field. This is where you specify your list of items to process. You can reference a human input or a previous node output via [variables](/workflow/build/variables). The system will automatically handle converting your input into a processable list.
+
+### 2. Agent Selection
+
+Next, you'll choose an agent to process each item in your list:
+
+- Click "Select an agent" to choose from your available agents
+- Pick an agent with expertise relevant to your task
+- The same agent will process each item in your list
+
+### 3. Instruction Configuration
+
+In the "Task" field, write instructions for how the agent should process each item:
+
+- Be clear and specific about what you want the agent to do
+- Use [variables](/workflow/build/variables) to reference human inputs or previous node outputs if needed
+- The system will automatically apply these instructions to each item in your list
+
+### 4. Processing Limits
+
+For workflow efficiency and resource management:
+
+- Use the "Max items to process" slider to set a limit
+- The default maximum is 10 items
+- Adjust based on your needs while considering processing time and resources
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />{" "}

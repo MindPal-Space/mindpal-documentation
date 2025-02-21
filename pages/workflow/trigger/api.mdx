@@ -1,0 +1,42 @@
+# Public API Trigger
+
+import PageFooter from "components/PageFooter";
+
+Imagine being able to kick off your workflows automatically from any system or application. That's exactly what the Public API trigger enables - it lets you programmatically start workflows through simple HTTP requests.
+
+## What is it?
+
+The Public API trigger is a powerful way to integrate MindPal workflows into your existing systems and applications. It provides a REST API endpoint that you can call to start a workflow execution with custom data.
+
+## When to use it?
+
+Use the Public API trigger when you want to trigger a workflow on MindPal to run programmatically from an external system or application, such as:
+
+- A custom application you're building
+- A cross-app integration platform like Zapier or Make
+
+## How it works?
+
+1. Send a POST request to the Public API endpoint with the workflow input data
+2. The workflow starts executing with the provided data
+3. You receive a response with the execution details
+
+## Configuring the API request
+
+The complete API documentation is available [here](https://api-v3.mindpal.io/docs).
+
+For workflow-specific API details:
+
+1. Open your workflow
+2. Go to the "API Reference" tab
+3. Find detailed documentation customized for your workflow's specific input schema
+
+import { Callout } from "nextra/components";
+
+<Callout emoji="💡">
+  **Important:** The data provided in the API request must match the input
+  schema of the workflow exactly. Follow the detailed documentation in the "API
+  Reference" tab to ensure the request is correct.
+</Callout>
+
+<PageFooter />{" "}

@@ -1,0 +1,73 @@
+# Introduction to Multi-Agent Workflows
+
+When it comes to complicated business processes with multiple steps, relying on a single AI agent often isn't enough to get quality results. That's where MindPal's multi-agent workflows come into play.
+
+<iframe
+  width="100%"
+  height="400"
+  src="https://www.youtube.com/embed/n-zo3hs4SgQ"
+  title="MindPal Multi-Agent Workflow Guide"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+></iframe>
+
+## What is a Multi-Agent Workflow?
+
+A multi-agent workflow is a powerful automation system that connects several agents in a step-by-step process, enabling them to pass data and build upon each other's responses.
+
+## When to Use Multi-Agent Workflows
+
+While single agents excel at focused tasks, multi-agent workflows provide several key advantages:
+
+1. **Higher Quality Output**: Specialized agents excel at specific tasks, leading to superior results when combined
+2. **Easier Training**: Dividing tasks among agents leads to focused instructions and simplifies maintenance
+3. **Flexibility**: Well-trained AI agents can be repurposed for various workflows, adapting to different processes
+
+## Use Cases of Multi-Agent Workflows
+
+Here's how different departments can leverage multi-agent workflows:
+| Department | Use Cases |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Content Creation | • Blog Post Pipeline (Research → Write → Edit → Optimize)<br/>• Social Media Campaign (Ideation → Creation → Review → Schedule)<br/>• Video Script Generation (Research → Script → Edit → Format) |
+| Customer Service | • Ticket Triage & Resolution<br/>• Customer Feedback Analysis<br/>• FAQ Generation & Updates<br/>• Support Documentation Creation |
+| Data Processing | • Data Extraction & Transformation<br/>• Document Analysis Pipeline<br/>• Report Generation & Distribution<br/>• Data Quality Control |
+| Business Operations | • Vendor Evaluation Process<br/>• Contract Review Pipeline<br/>• Project Planning Assistant<br/>• Resource Allocation Optimizer |
+
+## Components of a Multi-Agent Workflow
+
+A MindPal workflow consists of these core node types:
+
+| Node Type                                                       | Description                                                               | Use Case                                                       |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| [Human Input](/workflow/build/human-input-node)                 | Requests and collects input from human users                              | When human oversight or decision is needed                     |
+| [Agent](/workflow/build/agent-node)                             | A specialized agent focused on executing one specific task                | For focused, single-purpose operations                         |
+| [Evaluator-Optimizer](/workflow/build/evaluator-optimizer-node) | Self-evaluates output and iteratively improves until meeting requirements | Quality control and optimization                               |
+| [Loop](/workflow/build/loop-node)                               | Automatically performs a task across multiple items                       | Batch processing and scaling                                   |
+| [Orchestrator-Worker](/workflow/build/orchestrator-worker-node) | Coordinates multiple worker agents for complex tasks                      | Autonomous planning and execution for unpredicatable processes |
+| [Subflow](/workflow/build/subflow-node)                         | Runs another workflow within the current workflow                         | Modular and reusable process components                        |
+| [Router](/workflow/build/router-node)                           | Switches between different paths based on logic                           | Conditional process branching                                  |
+| [Gate](/workflow/build/gate-node)                               | Enforces stopping conditions to halt workflow                             | Quality and condition checkpoints                              |
+| [Webhook](/workflow/build/webhook-node)                         | Sends workflow execution results to external systems                      | Integration with external tools                                |
+| [Payment](/workflow/build/payment-node)                         | Triggers a payment when a node is executed                                | Monetization and paid services                                 |
+
+## What Can You Do with a Multi-Agent Workflow?
+
+### Run Workflows within Your Workspace
+
+Workflows can be run in several flexible ways:
+
+| Run Mode      | Description                                                                                                                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Default       | Run workflows one set of inputs at a time with real-time results, making it perfect for individual tasks that need immediate feedback.                                                        |
+| Supervised    | Run workflows with full control by reviewing and approving each step before proceeding, with ability to edit responses between steps - ideal for tasks that require constant human oversight. |
+| In Background | Process workflows in the background while working on other tasks, with the flexibility to close the window and return later for results, suited for longer-running processes.                 |
+| Bulk Run      | Process multiple workflow instances simultaneously by uploading batch inputs for parallel processing, with all results tracked conveniently in the workflow run result table.                 |
+
+### Publish as a Form
+
+Turn your workflow into a form that can be used by anyone outside of MindPal. You can get a link to the form or embed it on your website.
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />{" "}

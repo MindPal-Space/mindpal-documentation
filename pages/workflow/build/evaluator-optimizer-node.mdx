@@ -1,0 +1,64 @@
+# Evaluator-Optimizer Node
+
+In complex tasks where quality and precision are paramount, having a mechanism for continuous improvement and validation is essential. The Evaluator-Optimizer Node addresses this need by implementing a sophisticated feedback loop system where one agent's output is systematically reviewed and refined based on predefined criteria.
+
+## What is an Evaluator-Optimizer Node?
+
+The Evaluator-Optimizer Node is a specialized component in MindPal's Multi-Agent Workflow that creates a dynamic partnership between two agents:
+
+1. **Executor Agent**: Generates the primary output based on given instructions
+2. **Evaluator Agent**: Reviews the output against specific criteria and provides actionable feedback
+
+This creates an iterative improvement cycle where the output is continuously refined until it meets all requirements.
+
+## When to use an Evaluator-Optimizer Node?
+
+Consider using the Evaluator-Optimizer Node when:
+
+- You have clear, measurable evaluation criteria
+- The task benefits from iterative refinement
+- Quality assurance is critical
+- You need systematic validation of outputs
+- The task requires meeting multiple specific requirements
+
+Here are some common scenarios where Evaluator-Optimizer Node shines:
+
+| Scenario                | Example                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Report Writing          | Imagine you are writing a report that consists of 10 specific sections. Sometimes, an agent may overlook one or two sections, but your report must include all 10 sections as previously defined. In this case, the evaluator agent can double-check the report to ensure that all 10 sections are present. If any sections are missing, the evaluator will provide refined feedback to the executor agent, prompting it to continue working until the report meets the criteria of having all 10 sections included. |
+| Technical Documentation | When creating API documentation that must include endpoints, parameters, response codes, and examples. The evaluator ensures all required components are documented properly and provides feedback if any elements are missing or unclear.                                                                                                                                                                                                                                                                           |
+| Code Generation         | For generating code that must follow specific patterns, naming conventions, and include required components like error handling and logging. The evaluator checks if all requirements are met and suggests improvements.                                                                                                                                                                                                                                                                                             |
+| Content Creation        | Creating blog posts that need specific elements like introduction, key points, examples, conclusion, and call-to-action. The evaluator ensures all required sections are present and well-developed.                                                                                                                                                                                                                                                                                                                 |
+
+## How an Evaluator-Optimizer Node Works
+
+The Evaluator-Optimizer Node operates in a continuous feedback loop:
+
+1. The Executor Agent generates initial output based on the given task
+2. The Evaluator Agent reviews the output against predefined criteria
+3. If the output meets all requirements, the workflow proceeds to the next step
+4. If improvements are needed, the Evaluator provides specific feedback
+5. The Executor creates a new iteration based on the feedback
+6. This cycle continues until all requirements are met
+
+## Configuring an Evaluator-Optimizer Node
+
+To set up an Evaluator-Optimizer Node, you need to configure these components:
+
+### 1. Executor Agent Setup
+
+- Select an agent profile suitable for the primary task
+- Define a task to execute with references to human inputs or previous node outputs via [variables](/workflow/build/variables) if needed
+
+### 2. Evaluator Agent Setup
+
+- Choose an agent profile with expertise in evaluation
+- Set specific evaluation criteria with references to human inputs or previous node outputs via [variables](/workflow/build/variables) if needed
+
+### 3. Iteration Settings
+
+- Maximum number of iterations
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />

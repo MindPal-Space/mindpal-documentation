@@ -1,0 +1,65 @@
+# System Instructions
+
+Out of the box, AI agents are generalists - they can engage in conversation but lack specific focus or consistent behavior patterns. What if you want your agent to be a dedicated customer service expert who always maintains a friendly tone? Or a technical specialist who follows strict protocols? That's where system instructions come in - they transform general-purpose AI into focused, reliable assistants that consistently follow your rules and guidelines.
+
+## What are System Instructions?
+
+Think of system instructions as the "operating manual" for your AI agent - they determine everything from how it processes information to how it responds to requests.
+
+Unlike one-time commands or chat-specific instructions, system instructions create a consistent personality and behavior pattern that persists across all interactions.
+
+## How System Instructions Work
+
+When you run an AI agent on MindPal, the system instructions become the `system prompt` for the AI model. This system prompt is consistently maintained throughout all interactions with the agent, whether you're:
+
+- Chatting with the agent individually
+- Running the agent as part of a multi-agent workflow
+- Using the agent across different sessions
+
+## Configuring System Instructions
+
+In MindPal, system instructions are divided into two main sections:
+
+### 1. Background
+
+This section defines who your agent is and what it is supposed to do. Include information such as:
+
+- **Role and identity**: e.g., "You are an experienced content strategist"
+- **Behavioral guidelines**: e.g., "You communicate in a friendly yet professional manner"
+- **Task parameters**: e.g., "You always start by understanding the target audience"
+- **Knowledge boundaries**: e.g., "You have deep knowledge of SEO best practices"
+- **Tool usage guidelines**: e.g., "You must use both Tavily and Exa Search tools at once" or "You must break down your search with Tavily tool in multiple search queries"
+
+### 2. Desired Output Format
+
+This section specifies how your agent should structure its responses. You can define:
+
+- **Response structure**: How information should be organized
+- **Required components**: What must be included in each response
+- **Formatting preferences**: How to present different types of information
+- **Specific templates**: Any standardized formats to follow
+- **Output constraints**: Any limitations on response length or content
+
+## Best Practices
+
+### Do's ✓
+
+- **Be specific**: Define clear, unambiguous instructions
+- **Stay focused**: Keep the agent's purpose narrow and well-defined
+- **Include examples**: Provide sample scenarios and desired responses
+- **Set boundaries**: Clearly outline what the agent should not do
+- **Update regularly**: Refine instructions based on performance
+
+### Don'ts ✗
+
+- **Avoid contradictions**: Don't give conflicting instructions
+- **Don't be vague**: Unclear instructions lead to inconsistent performance
+- **Don't overload**: Too many instructions can confuse the agent
+- **Don't assume knowledge**: Explicitly state required information
+- **Don't skip testing**: Always verify how instructions affect behavior
+
+Remember: Well-crafted system instructions are the foundation of a high-performing AI agent. Take time to design, test, and refine them for optimal results.
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />{" "}
