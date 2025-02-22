@@ -18,18 +18,18 @@ const App = ({ Component, pageProps }) => {
   return (
     <>
       <Component {...pageProps} />
-      <Script id="mindpal-friend-setup">
+      <Script id="mindpal-friend2-setup">
         {`
         window.mindpalConfig = {
-          chatbotId: "mindpal-friend",
+          chatbotId: "mindpal-friend2",
           chatbotAvatarUrl: "https://ph-files.imgix.net/9b89dafe-b565-431d-9093-23e626ae286a.png?auto=compress&codec=mozjpeg&cs=strip&auto=format&w=64&h=64&fit=crop&dpr=1",
           chatbotTheme: "mindpal-light",
         };
       `}
       </Script>
       <Script
-        id="mindpal-friend-run"
-        src="https://mindpal.space/embed.min.js"
+        id="mindpal-friend2-run"
+        src="https://chatbot.getmindpal.com/embed.min.js"
       ></Script>
     </>
   );
