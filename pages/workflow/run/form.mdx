@@ -61,6 +61,16 @@ You have two options for sharing:
 
 2. **Embed Code**: Copy the embed code and paste it into your website as an iframe.
 
+## Frequently Asked Questions
+
+### Can users go back to previous steps in a workflow to make edits before moving to the next step?
+
+Yes, this is possible by enabling supervised mode in your form settings. Navigate to the "Functionality" tab in your Form settings and enable supervised mode. When this option is activated, the workflow will pause after each step, allowing users to review outputs, make edits, or regenerate results before proceeding to the next step.
+
+### Is there a way to save progress in a workflow?
+
+Yes, progress saving is built into the workflow system. When a user starts a workflow, a unique identifier called "workflow run ID" is generated and appears in the URL as a parameter. The URL would look something like this: `https://[YOUR_WORKFLOW_PUBLIC_URL]?wrid=[WORKFLOW_RUN_ID]`. As long as users save or bookmark this specific URL, they can return to it later and continue their workflow from where they left off. This is particularly useful for longer workflows with multiple input steps.
+
 import PageFooter from "components/PageFooter";
 
 <PageFooter />{" "}
