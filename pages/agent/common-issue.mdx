@@ -1,0 +1,23 @@
+# Common Issues and Debugging Tips
+
+### Out of Context Length
+Issue: When using an LLM in MindPal, you might encounter a context-length issue. This happens when the agent inside a workflow refers to data from many previous steps or from your own knowledge resources, exceeding the model's context-length limit.
+
+Solution: Use a larger model like Claude 3.7 Sonnet or Gemini 2.0 to handle more context.
+
+### Answer Quality from Agent
+Issue: The quality of responses from LLMs can sometimes be unsatisfactory due to their non-deterministic nature.
+
+Solution: Opt for a high-quality model like o3 or Claude 3.7 Sonnet to improve response quality.
+
+### Referring Knowledge Source
+Issue: You may want the agent to use content from a specific file or URL uploaded into the knowledge source. Sometimes, the agent might not automatically use this content.
+
+Solution: Explicitly prompt the agent to use the content from the knowledge source to generate the desired response.
+
+### Tool Use
+Issue: If the agent fails to perform tasks like finding leads, linking, or sending emails, it might be due to not having the necessary tools assigned.
+
+Solution: Assign the appropriate tools to the agent. In MindPal, default tools include getting context from NorseSource, scraping websites, and performing web searches. For other tasks, such as deleting an image or retrieving content from specific sources like Wikipedia or Pexels, you need to explicitly assign the required tools.
+
+These tips should help you troubleshoot and resolve common issues when working with AI Agents in MindPal.
