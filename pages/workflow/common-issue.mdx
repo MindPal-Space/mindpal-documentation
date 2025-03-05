@@ -1,0 +1,20 @@
+## Common Issues in Workflow
+
+### 1. Variable Assignment
+Ensure that variables are properly assigned using the correct syntax. This is crucial for the agent on a specific step in MindPal to understand the context and perform the task correctly. Misconfigured variables may allow the workflow to run, but they will disqualify the agent's response, preventing the desired outcome.
+
+### 2. MindPal API Format
+When using the MindPal API, strictly adhere to the data format specified in the API reference page. Even minor syntax errors, such as incorrect casing, will cause the API to fail.
+
+### 3. Error Messages
+If there's an issue with running the workflow, an error message task will typically be displayed. Use these error messages to debug and resolve workflow issues effectively.
+
+### 4. Single Starting Point
+Ensure that the workflow has only one starting point. A starting point is defined as any node in the workflow with no incoming edge. Multiple starting points will prevent the workflow from running.
+
+### 5. AI Credit Consumption
+To reduce AI credit consumption, use models like Gemini 2.0 Flash for most tasks. Not every step requires high-end models like o3 or Claude 3.7 Sonnet.
+
+### 6. Gate Node Utilization
+Utilize the gate node to hard stop the workflow when inputs may disqualify. This practice helps save AI credits in such situations.
+

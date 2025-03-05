@@ -2,5 +2,6 @@
   "index": "Introduction",
   "build": "Build",
   "run": "Run",
-  "trigger": "Trigger"
+  "trigger": "Trigger",
+  "common-issue": "Common Issue"
 }
