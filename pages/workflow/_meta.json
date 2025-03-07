@@ -3,5 +3,5 @@
   "build": "Build",
   "run": "Run",
   "trigger": "Trigger",
-  "common-issue": "Common Issue"
+  "common-issues": "Common Issues"
 }
