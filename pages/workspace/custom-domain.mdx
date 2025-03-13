@@ -1,0 +1,101 @@
+# Custom Domain
+
+MindPal allows you to fully white-label your [published agents (chatbots)](/agent/chatbot) and [published workflows (forms)](/workflow/run/form) by hosting them on your own domain. This feature is available as an [add-on](/workspace/plan-billing/addons#custom-domain-for-shared-agentsworkflows) to your workspace.
+
+import { Steps } from "nextra/components";
+import { Callout } from "nextra/components";
+
+## Overview
+
+When you publish an agent (chatbot) or a multi-agent workflow (form) on MindPal, the system generates default links such as:
+
+- `chatbot.getmindpal.com/[YOUR_CHATBOT_SLUG]` for chatbots
+- `workflow.getmindpal.com/[YOUR_WORKFLOW_SLUG]` for workflow forms
+
+With Custom Domain, you can replace these default domains with your own branded domains, such as:
+
+- `yourcompany.com`
+- `chatbot.yourcompany.com`
+- `workflow.yourcompany.com`
+- `ai.yourcompany.com/tool-a`
+
+## Setting Up a Custom Domain
+
+Once you've added the Custom Domain add-on to your workspace, you can start connecting your own domains to your MindPal workspace. Here's how:
+
+<Steps>
+### Go to workspace settings
+Go to your workspace settings by clicking on the "Manage" button on the left sidebar or using the link [http://app.mindpal.space/[YOUR_WORKSPACE_SLUG]/settings](http://app.mindpal.space/personal/settings?tab=usage)
+
+### Navigate to the Usage tab
+
+Click on the **Usage** tab to access domain management options
+
+### Add your custom domain
+
+Select **Add Custom Domain**
+
+### Configure domain details
+
+Enter your domain name and specify whether it applies to chatbots or workflows.
+
+<Callout emoji="💡">
+  You can connect root domains (e.g., yourcompany.com) or subdomains (e.g.,
+  ai.yourcompany.com). Note that each custom domain configuration can only be
+  applied to either chatbots OR workflows, not both, as they use different
+  engines and interfaces. A common practice is to set up separate custom domain
+  entries (e.g., `chatbot.yourcompany.com` for chatbots and
+  `workflow.yourcompany.com` for workflows).
+</Callout>
+
+### Add DNS records
+
+Follow the instructions for the required DNS records provided by MindPal
+
+### Wait for verification
+
+Wait until your Custom Domain is shown as "Valid configuration". This typically takes just a few minutes to take effect, but in some cases it may take longer.
+
+</Steps>
+
+## Applying Custom Domains to your Chatbots or Workflows
+
+Once your custom domain is validly configured, you can apply it to your chatbots or workflows:
+
+<Steps>
+### Open chatbot/workflow settings
+Go to your chatbot or workflow settings
+
+### Navigate to "Access & Security" section
+
+Click on **Access and Security**
+
+### Enable custom domain
+
+Turn on **Enable Custom Domain**
+
+### Choose your domain
+
+Choose the Custom Domain you wish to use
+
+### Configure path (optional)
+
+Optionally define a path (e.g., `chatbot.yourcompany.com/chatbot1`)
+
+<Callout emoji="💡">
+Using specific paths is recommended when hosting multiple chatbots or workflows on the same custom domain.
+</Callout>
+</Steps>
+
+## Frequently Asked Questions
+
+### How many custom domains can you add to your workspace?
+
+There is no limit; you can have as many custom domains as needed for your workspace.
+
+### What kind of custom domain can be specified?
+
+You can connect:
+
+- Root domains (e.g., `yourcompany.com`)
+- Subdomains (e.g., `ai.yourcompany.com` or `magic.yourcompany.com`)
