@@ -1,0 +1,65 @@
+# Sub-agent
+
+Sub-agent is a feature in MindPal that enables agents to delegate tasks to other specialized agents. This hierarchical delegation system allows you to build more robust and scalable agent workflows.
+
+## What is a sub-agent?
+
+A sub-agent is an agent that works under another agent (parent agent) to handle specific tasks. The parent agent can delegate tasks to its sub-agents based on their expertise and capabilities.
+
+## How it works
+
+When a parent agent receives a task, it can:
+1. Analyze the task requirements
+2. Identify which sub-agent is best suited for the task
+3. Delegate the task to the appropriate sub-agent
+4. Collect and process the results from the sub-agent
+
+To configure sub-agents for an agent in MindPal:
+1. Open the agent settings
+2. Navigate to the sub-agent tab at the bottom
+3. Select the agent you want to confifure as the sub-agent 
+
+![How Knowledge Sources Work](/features/agent/sub-agent/sub-agent.png)
+
+## Real-world example
+
+Let's say you have a social media management system with the following structure:
+
+```
+General Manager Agent
+└── Social Media Manager Agent
+    ├── LinkedIn Post Agent
+    ├── Twitter Post Agent
+    ├── Facebook Post Agent
+    └── Instagram Post Agent
+```
+
+Here's how it works in practice:
+
+1. A user asks the General Manager Agent to "Create a social media campaign for our new product launch"
+2. The General Manager Agent delegates this to the Social Media Manager Agent
+3. The Social Media Manager Agent:
+   - Creates a campaign plan
+   - Delegates specific tasks to specialized agents:
+     - LinkedIn Post Agent writes professional posts
+     - Twitter Post Agent creates engaging tweets
+     - Facebook Post Agent designs Facebook content
+     - Instagram Post Agent develops visual content
+
+## Benefits
+
+- **Task specialization**: Each agent can focus on its specific expertise
+- **Scalability**: Easy to add new specialized agents as needed
+- **Efficiency**: Tasks are automatically routed to the most suitable agent
+- **Organization**: Clear hierarchy and responsibility structure
+- **Flexibility**: Agents can be nested at multiple levels
+
+
+## Use cases
+
+- Content creation workflows
+- Customer service systems
+- Project management
+- Research and analysis
+- Multi-platform marketing campaigns
+- Complex problem-solving tasks 
