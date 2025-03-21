@@ -60,6 +60,29 @@ Navigate to the chatbot tab to configure these settings:
   - Required/Optional status
 - Option to send collected data to a webhook
 
+### Using Webhooks with User Info Collection
+
+When you enable user information collection, you can connect a webhook to automatically receive this data in your external systems.
+
+#### How Webhooks Work
+
+1. **Setup**: Provide a webhook URL from services like Make.com, Zapier.com, or any automation platform
+2. **Triggering**: When a user submits the info collection form, MindPal automatically sends the data to your webhook
+3. **Data Format**: The webhook receives a structured payload containing:
+
+```json
+{
+  "chatbotId": "<YOUR_CHATBOT_ID>",
+  "chatbotConversationId": "<CURRENT_CHATBOT_CONVERSATION_ID>",
+  "chatbotConversationViewUrl": "<CURRENT_CHATBOT_CONVERSATION_VIEW_URL>",
+  "userInfo": {
+    "firstName": "John",
+    "email": "john@example.com",
+    "company": "Acme Inc"
+  } // The actual user info object would vary based on your form structure
+}
+```
+
 #### 4. Chat Interface
 
 - **Branding**: Option to hide MindPal branding
