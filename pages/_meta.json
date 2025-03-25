@@ -4,6 +4,7 @@
   "workflow": "Multi-Agent Workflow",
   "workspace": "Workspace Management",
   "affiliate": "Affiliate",
+  "guides": "Guides",
   "about": {
     "title": "Home",
     "type": "page",

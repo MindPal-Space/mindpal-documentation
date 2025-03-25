@@ -1,0 +1,105 @@
+# Sharing Agents & Workflows
+
+When building AI agents and multi-agent workflows on MindPal, you might create them for personal use or team collaboration. However, there are also scenarios where you want to share these tools with your audience (such as building free tools for lead generation) or clients (if you're providing AI automation setup services). MindPal offers two distinct sharing methods to suit different purposes.
+
+## 1. Public Sharing via Publishing
+
+Make your agents and workflows publicly accessible through shareable links or embed them on your website. This method provides maximum accessibility with comprehensive white-labeling options.
+
+### How It Works
+
+- For AI agents, you can [publish them as chatbots](/agent/chatbot) that anyone can interact with.
+
+- For AI multi-agent workflows, you can [publish them as forms](/workflow/run/form) that guide users through your defined process.
+
+### Pros
+
+- **Full White-labeling Support** - [Host your tools on custom domains](/workspace/custom-domain) and remove MindPal branding on paid plans. The interface is highly customizable from logos and titles to colors and images, ensuring a cohesive brand experience that matches your identity.
+
+- **Unlimited Public Access** - Since these are public tools, anyone can access and use them without needing a MindPal account or logging in. There's no limit to how many people can use your published tools.
+
+- **Security Controls** - Despite being public, you maintain security through features like domain restriction, which prevents unauthorized embedding of your tools on unauthorized websites, and rate limit, which keeps your AI tools' usage under control.
+
+### Cons
+
+- **Limited History Management** - While you can view all interactions with your published tools from your MindPal dashboard, these interactions aren't differentiated by user. For user-specific history tracking, you'll need to either implement your own user management system or use the workspace invitation approach.
+
+### Best For
+
+- **Lead Generation**: Embed AI tools on your website to showcase your expertise and collect visitor contact information.
+
+- **Customer Support**: Provide immediate self-service help without requiring accounts or login.
+
+- **Public Demonstrations**: Allow potential clients to experience your AI solutions without any barriers.
+
+## 2. Workspace Invitation
+
+Invite clients directly into your MindPal workspace where they can access specific agents and workflows under controlled conditions. This method offers better user management and access control features.
+
+### How It Works
+
+MindPal allows you to create dedicated workspaces for different projects or clients, with each workspace containing its own set of agents and workflows. You can [invite team members or clients](/workspace/members) with two permission levels: editors (who have full creation and modification rights) or users (who can only use the tools you've built). The user seat option is ideal when sharing your AI solutions with clients under a specific pricing structure or service agreement.
+
+### Pros
+
+- **Advanced User Management** - Control exactly which members have access to specific agents and workflows through access control tags. Set monthly AI credit limits for each user to manage resource usage effectively.
+
+- **User-Specific History** - The platform maintains individual history tracking, allowing each member to view their own interaction history while you maintain oversight of all user activities.
+
+- **Partial White-labeling** - Customize your workspace appearance with your theme color, logo, and title to maintain brand consistency.
+
+### Cons
+
+- **Custom Domain Not Supported** - While full workspace white-labeling (including custom domains for your workspaces) is planned for the future, members must currently access your workspace through the app.mindpal.space platform for authentication.
+
+- **Seat Restrictions** - Your plan determines the number of available seats. While each plan includes a set number of editor and user seats, [additional seats require top-up purchases](/workspace/plan-billing/addons).
+
+### Best For
+
+- **Client Services**: Provide ongoing AI solutions to clients who rely on your expertise for setup and maintenance.
+
+- **Premium Products**: Offer subscription-based access to your AI suite with controlled usage limits.
+
+- **Professional Relationships**: Maintain accountability through user-specific tracking and controlled access environments.
+
+## FAQ
+
+### How can we capture user contacts with shared tools for lead generation purposes?
+
+For AI agents, when you publish your agents as chatbots, you can enable [user info form collection](/agent/chatbot#3-user-info-collection) to capture any fields you need (name, email, etc.). You can also set a webhook URL to receive this data whenever your chatbot collects user information, allowing integration with your CRM.
+
+For workflows, you can add user info fields as human input fields in a [human input node](/workflow/build/human-input-node). The workflow will only proceed if the required information is provided. Workflows also offer [webhook nodes](/workflow/build/webhook-node) to send the collected human input to external systems like your CRM.
+
+### Does MindPal provide built-in monetization capabilities?
+
+Currently, for shared workflows, you can add a [payment node](/workflow/build/payment-node) connected to your Stripe account that requires users to pay a one-time fee to proceed to the next step in the workflow.
+
+We're working on more flexible monetization methods, but for now, if you need additional options, we recommend implementing payment separately or building another payment layer on top of your shared agents and workflows.
+
+### Are there examples of published agents and workflows?
+
+For published workflows, you can check out [this video tutorial](https://www.youtube.com/live/hhMArbDe5GA) that demonstrates how to create a tool with workflows and set up a website for it. This shows how a shared embedded workflow would look.
+
+You can also set up directories of multiple tools. For example, [our AI SEO OS](https://mindpal.space/system/ai-seo-os) includes a set of workflow embeds related to SEO, but you can create similar directories for your own niche.
+
+### How can we share sets of AI agents and workflows with users?
+
+If you're using the public sharing approach, you may want to set up directory websites that include links to your different agent or workflow embeds, similar to [this page](https://mindpal.space/system/ai-seo-os).
+
+If you're inviting users to your workspace on MindPal, you can create folders to categorize the agents and workflows you share with your clients, helping to organize them effectively.
+
+### How can we share user-specific history?
+
+If you are publicly sharing your agents and workflows, we currently don't offer user-specific history management because public sharing is designed for anonymous users. You can implement your own custom user-specific history tracking if needed.
+
+For workspace invitation, we support user-specific history tracking by default. Each user member will only have access to their own agent and workflow history. They can view it from your workspace, and as the workspace owner, you maintain oversight of all user activities.
+
+### Can we use different API keys for different agents and workflows?
+
+No. All agents and workflows in the same workspace use the same API keys. However, you can set different API keys for different workspaces.
+
+Note that billing on MindPal is workspace-specific—one plan applies to one workspace only.
+
+### Can we change the workspace interface language?
+
+No, currently all interfaces are in English only. While we plan to support more languages in the future, it's not a current priority.
