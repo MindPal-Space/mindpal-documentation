@@ -39,4 +39,20 @@ import { Callout } from "nextra/components";
   Reference" tab to ensure the request is correct.
 </Callout>
 
+## Frequently Asked Questions
+
+### How do I get the workflow run results?
+
+Since workflows run asynchronously, when you trigger a workflow via the Public API, you'll immediately receive a workflow run ID rather than the final results. This is because workflows can take time to complete. There are two ways to get the workflow run results:
+
+1. **Using Webhook Node (Recommended)**: Add a [Webhook Node](/workflow/build/webhook-node) at the end of your workflow. Once the workflow completes, it will automatically send all results to your specified webhook URL.
+
+2. **Polling the Results API**: Use the workflow run result endpoint to retrieve results using the workflow run ID:
+
+   ```
+   GET /api/workflow-run-result/retrieve-by-id
+   ```
+
+   See the complete [API documentation](https://api-v3.mindpal.io/docs#/Results/get_workflow_run_by_id_api_workflow_run_result_retrieve_by_id_get) for details.
+
 <PageFooter />{" "}
