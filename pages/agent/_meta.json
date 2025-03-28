@@ -7,6 +7,6 @@
   "tools": "Tools",
   "chatbot": "Chatbot",
   "sub-agent": "Sub-agent",
-  "common-issues": "Common Issues",
-  "mcp": "Model Context Protocol (MCP)"
+  "mcp": "Model Context Protocol",
+  "common-issues": "Common Issues"
 }
