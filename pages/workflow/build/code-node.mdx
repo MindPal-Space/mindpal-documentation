@@ -1,0 +1,67 @@
+import { Callout } from "nextra/components";
+
+# Code Node
+
+When building workflows, you often need steps that execute precise, deterministic logic – calculations, data transformations, or specific checks where you need a guaranteed outcome, unlike the probabilistic nature of Large Language Models (LLMs). The Code Node is designed specifically for these scenarios.
+
+## What is a Code Node?
+
+The Code Node allows you to write and execute custom code snippets directly within your workflow. It provides a way to implement logic that requires accuracy and concrete execution, moving beyond the non-deterministic behavior of AI agents. Think of it as a specialized tool for tasks where predictability is key.
+
+## When to use a Code Node?
+
+Use the Code Node when your workflow requires:
+
+- **Deterministic Logic**: Performing calculations, data formatting, or conditional checks that must produce the exact same output every time for the same input.
+- **Precise Execution**: Implementing specific algorithms or business rules that cannot rely on the interpretive nature of an LLM.
+- **Data Transformation**: Manipulating data from previous steps in a structured and predictable way before passing it on.
+- **Custom Integrations**: Interacting with systems or APIs in a very specific manner defined by code (though Webhook Nodes are often preferred for standard API calls).
+
+## How a Code Node Works
+
+The Code Node executes your provided code snippet using the inputs you define and makes the results available as outputs for subsequent nodes in the workflow.
+
+## Configuring a Code Node
+
+Setting up a Code Node involves three main steps:
+
+### 1. Define Inputs
+
+Specify the data your code needs to run:
+
+- Define input variables that your code script will use.
+- You can map these inputs to outputs from previous nodes (like Agent Nodes or Human Input Nodes) or use static values. Use [variables](/workflow/build/variables) to reference outputs from preceding steps.
+
+### 2. Write the Code
+
+Write the script that performs your desired logic:
+
+- Select the programming language (currently Python and JavaScript are supported).
+- Write your code in the provided editor. Your code should process the input variables and prepare the desired output.
+
+<Callout emoji="💡" type="warning">
+  **Important Note on Variables**: For simplicity, all input variables passed
+  into the Code Node are treated as **strings**. You may need to parse or
+  convert them within your code if you require other data types (e.g., numbers,
+  booleans). It's recommended to primarily reference outputs from Agent Nodes or
+  Human Input Nodes. While outputs from nodes like Orchestrator, Loop, or Gate
+  can be referenced, they will be simplified into a string representation. **Use
+  these complex node outputs with caution and test thoroughly before deploying
+  to production.**
+</Callout>
+
+### 3. Define Outputs
+
+Declare the variables that your code will produce:
+
+- Specify the names of the output variables your script will generate.
+- These outputs can then be referenced by subsequent nodes in the workflow using [variables](/workflow/build/variables).
+
+## Supported Languages
+
+- Python
+- JavaScript
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />
