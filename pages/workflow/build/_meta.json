@@ -6,6 +6,7 @@
   "loop-node": "Loop Node",
   "orchestrator-worker-node": "Orchestrator-Worker Node",
   "subflow-node": "Subflow Node",
+  "code-node": "Code Node",
   "router-node": "Router Node",
   "gate-node": "Gate Node",
   "webhook-node": "Webhook Node",
