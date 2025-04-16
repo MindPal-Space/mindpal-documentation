@@ -10,5 +10,6 @@
   "router-node": "Router Node",
   "gate-node": "Gate Node",
   "webhook-node": "Webhook Node",
-  "payment-node": "Payment Node"
+  "payment-node": "Payment Node",
+  "sticky-note-node": "Sticky Note Node"
 }
