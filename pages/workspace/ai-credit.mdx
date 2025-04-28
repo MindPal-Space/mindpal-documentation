@@ -1,0 +1,53 @@
+# How AI Credits Work
+
+MindPal uses a credit-based system for AI usage, where different AI models consume varying amounts of credits per request. This guide will help you understand what AI credits are and how to manage them effectively.
+
+## What is an AI Credit?
+
+An AI credit is MindPal's unit of AI usage measurement. The number of credits consumed depends on the specific AI model you choose. Models like Gemini 2.5 Flash are optimized for efficiency and consume fewer credits per request, while more powerful models like Claude 37 Sonnet consume more credits but offer enhanced capabilities.
+
+## How are AI Credits Consumed?
+
+AI credits are consumed on a per-request basis - every time you interact with an AI model, it counts as a request and consumes credits based on the model used.
+
+There are four main ways your AI credits are consumed on MindPal:
+
+1. **Direct Agent Interactions**: When you run an AI agent within MindPal, each query counts as a separate request
+2. **Published Agent (Chatbot) Interactions**: When others use your published AI agents (chatbots), each query counts as a separate request
+3. **Multi-Agent Workflow Runs**: When running workflows inside the app, each step counts as a separate request
+4. **Published Workflow (Form) Runs**: When your published multi-agent workflows or forms are run from outside MindPal
+
+## Checking Model-Specific Credit Consumption
+
+To view the exact credit consumption for each model:
+
+1. Open any agent in your workspace
+2. Navigate to the language model settings
+3. Look for the information next to each model name
+
+![Language model selector showing different models and their credit costs](/features/agent/language-model/language-model-selector.png)
+
+## Managing Credit Consumption in Workflows
+
+### Credit Estimation
+
+Before running a workflow, you can estimate its credit cost:
+
+1. Start building any workflow (you can do this with a free account)
+2. Look at the top left corner of your workflow builder
+3. You'll see a real-time estimation of the total AI credits required
+
+Remember that these are estimates, and actual consumption may vary based on the actual steps taking place at that time.
+
+![Helper tooltips showing credit consumption details](/features/workflow/builder/helpers.png)
+
+### Viewing Actual Consumption
+
+To see the exact number of AI credits consumed by a workflow:
+
+1. Open any completed workflow run from your history
+2. The exact AI credit cost for that specific run will be displayed
+
+![Example of AI credit consumption in a workflow run](/features/workflow/runner/ai-credit-consumption.png)
+
+This helps you track actual usage and validate your estimations.
