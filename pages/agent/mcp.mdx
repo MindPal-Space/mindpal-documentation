@@ -33,16 +33,16 @@ Given MCP's transformative potential, MindPal proudly leads as the **first no-co
 It's important to know what MindPal currently supports regarding MCP:
 
 - **Tools Only**: An MCP server can potentially offer various things like Resources, Prompts, or Sampling Routes. Right now, MindPal only supports **Tools** provided by MCP servers.
-- **SSE Servers Only**: MCP servers can operate in different ways. MindPal supports **SSE (Server-Sent Events)** servers, which are suitable for cloud-based applications like ours. We do not support STDIO servers, which are typically used for local integrations.
+- **Streamable HTTP/SSE Servers Only**: MCP servers can operate in different ways. MindPal supports **Streamable HTTP** and **SSE (Server-Sent Events)** servers, which are suitable for cloud-based applications like ours. We do not support STDIO servers, which are typically used for local integrations.
 
 ## How to configure MCP in MindPal
 
 Setting up an MCP connection in MindPal is straightforward:
 
-1.  **Find an SSE MCP Server**: Locate a server that provides the tools your agent needs. See the list below for some compatible options.
+1.  **Find a remote MCP Server**: Locate a server that provides the tools your agent needs. See the list below for some compatible options.
 2.  **Navigate to Agent Settings**: Go to the settings page for the AI agent you want to configure.
 3.  **Go to the MCP Section**: Find the section dedicated to MCP connections.
-4.  **Add Server**: Click on "Add new SSE MCP server".
+4.  **Add Server**: Click on "Add new remote MCP server".
 5.  **Enter Details**: Paste your MCP server URL and give the connection a recognizable name.
 6.  **Save & Test**: Save the configuration. MindPal will automatically test the connection to verify that the server is reachable and configured correctly, and to retrieve the list of available tools.
 
@@ -50,7 +50,7 @@ That's it! Your AI agent is now ready to use the tools provided by the connected
 
 ## Proven Compatible MCP Servers
 
-Below are some of the most popular and proven compatible SSE MCP servers you can use with MindPal. Each offers unique capabilities and setup flows. Pick the one that fits your workflow best.
+Below are some of the most popular and proven compatible remote MCP servers you can use with MindPal. Each offers unique capabilities and setup flows. Pick the one that fits your workflow best.
 
 #### [Zapier MCP](https://zapier.com/mcp)
 
@@ -116,6 +116,41 @@ Below are some of the most popular and proven compatible SSE MCP servers you can
 
 - **Offers:** Access to 3939+ public MCP servers by spinning up virtual machines that run these MCP servers with minimal configuration
 - **Access:** Search and spin up remote MCPs through the Supermachine platform, then use them in your AI applications
+
+#### [Smithery](https://smithery.ai/)
+
+- **Offers:** Access to 7,316+ MCP servers built by the community, including web search, memory management, browser automation, third-party tool integrations, database query integration, and weather data APIs
+- **Access:** Create an account and access the platform's extensive library of community-built skills and extensions
+
+#### [Pabbly Connect MCP](https://forum.pabbly.com/threads/pabbly-connect-mcp-server-beta.28381/)
+
+- **Offers:** Seamless workflow automation and AI tool integration with direct access to Pabbly Connect's suite of business management applications (including CRM, email, billing, forms, and more) via MCP. Enables AI assistants to execute workflow actions, add leads, send emails, fetch data, and more, directly from your Pabbly Connect workflows.
+- **Access:** In your Pabbly Connect workflow, use the "Add to MCP server" option for any action, configure your tool, and retrieve your unique MCP Server URL from [Pabbly Connect MCP Settings](https://connect.pabbly.com/v2/app/setting/mcp-server). Use this URL as your endpoint for AI clients (e.g., Claude Desktop, etc). See [setup instructions](https://forum.pabbly.com/threads/pabbly-connect-mcp-server-beta.28381/) for full details.
+
+#### [DeepWiki MCP](https://docs.devin.ai/work-with-devin/deepwiki-mcp)
+
+- **Offers:** Access to GitHub repository documentation and AI-powered search capabilities. Includes tools to read wiki structure, view documentation contents, and ask questions about repositories
+- **Access:** Free, remote, no-authentication-required service. Server URLs: `https://mcp.deepwiki.com/sse` (SSE) or `https://mcp.deepwiki.com/mcp` (Streamable HTTP)
+
+#### [GitMCP](https://gitmcp.io/)
+
+- **Offers:** Instant MCP server creation for any GitHub repository by simply changing the domain from github.com to gitmcp.io. Provides AI assistants with deep code context including llms.txt, llms-full.txt, readme.md and more
+- **Access:** No setup required. Simply replace `github.com` with `gitmcp.io` in any repository URL to get an instant MCP server endpoint
+
+#### [Supermemory MCP](https://mcp.supermemory.ai/)
+
+- **Offers:** Personal, universal memory layer that travels with you across different AI platforms. Store and retrieve memories, create a persistent knowledge base
+- **Access:** Get your unique MCP URL (keep secret) on the website
+
+#### [Apify Actors MCP](https://mcp.apify.com/)
+
+- **Offers:** Access to 4,000+ web scraping and automation tools
+- **Access:** Server available at `https://mcp.apify.com` (streamable) or `https://mcp.apify.com/sse` (SSE transport) with `Authorization: Bearer <APIFY_TOKEN>` header. Get your API token from Apify Console Integrations section
+
+#### [Firecrawl MCP](https://docs.firecrawl.dev/mcp)
+
+- **Offers:** Web scraping, crawling, and discovery with advanced content extraction, search capabilities, deep research, and structured data extraction using LLM
+- **Access:** Server available at `https://mcp.firecrawl.dev/{FIRECRAWL_API_KEY}/sse` with API key authentication required. Get your API key from [firecrawl.dev/app/api-keys](https://firecrawl.dev/app/api-keys)
 
 We will continuously test and add more compatible MCP servers to this list as they become available.
 
