@@ -1,0 +1,54 @@
+# Chat Node
+
+In many workflow scenarios, you might need to have a conversation with an AI agent to get more details, clarify information, or explore a topic before moving on to the next steps. The Chat Node is designed for these situations, allowing for dynamic, interactive conversations within your workflow.
+
+## What is a Chat Node?
+
+A Chat Node is a component that facilitates a back-and-forth conversation between a human user and a designated AI agent. It pauses the workflow to allow for this interaction and then continues once the user decides to end the chat.
+
+## When to use a Chat Node?
+
+Consider using the Chat Node when:
+
+- You need to conduct a consultation or discovery session with an AI.
+- The workflow requires nuanced input that is best gathered through a conversation.
+- You want to provide a user with an opportunity to ask questions or get help from an agent at a specific point in the workflow.
+- You need to refine a query or instructions for a subsequent node through dialogue.
+
+Here are some common scenarios where a Chat Node excels:
+
+| Scenario                         | Example                                                                                                                                   |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| **Customer Support**             | A workflow for troubleshooting an issue could use a Chat Node to allow the user to describe their problem in detail to a support agent.   |
+| **Content Creation**             | Before drafting a blog post, a Chat Node can be used to brainstorm ideas and refine the outline with a creative agent.                    |
+| **Sales & Marketing**            | A workflow for qualifying leads could use a Chat Node to ask a series of questions to a potential customer and gather their requirements. |
+| **Personalized Recommendations** | A movie recommendation workflow could use a Chat Node to chat with the user about their preferences before suggesting movies.             |
+| **Client Discovery**             | Before generating project deliverables, a Chat Node can be used to understand client requirements, goals and constraints in detail.       |
+
+## How a Chat Node Works
+
+The Chat Node operates through a systematic process:
+
+1.  When a workflow execution reaches a Chat Node, it pauses.
+2.  A chat interface opens up, initiated by a pre-configured first message from the selected agent.
+3.  The user can then have a full conversation with the agent, sending and receiving messages.
+4.  The user decides when the conversation is complete and clicks a button to "Finish conversation & Continue".
+5.  The entire conversation history is saved as the output of the node, which can be referenced by subsequent nodes in the workflow.
+
+## Configuring a Chat Node
+
+To set up a Chat Node, you need to configure the following components:
+
+### 1\. Agent Selection
+
+You must choose an agent to handle the conversation.
+
+- Click "Select an agent" to choose from your available agents.
+- Pick an agent with expertise relevant to the conversational task.
+
+### 2\. First Message Configuration
+
+You need to set the initial message that the agent will send to start the conversation.
+
+- In the "First Message" field, write the opening message.
+- You can use variables to reference human inputs or outputs from previous nodes to make the message more contextual.
