@@ -7,6 +7,7 @@
   "orchestrator-worker-node": "Orchestrator-Worker Node",
   "subflow-node": "Subflow Node",
   "chat-node": "Chat Node",
+  "canvas-node": "Canvas Node",
   "code-node": "Code Node",
   "router-node": "Router Node",
   "gate-node": "Gate Node",

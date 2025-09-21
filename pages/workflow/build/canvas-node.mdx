@@ -1,0 +1,71 @@
+# Canvas Node
+
+While most workflow automation focuses on text-based tasks, the Canvas Node allows you to break free from that limitation. It extends your AI workflows into the realm of sight and sound, enabling you to generate creative audio and video content dynamically.
+
+## What is a Canvas Node?
+
+A Canvas Node is a powerful tool that makes your workflow multi-modal. It allows you to generate audio and video content based on your instructions, acting as an integrated content creation studio within your workflow. This means you can go beyond text and automate the creation of rich media.
+
+## When to use a Canvas Node?
+
+The Canvas Node is incredibly versatile. Use it whenever you need to dynamically create audio or video content as part of your workflow. It's particularly useful when you want to automate the production of creative or marketing materials.
+
+Here are some common scenarios where a Canvas Node excels:
+
+| Scenario                  | Example                                                                                              |
+| ------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **Marketing & Sales**     | Create personalized video messages for leads or produce audio versions of articles.                  |
+| **Multimedia Production** | Generate voiceovers for videos or create background music.                                           |
+| **Personalized Content**  | Dynamically create personalized audio or videos for your users based on their inputs or preferences. |
+
+## How a Canvas Node Works
+
+The Canvas Node streamlines content creation with a simple, effective process:
+
+1.  When a workflow reaches a Canvas Node, it reads the configuration for the specific type of content you want to create (e.g., video, audio).
+2.  It uses the provided inputs, which can include text prompts, scripts, and variables from previous nodes, to generate the content.
+3.  Once the generation is complete, the resulting content (the actual video or audio file) will be shown to users.
+
+## Configuring a Canvas Node
+
+Setting up a Canvas Node involves two main steps: selecting the type of content you want to create and then configuring its specific parameters.
+
+### 1. Content Type Selection
+
+First, you'll choose the kind of content you want to generate from the available options:
+
+- **Audio**: For creating audio from text.
+- **Video**: For generating video clips from a text prompt.
+
+### 2. Configuration by Type
+
+After selecting the content type, you will need to provide the specific inputs for that type.
+
+#### Audio
+
+To generate audio, you'll need to configure the following:
+
+- **Script**: The text that will be converted into speech. You can use [variables](/workflow/build/variables) here to personalize the audio.
+- **Instructions**: (Optional) Provide guidance on the tone and style of the voice (e.g., "Read in a calm and professional tone").
+- **Voice**: Select from a list of available voices.
+- **Model**: Choose the underlying AI model for speech generation. We currently support:
+
+| Model                        | Cost                    | Availability            |
+| ---------------------------- | ----------------------- | ----------------------- |
+| Gemini 2.5 Pro Preview TTS   | 120 AI Credits / minute | Available by default    |
+| Gemini 2.5 Flash Preview TTS | 60 AI Credits / minute  | Available by default    |
+| GPT-4o Mini TTS              | 80 AI Credits / minute  | Requires OpenAI API key |
+
+#### Video
+
+To generate a video, you'll need to provide:
+
+- **Prompt**: A descriptive text prompt of the video you want to create. This can include [variables](/workflow/build/variables).
+- **Aspect Ratio**: Choose the desired aspect ratio for your video (e.g., 16:9 for YouTube, 9:16 for TikTok).
+- **Resolution**: Select the video quality (e.g., 720p, 1080p).
+- **Model**: Choose the AI model for video generation. We currently support:
+
+| Model          | Cost                   | Availability         |
+| -------------- | ---------------------- | -------------------- |
+| Veo 3 Fast     | 20 AI Credits / second | Available by default |
+| Veo 3 Standard | 50 AI Credits / second | Available by default |
