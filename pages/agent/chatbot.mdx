@@ -20,6 +20,7 @@ When you publish an agent as a chatbot:
 3. **Secure Processing**: All interactions are still powered by your configured agent
 4. **Data Collection**: Optional user information can be gathered
 5. **Usage Tracking**: All conversations can be monitored and analyzed
+6. **Webhook Integration**: Automatically send user info and conversation logs to external systems
 
 One agent can be published as multiple chatbots, each with its own unique interface and settings.
 
@@ -37,75 +38,165 @@ One agent can be published as multiple chatbots, each with its own unique interf
 
 ### Set Up the Chatbot Interface
 
-Navigate to the chatbot tab to configure these settings:
+Navigate to the chatbot builder to configure these sections:
 
-#### 1. General Information
+#### 1. Choose the Brain
 
-- **Name**: Give your chatbot a clear, identifiable name
-- **Avatar URL**: Add a profile picture (supports image URLs)
-- **Tags**: Organize your chatbots with relevant tags
+- **Agent**: Select the AI agent that will power this chatbot (required)
+- This is the "brain" behind your chatbot - it determines what the chatbot knows and can do
+
+#### 2. Set Up the Identity
+
+Configure how your chatbot appears to users:
+
+- **Name**: Give your chatbot a clear, identifiable name (required)
+- **Categories**: Organize your chatbot with tags for easy discovery
+- **Avatar**: Add a profile picture (supports image URLs or file uploads)
 - **Description**: Explain what your chatbot can help with
 
-#### 2. Functional Settings
+#### 3. Design the Chat Experience
 
-- **Agent**: Select the AI agent that will power this chatbot
-- **Notifications**: Toggle to receive alerts when new chats are created
+Control the initial user experience:
 
-#### 3. User Info Collection
+- **Welcome Message**: Set the first message users see when chatting (required)
+- **Conversation Starters**: Add clickable message suggestions to help users get started
 
-- Enable/disable user information collection
-- Configure custom fields:
-  - Field title (e.g., "First name", "Email")
-  - Field type (Text, Email, etc.)
-  - Required/Optional status
-- Option to send collected data to a webhook
+#### 4. Customize the Chat Interface
 
-#### 4. Chat Interface
+Personalize the visual appearance:
 
-- **Branding**: Option to hide MindPal branding
-- **Brand Color**: Customize the chat interface colors
-- **Initial Message**: Set a welcome message (e.g., "Hi there! How can I help you today?")
-- **Message Suggestions**: Add clickable suggestions for users
-- **UX Copywriting**: Customize the chat interface copywriting like the submit button text, placeholder text, and more
+- **Brand Color**: Choose a custom accent color for the interface
+- **MindPal Branding**: Toggle the "Powered by MindPal" badge visibility (requires upgrade)
+- **Affiliate Code**: Connect your affiliate code to earn commissions when users subscribe via the badge link
+- **UX Copywriting**: Customize button texts, placeholders, and other interface copy:
+  - Chat send button text
+  - Chat input placeholder
+  - User info form send button text
 
-#### 5. Access & Security
+#### 5. Capture User Info
 
-- **Custom URL**: Get a unique chatbot URL (chatbot.mindpal.space/your-chatbot)
-- **Custom Domain**: Option to [use your own domain](/workspace/custom-domain)
-- **Embedding Restrictions**: Limit which domains can embed your chatbot
-- **Rate Limits**: Set maximum number of conversations allowed within a specified time interval
+Collect information from users with flexible options:
 
-### Using Webhooks with User Info Collection
+- **Collection Mode**: Choose one of three options:
+  - **Don't collect**: Users can chat immediately without providing info
+  - **Optional**: Users can skip providing info and go straight to chatting
+  - **Required before chat**: Users must complete the form before accessing the chat
+- **Form Title**: Set a custom title for your info collection form
+- **Custom Fields**: Add multiple form fields with different types:
+  - **Text**: Single-line text input
+  - **Long Text**: Multi-line text area
+  - **Email**: Email address input with validation
+  - **URL**: Website URL input with validation
+  - **Number**: Numeric input with validation
+- **Webhook Integration**: Automatically send collected user info to your external systems (see Advanced section below)
 
-When you enable user information collection, you can connect a webhook to automatically receive this data in your external systems.
+#### 6. Control Access
 
-#### How Webhooks Work
+Manage who can access and how:
 
-1. **Setup**: Provide a webhook URL from services like Make.com, Zapier.com, or any automation platform
-2. **Triggering**: When a user submits the info collection form, MindPal automatically sends the data to your webhook
-3. **Data Format**: The webhook receives a structured payload containing:
+- **Custom URL/Slug**: Get a unique chatbot URL (chatbot.mindpal.space/your-slug)
+- **Custom Domain**: Use your own domain for the chatbot (e.g., chatbot.yourdomain.com)
+- **Embedding Restrictions**: Limit which domains can embed your chatbot as an iframe (requires upgrade)
+  - Add specific domains (one per line) that are allowed to embed your chatbot
+  - Example: `example.com`, `subdomain.example.com`
+
+#### 7. Advanced Settings
+
+Configure advanced features:
+
+- **User Info Webhook**: Automatically send collected user data to an external webhook URL when users submit the info form
+- **Conversation Complete Webhook**: Automatically send conversation logs to an external webhook URL when a conversation ends
+- **Email Notifications**: Receive email alerts when new conversations are created
+- **Rate Limiting**: Enforce maximum conversation limits within specified time intervals (requires upgrade)
+  - Set maximum conversations allowed
+  - Choose time interval: per minute, per hour, or per day
+
+### Using Webhooks
+
+When you enable webhook features, MindPal automatically sends data to your external systems.
+
+#### User Info Webhook
+
+When enabled, triggers when a user submits the info collection form:
+
+**Payload Structure:**
 
 ```json
 {
   "chatbotId": "<YOUR_CHATBOT_ID>",
-  "chatbotConversationId": "<CURRENT_CHATBOT_CONVERSATION_ID>",
-  "chatbotConversationViewUrl": "<CURRENT_CHATBOT_CONVERSATION_VIEW_URL>",
+  "chatbotConversationId": "<CURRENT_CONVERSATION_ID>",
+  "chatbotConversationViewUrl": "<VIEW_URL>",
   "userInfo": {
     "firstName": "John",
     "email": "john@example.com",
     "company": "Acme Inc"
-  } // The actual user info object would vary based on your form structure
+  }
 }
 ```
 
+**Setup:** Provide a webhook URL from services like Make.com, Zapier.com, or any automation platform
+
+#### Conversation Complete Webhook
+
+When enabled, triggers when a chatbot conversation ends:
+
+**Payload Structure:**
+
+```json
+{
+  "conversationId": "<CONVERSATION_ID>",
+  "chatbotId": "<YOUR_CHATBOT_ID>",
+  "chatbotName": "<CHATBOT_NAME>",
+  "chatbotSlug": "<CHATBOT_SLUG>",
+  "conversationData": {
+    "messages": [
+      {
+        "id": "<MESSAGE_ID>",
+        "role": "user",
+        "content": "User message text here",
+        "createdAt": "2024-01-01T00:00:00.000Z"
+      },
+      {
+        "id": "<MESSAGE_ID>",
+        "role": "assistant",
+        "content": "Assistant response here",
+        "createdAt": "2024-01-01T00:00:01.000Z"
+      }
+    ],
+    "startedAt": "2024-01-01T00:00:00.000Z",
+    "completedAt": "2024-01-01T00:05:00.000Z",
+    "messageCount": 10
+  },
+  "timestamp": "2024-01-01T00:05:00.000Z"
+}
+```
+
+**Fields:**
+
+- `conversationId`: Unique identifier for the conversation
+- `chatbotId`: Unique identifier for the chatbot
+- `chatbotName`: Display name of the chatbot
+- `chatbotSlug`: URL-friendly identifier for the chatbot
+- `conversationData.messages`: Array of all messages in the conversation
+  - `id`: Unique message identifier
+  - `role`: Message sender role ("user" or "assistant")
+  - `content`: Message text content
+  - `createdAt`: ISO timestamp of when the message was created
+- `startedAt`: ISO timestamp when the conversation started
+- `completedAt`: ISO timestamp when the conversation ended
+- `messageCount`: Total number of messages in the conversation
+- `timestamp`: ISO timestamp when the webhook payload was generated
+
 ### Deploy & Share
 
-After configuring, you can:
+After configuring, you can publish and share your chatbot with:
 
-- Copy your public chatbot link
-- Get embed code for iframe implementation
-- Add chat bubble widget code to your website
-- Connect your custom domain
+- **Shareable Link**: Copy your public chatbot URL for easy sharing
+- **Embed Code**: Get iframe code to embed your chatbot in any website
+- **Chat Bubble Widget**: Add an interactive chat bubble to your site with customizable behavior:
+  - Show initial message bubble when minimized
+  - Start minimized or expanded by default
+  - Available in HTML and Next.js formats
 
 ### View Conversation Logs
 
