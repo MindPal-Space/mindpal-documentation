@@ -36,90 +36,83 @@ One agent can be published as multiple chatbots, each with its own unique interf
   allowFullScreen
 ></iframe>
 
-### Set Up the Chatbot Interface
-
 Navigate to the chatbot builder to configure these sections:
 
-#### 1. Choose the Brain
+### 1. Choose the Brain
 
-- **Agent**: Select the AI agent that will power this chatbot (required)
-- This is the "brain" behind your chatbot - it determines what the chatbot knows and can do
+Select the AI agent that will power this chatbot.
 
-#### 2. Set Up the Identity
+**Agent** (required): This is the "brain" behind your chatbot - it determines what the chatbot knows and can do.
+
+### 2. Set Up the Identity
 
 Configure how your chatbot appears to users:
 
-- **Name**: Give your chatbot a clear, identifiable name (required)
+- **Name** (required): Give your chatbot a clear, identifiable name
 - **Categories**: Organize your chatbot with tags for easy discovery
 - **Avatar**: Add a profile picture (supports image URLs or file uploads)
 - **Description**: Explain what your chatbot can help with
 
-#### 3. Design the Chat Experience
+### 3. Design the Chat Experience
 
 Control the initial user experience:
 
-- **Welcome Message**: Set the first message users see when chatting (required)
+- **Welcome Message** (required): Set the first message users see when chatting
 - **Conversation Starters**: Add clickable message suggestions to help users get started
 
-#### 4. Customize the Chat Interface
+### 4. Customize the Chat Interface
 
 Personalize the visual appearance:
 
 - **Brand Color**: Choose a custom accent color for the interface
 - **MindPal Branding**: Toggle the "Powered by MindPal" badge visibility (requires upgrade)
-- **Affiliate Code**: Connect your affiliate code to earn commissions when users subscribe via the badge link
-- **UX Copywriting**: Customize button texts, placeholders, and other interface copy:
-  - Chat send button text
+- **Affiliate Code**: Connect your affiliate code to earn 20% recurring commission when users subscribe via the badge link
+- **UX Copywriting**: Customize button texts and placeholders:
   - Chat input placeholder
   - User info form send button text
 
-#### 5. Capture User Info
+### 5. Capture User Info
 
-Collect information from users with flexible options:
+Collect information from users before they start chatting.
 
-- **Collection Mode**: Choose one of three options:
-  - **Don't collect**: Users can chat immediately without providing info
-  - **Optional**: Users can skip providing info and go straight to chatting
-  - **Required before chat**: Users must complete the form before accessing the chat
-- **Form Title**: Set a custom title for your info collection form
+**Collection Mode** - Choose one of three options:
+
+- **Don't collect**: Users can chat immediately without providing info
+- **Optional**: Users can skip providing info and go straight to chatting
+- **Required before chat**: Users must complete the form before accessing the chat
+
+When collecting user info:
+
+- **Form Title** (required): Set a custom title for your info collection form
 - **Custom Fields**: Add multiple form fields with different types:
   - **Text**: Single-line text input
   - **Long Text**: Multi-line text area
   - **Email**: Email address input with validation
   - **URL**: Website URL input with validation
   - **Number**: Numeric input with validation
-- **Webhook Integration**: Automatically send collected user info to your external systems (see Advanced section below)
 
-#### 6. Control Access
+### 6. Control Access
 
-Manage who can access and how:
+Manage who can access your chatbot and how:
 
-- **Custom URL/Slug**: Get a unique chatbot URL (chatbot.mindpal.space/your-slug)
-- **Custom Domain**: Use your own domain for the chatbot (e.g., chatbot.yourdomain.com)
-- **Embedding Restrictions**: Limit which domains can embed your chatbot as an iframe (requires upgrade)
+- **Custom URL/Slug** (required): Your chatbot will be available at `chatbot.getmindpal.com/your-slug`
+
+- **Custom Domain** (optional): Use your own domain for the chatbot (e.g., `chatbot.yourdomain.com`)
+
+- **Embedding Restrictions** (optional): Limit which domains can embed your chatbot as an iframe
+
   - Add specific domains (one per line) that are allowed to embed your chatbot
   - Example: `example.com`, `subdomain.example.com`
 
-#### 7. Advanced Settings
+### 7. Advanced
 
-Configure advanced features:
-
-- **User Info Webhook**: Automatically send collected user data to an external webhook URL when users submit the info form
-- **Conversation Complete Webhook**: Automatically send conversation logs to an external webhook URL when a conversation ends
-- **Email Notifications**: Receive email alerts when new conversations are created
-- **Rate Limiting**: Enforce maximum conversation limits within specified time intervals (requires upgrade)
-  - Set maximum conversations allowed
-  - Choose time interval: per minute, per hour, or per day
-
-### Using Webhooks
-
-When you enable webhook features, MindPal automatically sends data to your external systems.
+Configure advanced features to enhance your chatbot's capabilities.
 
 #### User Info Webhook
 
-When enabled, triggers when a user submits the info collection form:
+Automatically send collected user data to an external webhook URL when users submit the info form.
 
-**Payload Structure:**
+**Payload Example:**
 
 ```json
 {
@@ -130,17 +123,21 @@ When enabled, triggers when a user submits the info collection form:
     "firstName": "John",
     "email": "john@example.com",
     "company": "Acme Inc"
+  },
+  "customSessionContext": {
+    "customer-id": "12345",
+    "subscription-plan": "premium"
   }
 }
 ```
 
-**Setup:** Provide a webhook URL from services like Make.com, Zapier.com, or any automation platform
+Use this with automation platforms like Make.com, Zapier.com, or any webhook-compatible service.
 
 #### Conversation Complete Webhook
 
-When enabled, triggers when a chatbot conversation ends:
+Automatically send conversation logs to an external webhook URL when a conversation ends.
 
-**Payload Structure:**
+**Payload Example:**
 
 ```json
 {
@@ -167,44 +164,73 @@ When enabled, triggers when a chatbot conversation ends:
     "completedAt": "2024-01-01T00:05:00.000Z",
     "messageCount": 10
   },
+  "userInfo": {...},
+  "customSessionContext": {...},
   "timestamp": "2024-01-01T00:05:00.000Z"
 }
 ```
 
-**Fields:**
+#### Email Notifications
 
-- `conversationId`: Unique identifier for the conversation
-- `chatbotId`: Unique identifier for the chatbot
-- `chatbotName`: Display name of the chatbot
-- `chatbotSlug`: URL-friendly identifier for the chatbot
-- `conversationData.messages`: Array of all messages in the conversation
-  - `id`: Unique message identifier
-  - `role`: Message sender role ("user" or "assistant")
-  - `content`: Message text content
-  - `createdAt`: ISO timestamp of when the message was created
-- `startedAt`: ISO timestamp when the conversation started
-- `completedAt`: ISO timestamp when the conversation ended
-- `messageCount`: Total number of messages in the conversation
-- `timestamp`: ISO timestamp when the webhook payload was generated
+Receive email alerts when new conversations are created with your chatbot.
 
-### Deploy & Share
+#### Rate Limiting
+
+Enforce maximum conversation limits within specified time intervals (requires upgrade):
+
+- Set maximum conversations allowed
+- Choose time interval: per minute, per hour, or per day
+
+#### Custom Session Context
+
+Pass contextual information about users directly from your website to the chatbot, enabling personalized conversations without requiring users to repeat information.
+
+**How to Set Up:**
+
+1. Toggle "Enable custom session context" to ON
+2. Define context keys by adding custom fields:
+   - **Label**: Human-readable name (e.g., "Customer ID", "Account Type")
+   - **Generated Key**: Automatically created from the label in kebab-case format (e.g., "customer-id", "account-type")
+
+**How It Works:**
+
+When enabled, you can pass information from your website to the chatbot using the generated keys. The AI will naturally use this information in conversations without explicitly mentioning where it came from.
+
+**Example:**
+
+If you define these context keys:
+
+- Label: "Customer Name" → Key: `customer-name`
+- Label: "Subscription Plan" → Key: `subscription-plan`
+
+The chatbot will know the customer's name and plan, allowing for personalized responses like "Let me help you with your Premium plan features" without the user having to introduce themselves.
+
+See the [Custom Session Context Guide](/guides/custom-session-context) for detailed implementation instructions on how to pass this data from your website.
+
+## Deploying & Sharing
 
 After configuring, you can publish and share your chatbot with:
 
-- **Shareable Link**: Copy your public chatbot URL for easy sharing
-- **Embed Code**: Get iframe code to embed your chatbot in any website
-- **Chat Bubble Widget**: Add an interactive chat bubble to your site with customizable behavior:
-  - Show initial message bubble when minimized
-  - Start minimized or expanded by default
-  - Available in HTML and Next.js formats
+**Shareable Link**: Copy your public chatbot URL for easy sharing
 
-### View Conversation Logs
+**Embed Code**: Get iframe code to embed your chatbot in any website
+
+**Chat Bubble Widget**: Add an interactive chat bubble to your site with customizable behavior:
+
+- Show initial message bubble when minimized
+- Start minimized or expanded by default
+- Available in HTML and Next.js formats
+
+## View Conversation Logs
 
 Monitor your chatbot's performance through the logs section:
 
 - View complete chat histories
 - Access collected user information
+- See custom session context data for each conversation
 
-import PageFooter from "components/PageFooter";
+## Frequently Asked Questions
 
-<PageFooter />{" "}
+### Is there a way to save progress in a chatbot conversation and come back?
+
+Yes, progress saving is built into the chatbot system. When a user starts a chatbot conversation, a unique identifier called "chatbot conversation ID" is generated and appears in the URL as `ccid`. The URL would look something like this: `https://[YOUR_CHATBOT_URL]?ccid=[CONVERSATION_ID]`. Users can save or bookmark this specific URL to return to it later and continue their conversation from where they left off. You can also utilize webhooks to save the conversation ID somewhere for your users, allowing them to access their conversation history through your own system.

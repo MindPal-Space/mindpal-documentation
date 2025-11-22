@@ -1,0 +1,994 @@
+# Custom Session Context for Published Agents & Workflows
+
+Custom Session Context allows you to pass contextual information about your users from your website directly to your MindPal chatbots and workflows. This enables personalized AI interactions where the AI already knows relevant details about the user without requiring them to provide this information during the conversation.
+
+## What is Custom Session Context?
+
+Think of Custom Session Context as a way to "brief" your AI before it talks to your users. Instead of asking users to introduce themselves or explain their situation, you can pre-load information like their name, account type, order ID, or any other relevant data from your existing systems.
+
+### Key Benefits
+
+- **Personalized Conversations**: AI greets users by name and references their specific details
+- **Better User Experience**: Users don't need to repeat information they've already provided to your system
+- **Context-Aware AI**: AI understands the user's situation and can provide more relevant responses
+- **Seamless Integration**: Works with your existing website or platform
+
+### Use Cases
+
+- **E-commerce**: Pass customer tier, order ID, or cart contents
+- **SaaS Applications**: Include user ID, subscription plan, or feature access
+- **Customer Support**: Pre-load customer account details and support history
+- **Educational Platforms**: Pass student ID, course enrollment, or progress data
+- **CRM Integration**: Include lead score, company name, or deal stage
+
+## How It Works
+
+1. **Define Context Keys**: In your chatbot or workflow settings, specify what information you want to receive (e.g., "Customer Name", "Subscription Plan")
+2. **Get Generated Keys**: MindPal automatically generates machine-readable keys (e.g., `customer-name`, `subscription-plan`)
+3. **Pass Context**: Use one of three methods to send this information from your website
+4. **AI Uses Context**: The AI naturally incorporates this information in its responses
+
+## Setting Up Custom Session Context
+
+### Step 1: Enable the Feature
+
+**For Chatbots:**
+
+1. Go to your chatbot settings
+2. Navigate to the "Custom Session Context" section
+3. Toggle "Enable Custom Session Context" to ON
+
+**For Workflows:**
+
+1. Go to your workflow settings
+2. Navigate to the "Form" tab
+3. Find the "Custom Session Context" section
+4. Toggle "Enable Custom Session Context" to ON
+
+### Step 2: Define Your Context Keys
+
+Add the information you want to receive:
+
+1. Click "Add Context Key"
+2. Enter a **Label** - a human-readable name (e.g., "Customer Email")
+3. The **Key** is automatically generated in kebab-case format (e.g., `customer-email`)
+4. Add as many keys as you need (up to 20)
+
+**Example Configuration:**
+
+| Label             | Generated Key       |
+| ----------------- | ------------------- |
+| Customer Name     | `customer-name`     |
+| Account Type      | `account-type`      |
+| Order ID          | `order-id`          |
+| Subscription Plan | `subscription-plan` |
+
+**Important Notes:**
+
+- Only information with keys you've defined will be accepted
+- The generated keys are what you'll use when passing context from your website
+- Keys are case-sensitive, so use them exactly as shown
+
+### Step 3: Configure Domain Restrictions (Optional but Recommended)
+
+For security, restrict which websites can send context:
+
+1. In the "Access & Security" section, enable "Embedding Restrictions"
+2. Add your website domains (one per line):
+   ```
+   yourwebsite.com
+   app.yourwebsite.com
+   *.yourwebsite.com
+   ```
+3. Only these domains will be able to send custom session context
+
+## Passing Custom Session Context
+
+There are three ways to pass context from your website to MindPal. Choose the method that best fits your setup.
+
+**Security Comparison:**
+
+| Method                 | Security Level | Best For                              |
+| ---------------------- | -------------- | ------------------------------------- |
+| URL Query Parameters   | ⚠️ Less Secure | Non-sensitive data, email campaigns   |
+| Iframe Data Attributes | ✅ More Secure | Embedded chatbots, user-specific data |
+| Widget Configuration   | ✅ More Secure | Chat widgets, dynamic user data       |
+
+**Recommendation:** For sensitive or user-specific information (names, emails, IDs), use iframe or widget methods. Only use URL parameters for non-sensitive data or when the other methods aren't feasible.
+
+### Method 1: URL Query Parameters
+
+**Best for:** Direct links, email campaigns, simple integrations
+
+**Format:** `?ctx[key]=value&ctx[another-key]=another-value`
+
+**Example:**
+
+```
+https://chatbot.getmindpal.com/your-chatbot?ctx[customer-name]=John%20Doe&ctx[account-type]=premium
+```
+
+**Use Case:** Send users to your chatbot from an email with their information pre-loaded.
+
+**Security Note:** This method is provided for convenience but is less secure than iframe or widget methods. URL parameters are visible in:
+
+- Browser address bar
+- Browser history
+- Server logs
+- Shared links (if users copy the URL)
+
+Only use this method for non-sensitive information. For sensitive or private data, use the iframe or widget methods instead.
+
+**HTML Example:**
+
+```html
+<a
+  href="https://chatbot.getmindpal.com/support?ctx[customer-name]=John&ctx[order-id]=12345"
+>
+  Get Support
+</a>
+```
+
+**Dynamic Example (JavaScript):**
+
+```html
+<script>
+  const customerName = "John Doe"; // Get from your system
+  const orderID = "ORD-12345"; // Get from your system
+
+  const chatbotURL = `https://chatbot.getmindpal.com/support?ctx[customer-name]=${encodeURIComponent(
+    customerName
+  )}&ctx[order-id]=${encodeURIComponent(orderID)}`;
+
+  window.location.href = chatbotURL;
+</script>
+```
+
+### Method 2: Iframe Data Attributes
+
+**Best for:** Embedding chatbots/workflows as iframes on your website
+
+**How it works:** Add special data attributes to your iframe, and MindPal's helper script will automatically send them.
+
+**Basic Setup:**
+
+```html
+<!-- Your iframe with custom context -->
+<iframe
+  id="mindpal-chatbot"
+  src="https://chatbot.getmindpal.com/your-chatbot"
+  data-mp-ctx-customer-name="John Doe"
+  data-mp-ctx-account-type="premium"
+  data-mp-ctx-order-id="12345"
+  width="100%"
+  height="600px"
+  frameborder="0"
+></iframe>
+
+<!-- MindPal helper script -->
+<script
+  src="https://chatbot.getmindpal.com/iframe.min.js"
+  data-target="mindpal-chatbot"
+></script>
+```
+
+**Important:**
+
+- Use `data-mp-ctx-` prefix followed by your generated key
+- The `data-target` attribute must match your iframe's `id`
+- Load the helper script after the iframe
+
+**Dynamic Example (JavaScript):**
+
+```html
+<iframe
+  id="mindpal-chatbot"
+  src="https://chatbot.getmindpal.com/support"
+  width="100%"
+  height="600px"
+  frameborder="0"
+></iframe>
+
+<script>
+  // Get user data from your system
+  const userData = {
+    "customer-name": "John Doe",
+    "account-type": "premium",
+    "order-id": "12345",
+  };
+
+  // Set data attributes dynamically
+  const iframe = document.getElementById("mindpal-chatbot");
+  Object.entries(userData).forEach(([key, value]) => {
+    iframe.setAttribute(`data-mp-ctx-${key}`, value);
+  });
+
+  // Load helper script
+  const script = document.createElement("script");
+  script.src = "https://chatbot.getmindpal.com/iframe.min.js";
+  script.setAttribute("data-target", "mindpal-chatbot");
+  document.body.appendChild(script);
+</script>
+```
+
+### Method 3: Widget Configuration
+
+**Best for:** Chat bubble widgets
+
+**How it works:** Set custom context in a global configuration object before loading the widget script.
+
+**Basic Setup:**
+
+```html
+<!-- Define context before loading widget -->
+<script>
+  window.mindpalConfig = {
+    chatbotId: "your-chatbot",
+    customSessionContext: {
+      "customer-name": "John Doe",
+      "account-type": "premium",
+      "order-id": "12345",
+    },
+  };
+</script>
+
+<!-- Load MindPal widget -->
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+**Important:**
+
+- Define `window.mindpalConfig` BEFORE loading the widget script
+- Use your generated keys exactly as shown in settings
+
+**Dynamic Example:**
+
+```html
+<script>
+  // Fetch user data from your system (example)
+  const currentUser = {
+    name: "John Doe",
+    email: "john@example.com",
+    plan: "premium",
+    userId: "user-12345",
+  };
+
+  // Map to your defined context keys
+  window.mindpalConfig = {
+    chatbotId: "your-chatbot",
+    customSessionContext: {
+      "customer-name": currentUser.name,
+      "customer-email": currentUser.email,
+      "subscription-plan": currentUser.plan,
+      "user-id": currentUser.userId,
+    },
+  };
+</script>
+
+<!-- Load MindPal widget -->
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+## Platform-Specific Instructions
+
+**Important Note:** The guides below cover the most popular platforms that support robust custom session context integration. If you're using a different platform or need help with a specific integration, please contact our support team for personalized assistance.
+
+### WordPress
+
+**Method: Iframe Data Attributes**
+
+1. **Install a Custom HTML Block:**
+
+   - In your page editor, add a "Custom HTML" block
+   - Or use a plugin like "Insert Headers and Footers"
+
+2. **Add the Embed Code:**
+
+```html
+<iframe
+  id="mindpal-chatbot"
+  src="https://chatbot.getmindpal.com/your-chatbot"
+  data-mp-ctx-customer-name="<?php echo esc_attr(wp_get_current_user()->display_name); ?>"
+  data-mp-ctx-customer-email="<?php echo esc_attr(wp_get_current_user()->user_email); ?>"
+  width="100%"
+  height="600px"
+  frameborder="0"
+></iframe>
+
+<script
+  src="https://chatbot.getmindpal.com/iframe.min.js"
+  data-target="mindpal-chatbot"
+></script>
+```
+
+3. **For Dynamic Context (with PHP):**
+
+If you want to pass user information dynamically:
+
+```html
+<iframe
+  id="mindpal-chatbot"
+  src="https://chatbot.getmindpal.com/your-chatbot"
+  <?php
+  if
+  (is_user_logged_in()):
+  ?
+>
+  data-mp-ctx-customer-name="<?php echo esc_attr(wp_get_current_user()->display_name);
+  ?>" data-mp-ctx-customer-email="<?php echo esc_attr(wp_get_current_user()->user_email);
+  ?>"
+  <?php endif; ?>
+  width="100%" height="600px" frameborder="0" ></iframe
+>
+
+<script
+  src="https://chatbot.getmindpal.com/iframe.min.js"
+  data-target="mindpal-chatbot"
+></script>
+```
+
+**Widget Method:**
+
+Add to your theme's footer (Appearance → Theme Editor → footer.php) or use a plugin:
+
+```html
+<script>
+  <?php if (is_user_logged_in()): ?>
+  window.mindpalConfig = {
+     chatbotId: "your-chatbot",
+    customSessionContext: {
+      "customer-name": "<?php echo esc_js(wp_get_current_user()->display_name); ?>",
+      "customer-email": "<?php echo esc_js(wp_get_current_user()->user_email); ?>"
+    }
+  };
+  <?php endif; ?>
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+### Webflow
+
+**Method: Widget Configuration (Recommended)**
+
+1. **Go to Project Settings:**
+
+   - Click the gear icon in your Webflow dashboard
+   - Navigate to "Custom Code" tab
+   - Scroll to "Footer Code"
+
+2. **Add the Code:**
+
+```html
+<script>
+  // You can use Webflow's membership data if available
+  window.mindpalConfig = {
+    chatbotId: "your-chatbot",
+    customSessionContext: {
+      "customer-name": "John Doe", // Replace with dynamic value
+      "account-type": "premium", // Replace with dynamic value
+    },
+  };
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+3. **For Conditional Display (using Webflow Memberships):**
+
+```html
+<script>
+  // Check if user data is available (Webflow Memberships)
+  if (window.memberstack) {
+    memberstack.getCurrentMember().then((member) => {
+      if (member) {
+        window.mindpalConfig = {
+          chatbotId: "your-chatbot",
+          customSessionContext: {
+            "customer-name": member.name,
+            "customer-email": member.email,
+            "member-id": member.id,
+          },
+        };
+
+        // Load widget after config is set
+        const script = document.createElement("script");
+        script.src = "https://chatbot.getmindpal.com/embed.min.js";
+        document.body.appendChild(script);
+      }
+    });
+  }
+</script>
+```
+
+**Iframe Method:**
+
+Add an "Embed" element to your page and paste:
+
+```html
+<iframe
+  id="mindpal-chatbot"
+  src="https://chatbot.getmindpal.com/your-chatbot"
+  data-mp-ctx-customer-name="John Doe"
+  data-mp-ctx-account-type="premium"
+  width="100%"
+  height="600px"
+  frameborder="0"
+></iframe>
+
+<script
+  src="https://chatbot.getmindpal.com/iframe.min.js"
+  data-target="mindpal-chatbot"
+></script>
+```
+
+### Kajabi
+
+**Method: Widget Configuration**
+
+1. **Go to Settings:**
+
+   - Navigate to "Settings" → "Tracking Code & Analytics"
+
+2. **Add to Footer Tracking Code:**
+
+```html
+<script>
+  // Kajabi provides user data via window._kAdminBar
+  if (typeof _kAdminBar !== "undefined" && _kAdminBar.user) {
+    window.mindpalConfig = {
+      chatbotId: "your-chatbot",
+      customSessionContext: {
+        "customer-name": _kAdminBar.user.name,
+        "customer-email": _kAdminBar.user.email,
+      },
+    };
+  }
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+**For Course-Specific Context:**
+
+```html
+<script>
+  if (typeof _kAdminBar !== "undefined" && _kAdminBar.user) {
+    // You can add custom context based on the current page
+    const pageContext = {
+      "customer-name": _kAdminBar.user.name,
+      "customer-email": _kAdminBar.user.email,
+    };
+
+    // Add course info if on a course page
+    if (window.location.pathname.includes("/courses/")) {
+      pageContext["current-course"] =
+        document.querySelector(".course-title")?.textContent || "Unknown";
+    }
+
+    window.mindpalConfig = {
+      chatbotId: "your-chatbot",
+      customSessionContext: pageContext,
+    };
+  }
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+### ConvertKit
+
+**Method: URL Query Parameters (Recommended)**
+
+ConvertKit emails and landing pages work best with URL parameters.
+
+1. **In Your ConvertKit Email:**
+
+Use liquid tags to personalize the link:
+
+```
+https://chatbot.getmindpal.com/your-chatbot?ctx[customer-name]={{ subscriber.first_name }}&ctx[customer-email]={{ subscriber.email_address }}
+```
+
+2. **In ConvertKit Landing Pages:**
+
+Add a button or link with:
+
+```html
+<a
+  href="https://chatbot.getmindpal.com/support?ctx[customer-name]={{ subscriber.first_name }}&ctx[subscriber-tag]={{ subscriber.tag }}"
+>
+  Chat with Support
+</a>
+```
+
+**For Embedded Forms (Widget Method):**
+
+Add custom JavaScript to your landing page:
+
+```html
+<script>
+  // Extract subscriber info from ConvertKit (if available)
+  window.mindpalConfig = {
+    chatbotId: "your-chatbot",
+    customSessionContext: {
+      "customer-name": "{{ subscriber.first_name }}",
+      "customer-email": "{{ subscriber.email_address }}",
+    },
+  };
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+### Shopify
+
+**Method: Widget Configuration (Liquid)**
+
+1. **Edit Your Theme:**
+
+   - Go to "Online Store" → "Themes"
+   - Click "Actions" → "Edit code"
+   - Find `theme.liquid` file
+
+2. **Add Before Closing `</body>` Tag:**
+
+```liquid
+{% if customer %}
+<script>
+  window.mindpalConfig = {
+     chatbotId: "your-chatbot",
+    customSessionContext: {
+      "customer-name": "{{ customer.name }}",
+      "customer-email": "{{ customer.email }}",
+      "customer-id": "{{ customer.id }}",
+      "customer-tags": "{{ customer.tags | join: ',' }}"
+    }
+  };
+</script>
+{% endif %}
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+**For Order-Specific Context (Thank You Page):**
+
+Edit the "Thank You" page template:
+
+```liquid
+{% if order %}
+<script>
+  window.mindpalConfig = {
+     chatbotId: "your-chatbot",
+    customSessionContext: {
+      "customer-name": "{{ order.customer.name }}",
+      "order-number": "{{ order.name }}",
+      "order-total": "{{ order.total_price | money }}",
+      "order-status": "{{ order.fulfillment_status }}"
+    }
+  };
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+{% endif %}
+```
+
+**For Product Pages:**
+
+```liquid
+{% if product %}
+<script>
+  const productContext = {
+    "product-name": "{{ product.title }}",
+    "product-id": "{{ product.id }}",
+    "product-type": "{{ product.type }}"
+  };
+
+  {% if customer %}
+  productContext["customer-name"] = "{{ customer.name }}";
+  productContext["customer-email"] = "{{ customer.email }}";
+  {% endif %}
+
+  window.mindpalConfig = {
+     chatbotId: "your-chatbot",
+    customSessionContext: productContext
+  };
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+{% endif %}
+```
+
+### Wix
+
+**Method: Widget Configuration or Iframe**
+
+Wix has limited access to member data via client-side JavaScript in the published site. The best approach depends on your setup:
+
+**Option 1: Basic Widget (No Member Data)**
+
+1. **Add Custom Code to Site:**
+
+   - Go to "Settings" → "Custom Code"
+   - Click "Add Custom Code" in the Body section (load as "All Pages")
+
+2. **Add the Code:**
+
+```html
+<script>
+  window.mindpalConfig = {
+    chatbotId: "your-chatbot",
+    customSessionContext: {
+      "page-url": window.location.pathname,
+      "page-title": document.title,
+    },
+  };
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+**Option 2: Using Velo by Wix (Requires Velo Enabled)**
+
+If you have Velo (formerly Corvid) enabled on your Wix site, you can access member data:
+
+```javascript
+import wixUsers from "wix-users";
+
+$w.onReady(function () {
+  if (wixUsers.currentUser.loggedIn) {
+    wixUsers.currentUser
+      .getMember()
+      .then((member) => {
+        window.mindpalConfig = {
+          chatbotId: "your-chatbot",
+          customSessionContext: {
+            "member-id": member._id,
+            "member-name": member.contactDetails?.firstName || "Member",
+          },
+        };
+
+        // Load widget
+        const script = document.createElement("script");
+        script.src = "https://chatbot.getmindpal.com/embed.min.js";
+        document.body.appendChild(script);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+});
+```
+
+**Option 3: URL Parameters (Simplest)**
+
+For member-only pages, use URL parameters to pass context when linking to pages with the chatbot.
+
+**Alternative: Using Wix's Built-in Elements**
+
+Add an HTML iframe element to your page:
+
+```html
+<iframe
+  id="mindpal-chatbot"
+  src="https://chatbot.getmindpal.com/your-chatbot"
+  data-mp-ctx-site-name="My Wix Site"
+  data-mp-ctx-page-url="{page-url}"
+  width="100%"
+  height="600px"
+  frameborder="0"
+></iframe>
+
+<script
+  src="https://chatbot.getmindpal.com/iframe.min.js"
+  data-target="mindpal-chatbot"
+></script>
+```
+
+### Teachable
+
+**Method: Widget Configuration with Liquid Variables**
+
+Teachable uses Liquid template language to access user and course data. You'll need to edit your theme's code.
+
+1. **Go to Site Settings:**
+
+   - Navigate to "Site" → "Theme" → "Edit Theme Code"
+   - Or "Site" → "Code Snippets"
+
+2. **Add to Footer or Course Pages:**
+
+```html
+<script>
+  {% if current_user %}
+    window.mindpalConfig = {
+      chatbotId: "your-chatbot",
+      customSessionContext: {
+        "student-name": "{{ current_user.name }}",
+        "student-email": "{{ current_user.email }}",
+        "student-id": "{{ current_user.id }}"
+      }
+    };
+
+    {% if course %}
+      window.mindpalConfig.customSessionContext["course-name"] = "{{ course.name }}";
+      window.mindpalConfig.customSessionContext["course-id"] = "{{ course.id }}";
+    {% endif %}
+  {% else %}
+    // Not logged in - guest visitor
+    window.mindpalConfig = {
+      chatbotId: "your-chatbot",
+      customSessionContext: {
+        "visitor-type": "guest"
+      }
+    };
+  {% endif %}
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+**For Course-Specific Pages:**
+
+Add this to your course lecture template:
+
+```html
+<script>
+  {% if current_user %}
+    window.mindpalConfig = {
+      chatbotId: "your-chatbot",
+      customSessionContext: {
+        "student-name": "{{ current_user.name }}",
+        {% if course %}
+          "course-name": "{{ course.name }}",
+        {% endif %}
+        {% if lecture %}
+          "current-lesson": "{{ lecture.name }}",
+        {% endif %}
+        "page-type": "course-lecture"
+      }
+    };
+  {% endif %}
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+**Available Liquid Variables in Teachable:**
+
+- `{{ current_user.name }}` - Student's name
+- `{{ current_user.email }}` - Student's email
+- `{{ course.name }}` - Course name
+- `{{ course.id }}` - Course ID
+- `{{ lecture.name }}` - Lecture name
+
+**Note:** You'll need access to theme editing to use Liquid variables. If you only have access to Code Snippets, use the iframe method with static context or URL parameters.
+
+## Security Best Practices
+
+### 1. Define Only What You Need
+
+Only create context keys for information you actually need. Don't pass sensitive data unnecessarily.
+
+**Good:**
+
+```javascript
+{
+  "customer-name": "John Doe",
+  "account-type": "premium"
+}
+```
+
+**Avoid:**
+
+```javascript
+{
+  "customer-name": "John Doe",
+  "credit-card-number": "1234-5678-9012-3456", // ❌ Never pass sensitive payment info
+  "password": "secret123" // ❌ Never pass passwords
+}
+```
+
+### 2. Enable Domain Restrictions
+
+Always restrict which domains can send custom session context:
+
+1. In your chatbot/workflow settings, go to "Access & Security"
+2. Enable "Embedding Restrictions"
+3. Add only your trusted domains:
+   ```
+   yourdomain.com
+   app.yourdomain.com
+   ```
+
+This prevents unauthorized websites from impersonating your users.
+
+### 3. Keep Values Simple
+
+Only pass simple text values. Complex data will be automatically filtered out.
+
+**Supported:**
+
+- Text: `"John Doe"`, `"premium"`
+- Numbers: `12345`, `99.99`
+- Booleans: `true`, `false`
+
+**Not Supported (will be filtered):**
+
+- HTML: `"<script>alert('xss')</script>"` (automatically cleaned)
+- Objects: `{"nested": "object"}` (dropped)
+- Arrays: `["array", "values"]` (dropped)
+
+### 4. Limit Data Size
+
+Each value is limited to 500 characters, and you can pass up to 20 context keys. Keep your data concise.
+
+### 5. Use HTTPS
+
+Always use HTTPS for your website when passing custom session context. This ensures data is encrypted in transit.
+
+### 6. Don't Pass Sensitive Information
+
+Never pass:
+
+- Passwords or authentication tokens
+- Credit card numbers or full payment details
+- Social security numbers
+- Private medical information
+- API keys or secrets
+
+### 7. Validate on Your Side
+
+Before passing context, validate that the data belongs to the actual logged-in user. Don't trust client-side data alone.
+
+**Example (Server-Side Validation):**
+
+```php
+// WordPress example - good practice
+<?php
+if (is_user_logged_in()) {
+  // Get data from verified session
+  $user = wp_get_current_user();
+  $customer_name = esc_attr($user->display_name);
+  $customer_email = esc_attr($user->user_email);
+} else {
+  // Don't pass context for non-logged-in users
+  $customer_name = '';
+  $customer_email = '';
+}
+?>
+```
+
+## Troubleshooting
+
+### Context Not Appearing in Conversations
+
+**Check:**
+
+1. ✅ Feature is enabled in your chatbot/workflow settings
+2. ✅ You've defined the context keys you're trying to pass
+3. ✅ Keys match exactly (case-sensitive): use `customer-name`, not `Customer-Name` or `customername`
+4. ✅ Your domain is in the allowed list (if embedding restrictions are enabled)
+5. ✅ For iframe method: The helper script is loaded and `data-target` matches iframe `id`
+6. ✅ For widget method: `window.mindpalConfig` is defined BEFORE loading the widget script
+
+### Context Values Are Missing or Cut Off
+
+**Possible causes:**
+
+- Values longer than 500 characters are truncated
+- HTML tags are automatically removed (this is intentional for security)
+- Objects and arrays are dropped (only use simple values)
+- More than 20 keys are being passed (limit is 20)
+
+### Iframe Method Not Working
+
+**Check:**
+
+1. Iframe `id` matches the script's `data-target` attribute
+2. Helper script loads after the iframe element
+3. Data attributes use correct format: `data-mp-ctx-your-key="value"`
+4. Check browser console for errors
+
+### Widget Method Not Working
+
+**Check:**
+
+1. `window.mindpalConfig` is defined BEFORE the widget script loads
+2. Context keys are inside `customSessionContext` object
+3. Keys use the exact generated keys from settings
+4. Check browser console for errors
+
+## Examples & Templates
+
+### E-commerce Support Chatbot
+
+**Scenario:** Customer support chatbot that knows order details
+
+**Context Keys:**
+
+- Customer Name → `customer-name`
+- Order Number → `order-number`
+- Order Status → `order-status`
+
+**Implementation:**
+
+```html
+<script>
+  // Get order data from your system
+  const orderData = {
+    customerName: "Jane Smith",
+    orderNumber: "ORD-98765",
+    orderStatus: "Shipped",
+  };
+
+  window.mindpalConfig = {
+    chatbotId: "your-chatbot",
+    customSessionContext: {
+      "customer-name": orderData.customerName,
+      "order-number": orderData.orderNumber,
+      "order-status": orderData.orderStatus,
+    },
+  };
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+### SaaS Onboarding Assistant
+
+**Scenario:** Help new users based on their plan and progress
+
+**Context Keys:**
+
+- User Name → `user-name`
+- Subscription Plan → `subscription-plan`
+- Onboarding Step → `onboarding-step`
+
+**Implementation:**
+
+```html
+<iframe
+  id="onboarding-assistant"
+  src="https://chatbot.getmindpal.com/onboarding"
+  data-mp-ctx-user-name="Alex Johnson"
+  data-mp-ctx-subscription-plan="Pro"
+  data-mp-ctx-onboarding-step="3"
+  width="100%"
+  height="600px"
+></iframe>
+
+<script
+  src="https://chatbot.getmindpal.com/iframe.min.js"
+  data-target="onboarding-assistant"
+></script>
+```
+
+### Course-Specific Tutor
+
+**Scenario:** Educational workflow that adapts to student and course
+
+**Context Keys:**
+
+- Student Name → `student-name`
+- Course Name → `course-name`
+- Current Lesson → `current-lesson`
+
+**Implementation (URL Method):**
+
+```html
+<a
+  href="https://mindpal.space/workflow/tutor?ctx[student-name]=Emma%20Davis&ctx[course-name]=Python%20Basics&ctx[current-lesson]=Lesson%205"
+>
+  Ask Your Tutor
+</a>
+```
+
+## Best Practices Summary
+
+1. **Start Simple**: Begin with just a few essential context keys (2-3)
+2. **Test Thoroughly**: Test with different users and scenarios
+3. **Monitor Usage**: Check conversation logs to see if context is being used effectively
+4. **Keep It Updated**: Remove unused context keys to keep your setup clean
+5. **Document Your Setup**: Keep notes on which keys you're using and where
+6. **Use Domain Restrictions**: Always enable domain restrictions for security
+7. **Validate Server-Side**: Ensure data is accurate and belongs to the actual user
+8. **Never Pass Secrets**: Keep sensitive information out of custom session context
+
+## Need Help?
+
+If you run into issues:
+
+1. Check the troubleshooting section above
+2. Review your context keys in settings
+3. Use browser developer console to check for errors
+4. Test with a simple example first before adding complexity
+5. Contact MindPal support with specific error messages
