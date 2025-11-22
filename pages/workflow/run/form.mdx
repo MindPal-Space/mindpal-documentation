@@ -1,14 +1,19 @@
 # Running Workflows via Form
 
-When you're ready to share your workflow with audience or clients who don't necessarily need to have a MindPal account, you can publish it as an interactive form. This makes it easy for others to use your workflow without needing to understand the technical details.
+Share your workflows with anyone through an interactive form interface - no MindPal account required.
 
-## What is a Form?
+## What is a Workflow Form?
 
-A Form is a user-friendly interface that lets others interact with your workflow. It transforms your complex workflow into a simple web page where users can input data and get results - no technical knowledge required.
+A workflow form transforms your complex multi-agent workflow into a simple, user-friendly web page where anyone can input data and get results. It's perfect for:
 
-## How Workflow Form Works
+- Sharing workflows with clients or team members
+- Embedding workflows on your website
+- Creating public-facing AI tools
+- Building workflow templates for others to use
 
-When you publish your workflow as a form, it becomes publicly accessible to anyone who has the link or sees it embedded on a website. Users can input their data through the form interface and run the workflow to get results - all without needing a MindPal account.
+## How It Works
+
+When you publish your workflow as a form, it becomes publicly accessible to anyone who has the link or sees it embedded on a website. Users can input their data through the form interface and run the workflow to get results.
 
 Every time someone runs your workflow through the form:
 
@@ -16,61 +21,113 @@ Every time someone runs your workflow through the form:
 2. They receive the workflow results
 3. The run is recorded in your workflow's "Run History" with "FORM" as the trigger type
 
-This lets you track and manage all form submissions while giving users a simple way to leverage your workflow.
+## Configuring Your Workflow Form
 
-## Configuring Your Form
-
-Before publishing a workflow as a form, make sure your workflow is:
+Before publishing, make sure your workflow is:
 
 - Successfully built and tested
 - Generating the expected outputs
 - Working reliably with different inputs
 
-Then, navigate to the "Form" tab in your workflow to access these key settings:
+Then, navigate to the "Form" tab in your workflow to configure these sections:
 
-### Interface Settings
+### 1. Set Up the Identity
 
-- **Icon URL**: Custom icon for your form (e.g., your company logo)
-- **Banner URL**: Header image for the form (e.g., product screenshot)
-- **Brand Color**: Primary color for buttons and UI (e.g., match your brand)
-- **MindPal Branding**: Toggle MindPal logo visibility (e.g., hide for white-label forms)
+Give your workflow form a name and description.
 
-### Copywriting
+- **Name** (required): Enter a clear name for your workflow
+- **Description**: Add a rich-text description to explain what the form is for, what it does, how to use it, your contact information, or about you & your business. Use the AI-powered "Auto-generate" or "Enhance" button to create or improve your description automatically.
 
-Add a rich-text description to your form. Things you can add:
+### 2. Customize the Interface
 
-- What the form is for
-- What the form does
-- How to use the form
-- Your contact information
-- About you & your business
+Personalize the visual appearance of your workflow form.
 
-### Access & Security
+- **Icon**: Add a custom icon for your form (e.g., your company logo). Paste a public photo URL or upload an image.
+- **Banner**: Add a header image for the form (e.g., product screenshot). Paste a public photo URL or upload an image.
+- **Brand Color**: Choose a primary color for buttons and UI elements to match your brand.
+- **MindPal Branding**: Toggle the "Powered by MindPal" badge visibility. Connect your affiliate code to earn 20% recurring commission.
 
-Control how others can access your workflow:
+### 3. Design the Workflow Experience
 
-- **Custom Domain**: [Host the form on your domain](/workspace/custom-domain)
-- **Embedding Controls**: Restrict which sites can embed
-- **Rate Limiting**: Control usage frequency
+Control how users interact with your workflow.
 
-## Sharing Your Form
+#### Interaction Style
 
-You have two options for sharing:
+- **Enable Step-by-Step Human Review**: Pause after each step so the user can approve the AI's output before moving to the next step (similar to "Run in supervised mode" in app).
+- **Show "Rerun" Button**: Allow users to reset the workflow and run it again from the beginning.
+- **Enable Workflow Setup Template Duplication**: Allow others to clone this workflow setup into their own MindPal account (great for template creators).
 
-1. **Direct Link**: Get a unique URL for your form and share it. Anyone with the link can access the form.
+#### User Capabilities
 
-2. **Embed Code**: Copy the embed code and paste it into your website as an iframe.
+- **Allow "Retry" on Answers**: Let users ask the AI to try again if they aren't satisfied with a specific answer.
+- **Allow Manual Editing**: Let users manually tweak or correct the text generated by the AI.
+- **Enable "Copy to Clipboard"**: Add a quick-copy button next to every answer.
+- **Enable PDF Download**: Add a button for users to download their final results as a PDF document.
+- **Enable Social Sharing**: Add buttons for users to share their results directly to LinkedIn, X (Twitter), or Facebook.
+
+#### Process Visibility
+
+- **Control Which Steps Are Visible**: Toggle off any steps you want to run silently in the background. The user will only see "Running in background..." for hidden steps. Each workflow node can be toggled individually (some nodes are always visible or hidden by default).
+
+### 4. Control Access
+
+Manage who can access your workflow and how.
+
+- **Public URL** (required): Your workflow will be available at `mindpal.space/[your-slug]`. Choose a unique URL path for your workflow.
+- **Custom Domain** (optional): Host the form on your own domain.
+- **Restrict Embedding to Specific Domains** (optional): Limit where your workflow can be embedded. Add specific domains (one per line) that are allowed to embed your workflow form. Example: `example.com`, `subdomain.example.com`.
+
+### 5. Advanced
+
+Configure advanced features to enhance your workflow.
+
+#### Email Notifications
+
+Get notified via email for each new submission when users submit workflow forms.
+
+#### Rate Limiting
+
+Enforce rate limits to control usage frequency. Set maximum number of conversations allowed and choose time interval: per minute, per hour, or per day.
+
+#### Custom Session Context
+
+Pass contextual information about users directly from your website to the workflow, enabling personalized AI interactions without requiring users to repeat information.
+
+**How to Set Up:**
+
+1. Toggle "Enable custom session context" to ON
+2. Define context keys by adding custom fields:
+   - **Label**: Human-readable name (e.g., "User ID", "Project Type")
+   - **Generated Key**: Automatically created from the label in kebab-case format (e.g., "user-id", "project-type")
+
+**How It Works:**
+
+When enabled, you can pass information from your website to the workflow using the generated keys. All AI agents in the workflow will naturally use this information in their responses and decisions without explicitly mentioning where it came from.
+
+**Example:**
+
+If you define these context keys:
+
+- Label: "Customer Type" → Key: `customer-type`
+- Label: "Order ID" → Key: `order-id`
+
+The workflow's AI agents will know the customer type and order ID, allowing them to provide tailored responses like generating order-specific reports or customizing outputs based on customer tier.
+
+See the [Custom Session Context Guide](/guides/custom-session-context) for detailed implementation instructions on how to pass this data from your website.
+
+## Sharing Your Workflow
+
+Once configured, you have two options for sharing:
+
+- **Direct Link**: Get a unique URL for your form and share it. Anyone with the link can access the form.
+- **Embed Code**: Copy the embed code and paste it into your website as an iframe.
 
 ## Frequently Asked Questions
 
 ### Can users go back to previous steps in a workflow to make edits before moving to the next step?
 
-Yes, this is possible by enabling supervised mode in your form settings. Navigate to the "Functionality" tab in your Form settings and enable supervised mode. When this option is activated, the workflow will pause after each step, allowing users to review outputs, make edits, or regenerate results before proceeding to the next step.
+Yes, enable "Step-by-step human review" in the "Design the workflow experience" section. When activated, the workflow will pause after each step, allowing users to review outputs, make edits, or regenerate results before proceeding to the next step.
 
 ### Is there a way to save progress in a workflow?
 
-Yes, progress saving is built into the workflow system. When a user starts a workflow, a unique identifier called "workflow run ID" is generated and appears in the URL as a parameter. The URL would look something like this: `https://[YOUR_WORKFLOW_PUBLIC_URL]?wrid=[WORKFLOW_RUN_ID]`. As long as users save or bookmark this specific URL, they can return to it later and continue their workflow from where they left off. This is particularly useful for longer workflows with multiple input steps.
-
-import PageFooter from "components/PageFooter";
-
-<PageFooter />{" "}
+Yes, progress saving is built into the workflow system. When a user starts a workflow, a unique identifier called "workflow run ID" is generated and appears in the URL as a parameter. The URL would look something like this: `https://[YOUR_WORKFLOW_PUBLIC_URL]?wrid=[WORKFLOW_RUN_ID]`. As long as users save or bookmark this specific URL, they can return to it later and continue their workflow from where they left off. This is particularly useful for longer workflows with multiple input steps. You can also utilize webhooks to save the workflow run ID somewhere for your users, allowing them to access their workflow progress through your own system.
