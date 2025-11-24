@@ -1,0 +1,786 @@
+# Custom User ID for Published Agents & Workflows
+
+Enable personalized AI experiences by connecting your users' identities to their conversations.
+
+## What is Custom User ID?
+
+Custom User ID is a feature that lets your MindPal chatbots and workflow forms "remember" who your users are. Think of it like giving each user their own personal file folder - when they come back, the AI can pull up their previous conversations and continue where they left off.
+
+Instead of treating every visitor as a brand new person, you can pass their user ID from your website or platform to MindPal. This creates a seamless, personalized experience where users don't have to repeat themselves or lose their conversation history.
+
+### Key Benefits
+
+- **Conversation History**: Users can see and resume their past conversations whenever they return
+- **Personalized Experience**: The AI remembers previous interactions and context from earlier conversations
+- **Better User Satisfaction**: No need for users to re-explain their situation every time they visit
+- **Identify Your Users**: Know exactly which user had which conversation in your logs
+- **Integration Ready**: Automatically includes user IDs in webhook payloads for your business systems
+- **Progress Tracking**: Monitor how individual users interact with your AI over time
+
+### Use Cases
+
+This feature is perfect for:
+
+- **Membership Sites**: WordPress, Kajabi, Circle, Mighty Networks - give members personalized support
+- **SaaS Applications**: Let users pick up where they left off, improving retention
+- **E-commerce Stores**: Shopify, WooCommerce - provide continuity in customer support conversations
+- **Educational Platforms**: Students can return to their learning conversations anytime
+- **Community Platforms**: Members get consistent, personalized AI interactions
+- **Customer Support**: Track support conversations per customer for better service
+- **Course Platforms**: Teachable, Thinkific - personalized tutoring that remembers each student
+
+## How It Works
+
+Here's the simple process:
+
+1. **You enable the feature** in your chatbot or workflow settings
+2. **You choose a mode**: Optional (flexible) or Required (authenticated users only)
+3. **You pass the user ID** from your website when someone visits your chatbot
+4. **MindPal remembers that user** and associates their conversations with their ID
+5. **Users see their history** when they return, creating continuity
+
+The best part? Your users don't see any of this complexity - it just works seamlessly for them.
+
+## Choosing Your Mode
+
+Before setting up, you need to decide which mode fits your needs:
+
+### None (Anonymous) - Default
+
+**Best for:** Public chatbots where everyone should have the same experience
+
+- All conversations are anonymous
+- No user identification
+- No conversation history per user
+- Perfect for general information bots on public websites
+
+### Optional
+
+**Best for:** Most situations where you have both logged-in and guest users
+
+- If a user ID is provided, users get conversation history
+- If no user ID is provided, chat works normally (anonymous)
+- Flexible for mixed audiences (some authenticated, some not)
+- You can always upgrade to Required later if needed
+
+**Real-world example:** An online course platform where members get personalized tutoring with history, but trial users can still use the bot without logging in.
+
+### Required
+
+**Best for:** Private member areas where you control who accesses the chatbot
+
+- User ID must be provided or the chat won't work
+- Always provides conversation history
+- Ensures all conversations are identified
+- Only use if the chatbot is in a logged-in area of your site
+
+**Important:** Only choose Required if your chatbot is behind a login wall. Public pages won't work with this mode.
+
+## Setting Up Custom User ID
+
+### Step 1: Enable the Feature
+
+**For Chatbots:**
+
+1. Open your chatbot in the MindPal dashboard
+2. Click on the chatbot settings
+3. Scroll to the "Control access" section
+4. Find "Enable custom user ID"
+5. Select your mode: "Optional" or "Required" (we recommend starting with Optional)
+6. Save your settings
+7. Click "Publish" to get your updated sharing codes
+
+**For Workflow Forms:**
+
+1. Open your workflow in the MindPal dashboard
+2. Go to the "Publish" tab -> "Customize appearance & settings"
+3. Scroll to the "Control access" section
+4. Find "Enable custom user ID"
+5. Select your mode: "Optional" or "Required"
+6. Save your settings
+7. Publish to get your updated embedding code
+
+### Step 2: Get Your Updated Embedding Code
+
+After enabling custom user ID, click the "Share & Embed" button. You'll see updated code snippets that include placeholders for the user ID:
+
+- For **Direct Links**: `?cuid=USER_123`
+- For **Iframe Embeds**: `data-mp-cuid="USER_123"`
+- For **Widget Embeds**: `customUserId: "USER_123"`
+
+In the publish modal, you can customize whether to use placeholders or static values for testing.
+
+## Passing Custom User IDs to Your Chatbot
+
+There are three ways to pass user IDs from your website to MindPal. Choose the method that best fits how you've embedded your chatbot.
+
+### Method 1: Direct Links
+
+**Best for:** Linking to your chatbot from emails, member dashboards, or navigation menus
+
+Add `?cuid=USER_123` to the end of your chatbot URL, replacing `USER_123` with the actual user ID.
+
+**Format:**
+
+```
+https://chatbot.getmindpal.com/your-chatbot?cuid=USER_ID_HERE
+```
+
+**When to use:** Email campaigns, dashboard links, navigation menus, or anywhere you're linking directly to the chatbot page.
+
+### Method 2: Iframe Embeds
+
+**Best for:** Embedding the chatbot as a full-page element on your website
+
+Add the `data-mp-cuid` attribute to your iframe tag with the user's ID.
+
+**Basic Setup:**
+
+```html
+<!-- Add this where you want the chatbot to appear -->
+<iframe
+  id="mindpal-chatbot"
+  src="https://chatbot.getmindpal.com/your-chatbot"
+  data-mp-cuid="USER_123"
+  allow="clipboard-read; clipboard-write; microphone"
+  style="width: 100%; height: 100%; min-height: 700px"
+></iframe>
+
+<!-- Add this helper script right after the iframe -->
+<script
+  src="https://chatbot.getmindpal.com/iframe.min.js"
+  data-target="mindpal-chatbot"
+></script>
+```
+
+**Important Details:**
+
+- The `data-mp-cuid` attribute is where you put the user ID
+- The `data-target` in the script must match the iframe's `id`
+- Replace `USER_123` with your user's actual ID
+
+**When to use:** Embedding the chatbot as a full section on a page, member dashboards, or dedicated support pages.
+
+### Method 3: Chat Bubble Widget (only for published AI agents)
+
+**Best for:** Adding a floating chat button that appears on every page
+
+Add the user ID to the `mindpalConfig` object before loading the widget script.
+
+**Basic Setup:**
+
+```html
+<!-- Define configuration with user ID -->
+<script>
+  window.mindpalConfig = {
+    chatbotId: "your-chatbot",
+    customUserId: "USER_123",
+  };
+</script>
+
+<!-- Load the widget script -->
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+**Important:** The configuration MUST be defined before you load the widget script, or it won't work.
+
+**When to use:** Site-wide floating chat button, anywhere you want the chat to be available on multiple pages.
+
+## Platform-Specific Instructions
+
+**Important Note:** The examples below cover the most popular platforms. If you're using a different platform, the concepts are the same - you just need to find how your platform lets you insert user data dynamically. If you need help, contact our support team.
+
+### WordPress
+
+**Method: Widget (Easiest) or Iframe**
+
+WordPress makes it easy to access logged-in user information. You'll add code to your theme or use a plugin.
+
+**Option 1: Widget Method (Site-wide)**
+
+1. Go to **Appearance** → **Theme Editor** (or use a plugin like "Insert Headers and Footers")
+2. Add this code before the closing `</body>` tag:
+
+```php
+<?php if (is_user_logged_in()): ?>
+<script>
+  window.mindpalConfig = {
+    chatbotId: "your-chatbot",
+    customUserId: "<?php echo esc_js(get_current_user_id()); ?>"
+  };
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+<?php endif; ?>
+```
+
+This will show the chat bubble only to logged-in users with their user ID.
+
+**Option 2: Iframe on Specific Pages**
+
+Add a Custom HTML block to any page:
+
+```php
+<?php if (is_user_logged_in()): ?>
+<iframe
+  id="mindpal-chatbot"
+  src="https://chatbot.getmindpal.com/your-chatbot"
+  data-mp-cuid="<?php echo esc_attr(get_current_user_id()); ?>"
+  allow="clipboard-read; clipboard-write; microphone"
+  style="width: 100%; height: 600px"
+></iframe>
+<script
+  src="https://chatbot.getmindpal.com/iframe.min.js"
+  data-target="mindpal-chatbot"
+></script>
+<?php endif; ?>
+```
+
+**What this does:** Gets the WordPress user ID automatically and passes it to MindPal.
+
+### Shopify
+
+**Method: Widget with Liquid**
+
+Shopify uses the Liquid templating language to access customer data.
+
+1. Go to **Online Store** → **Themes**
+2. Click **Actions** → **Edit code**
+3. Find `theme.liquid` file
+4. Add this code before `</body>`:
+
+```liquid
+{% if customer %}
+<script>
+  window.mindpalConfig = {
+    chatbotId: "your-chatbot",
+    customUserId: "{{ customer.id }}"
+  };
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+{% endif %}
+```
+
+**For guest users too (Optional mode):**
+
+```liquid
+<script>
+  window.mindpalConfig = {
+    chatbotId: "your-chatbot"
+    {% if customer %}
+    , customUserId: "{{ customer.id }}"
+    {% endif %}
+  };
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+**What this does:** Shows the chatbot to all visitors, but only passes user ID for logged-in customers.
+
+### Kajabi
+
+**Method: Widget Configuration**
+
+Kajabi provides user data through JavaScript variables.
+
+1. Go to **Settings** → **Tracking Code & Analytics**
+2. Add this to **Footer Tracking Code**:
+
+```html
+<script>
+  // Kajabi provides user data in _kAdminBar
+  if (typeof _kAdminBar !== "undefined" && _kAdminBar.user) {
+    window.mindpalConfig = {
+      chatbotId: "your-chatbot",
+      customUserId: String(_kAdminBar.user.id),
+    };
+  } else {
+    // Guest users (if using Optional mode)
+    window.mindpalConfig = {
+      chatbotId: "your-chatbot",
+    };
+  }
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+**What this does:** Automatically detects if someone is logged in and passes their user ID.
+
+### Teachable
+
+**Method: Widget with Liquid**
+
+Teachable also uses Liquid templates like Shopify.
+
+1. Go to **Site** → **Code Snippets** or **Theme** → **Edit Code**
+2. Add this code:
+
+```html
+<script>
+  {% if current_user %}
+    window.mindpalConfig = {
+      chatbotId: "your-chatbot",
+      customUserId: "{{ current_user.id }}"
+    };
+  {% else %}
+    window.mindpalConfig = {
+      chatbotId: "your-chatbot"
+    };
+  {% endif %}
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+**What this does:** Shows chatbot to everyone, passes user ID for students who are logged in.
+
+### Webflow
+
+**Method: Widget in Custom Code**
+
+Webflow has limited built-in user data access, but works with membership integrations.
+
+1. Go to **Project Settings** → **Custom Code**
+2. Add to **Footer Code**:
+
+**Basic (no user data):**
+
+```html
+<script>
+  window.mindpalConfig = {
+    chatbotId: "your-chatbot",
+  };
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+**With Memberstack (membership plugin):**
+
+```html
+<script>
+  // Wait for Memberstack to load
+  if (window.memberstack) {
+    memberstack.getCurrentMember().then((member) => {
+      window.mindpalConfig = {
+        chatbotId: "your-chatbot",
+        customUserId: member ? member.id : undefined,
+      };
+
+      const script = document.createElement("script");
+      script.src = "https://chatbot.getmindpal.com/embed.min.js";
+      document.body.appendChild(script);
+    });
+  }
+</script>
+```
+
+### Wix
+
+**Method: Velo Code or Static Embed**
+
+Wix requires Velo (formerly Corvid) to be enabled for dynamic user data.
+
+**If you have Velo enabled:**
+
+```javascript
+import wixUsers from "wix-users";
+
+$w.onReady(function () {
+  if (wixUsers.currentUser.loggedIn) {
+    wixUsers.currentUser.getMember().then((member) => {
+      window.mindpalConfig = {
+        chatbotId: "your-chatbot",
+        customUserId: member._id,
+      };
+
+      const script = document.createElement("script");
+      script.src = "https://chatbot.getmindpal.com/embed.min.js";
+      document.body.appendChild(script);
+    });
+  }
+});
+```
+
+**Without Velo (simpler):**
+
+Use the iframe method on members-only pages with a placeholder ID, or use Direct Link method.
+
+## User ID Format Rules
+
+Keep your user IDs simple to avoid issues:
+
+**✅ Allowed:**
+
+- Letters (a-z, A-Z)
+- Numbers (0-9)
+- Hyphens (-)
+- Underscores (\_)
+- Maximum 255 characters
+
+**❌ Not allowed:**
+
+- Special characters (@, #, %, etc.)
+- Spaces
+- Emojis
+
+**Good Examples:**
+
+- `user_12345`
+- `customer-abc123`
+- `member2024`
+- `john-doe-456`
+
+**Bad Examples:**
+
+- `user@email.com` ❌ (has @)
+- `user 123` ❌ (has space)
+- `user#123` ❌ (has #)
+
+**Pro Tip:** Use your platform's user ID or member ID directly if it meets these rules. Most platforms (WordPress, Shopify, Kajabi) provide IDs that work perfectly.
+
+## Best Practices
+
+### 1. Use Your Platform's Built-in User IDs
+
+Don't create custom user IDs - use what your platform already provides:
+
+- WordPress: `get_current_user_id()`
+- Shopify: `{{ customer.id }}`
+- Kajabi: `_kAdminBar.user.id`
+
+This ensures consistency and avoids confusion.
+
+### 2. Test with a Real User Account
+
+Before launching:
+
+1. Log in as a test user on your site
+2. Open your chatbot
+3. Have a short conversation
+4. Close the chat
+5. Open it again - do you see your conversation history?
+
+If yes, you're all set! If no, check the troubleshooting section below.
+
+### 3. Don't Use Sensitive Data as User IDs
+
+Never use passwords, credit cards, or sensitive personal information as user IDs:
+
+- ❌ Email addresses (can be changed)
+- ❌ Social security numbers
+- ❌ Credit card numbers
+- ✅ Platform-provided user IDs (numeric or alphanumeric)
+- ✅ Member IDs
+- ✅ Customer IDs
+
+### 4. Be Consistent
+
+Once you set up custom user IDs, use the same method everywhere:
+
+- Don't mix email and user ID
+- Don't change the format later
+- Keep it simple and consistent
+
+### 5. Consider Privacy
+
+Custom user IDs let you track conversations by user. Make sure this aligns with:
+
+- Your privacy policy
+- User expectations
+- Any legal requirements (GDPR, CCPA, etc.)
+
+Add a note in your privacy policy about conversation history if needed.
+
+## Security Best Practices
+
+### User IDs Are Not Secret
+
+Important: Custom user IDs appear in URLs and are visible to users. They're for identification, not authentication.
+
+**What this means:**
+
+- ✅ Safe to use: User IDs, member IDs, customer numbers
+- ❌ Never use: Passwords, API keys, auth tokens, session IDs
+
+### Enable Domain Restrictions (Recommended)
+
+In your chatbot's "Access & Security" settings:
+
+1. Turn on "Embedding Restrictions"
+2. Add your website domain (e.g., `yoursite.com`)
+3. This prevents others from embedding your chatbot with fake user IDs
+
+## Troubleshooting
+
+### Users Not Seeing Conversation History
+
+**Possible causes:**
+
+✓ **Check:** Is custom user ID enabled?
+
+- Go to chatbot settings → Access & Security → Enable custom user ID
+- Make sure it's set to "Optional" or "Required"
+
+✓ **Check:** Is the same user ID being passed every time?
+
+- User IDs must match exactly (case-sensitive)
+- `user123` and `User123` are different
+- Check your code to ensure consistency
+
+✓ **Check:** Is the user ID being passed at all?
+
+- Open browser developer tools (F12)
+- Look at the chatbot URL - does it have `?cuid=` in it?
+- For iframe: Check if `data-mp-cuid` attribute is present
+- For widget: Check browser console for errors
+
+✓ **Check:** Did you recently enable this feature?
+
+- Only new conversations (after enabling) will have user IDs
+- Past conversations won't retroactively get user IDs
+
+### Chat Not Working (Required Mode Only)
+
+If you're using Required mode and the chat won't load:
+
+✓ **Check:** Is a user ID being passed?
+
+- In Required mode, the user ID is mandatory
+- Check the URL or HTML for the user ID
+- Make sure it's not empty or undefined
+
+✓ **Check:** Is the format valid?
+
+- No spaces, no special characters (@, #, etc.)
+- Letters, numbers, hyphens, underscores only
+
+✓ **Check:** Are you testing on a login-protected page?
+
+- Required mode only works where users are logged in
+- Don't use Required mode for public pages
+
+**Quick fix:** Switch to Optional mode while you debug the issue.
+
+### User ID Not Showing in Conversation Logs
+
+✓ **Check your embedding code:**
+
+- Iframe: `data-mp-cuid="..."` is present and has a value
+- Widget: `customUserId: "..."` is in `mindpalConfig`
+- Direct link: `?cuid=...` is in the URL
+
+✓ **Check browser console:**
+
+- Press F12 to open developer tools
+- Look for any red error messages
+- Common errors: Variable not defined, script not loaded
+
+✓ **Check template syntax:**
+
+- PHP: `<?php echo $user_id; ?>`
+- Liquid: `{{ customer.id }}`
+- JavaScript: `${userId}`
+
+Make sure you're using your platform's correct syntax.
+
+### Webhook Not Receiving User IDs
+
+✓ **Was a user ID provided when the conversation started?**
+
+- If the user opened the chat without a user ID, webhooks won't have it
+- Check a conversation where you know a user ID was passed
+
+✓ **Is the webhook working at all?**
+
+- Test with a simple conversation first
+- Check your webhook endpoint logs
+- Verify the webhook URL is correct in settings
+
+✓ **Check the payload:**
+
+- Look for the `customUserId` field
+- It should match the ID you passed
+- If it's missing, the user likely opened chat without providing an ID
+
+### Still Having Issues?
+
+1. **Simplify your test:**
+
+   - Use Optional mode
+   - Try with a hardcoded user ID first (`customUserId: "test123"`)
+   - If that works, the issue is with getting the dynamic user ID
+
+2. **Check the generated code:**
+
+   - View your page source (right-click → View Page Source)
+   - Find your MindPal code
+   - See if the user ID is actually there or if it shows as a template tag
+
+3. **Contact Support:**
+   - Include: Your platform name, the code you're using, what's not working
+   - Send a screenshot of browser console (F12 → Console tab)
+   - Our team can help identify platform-specific issues
+
+## Real-World Examples
+
+### Example 1: E-Learning Platform
+
+**Scenario:** Online course platform where students need consistent tutoring
+
+**Setup:**
+
+- Platform: Custom React app with authentication
+- Mode: Optional (some preview users aren't logged in)
+- Method: Widget
+
+**Code:**
+
+```jsx
+// In your main layout component
+import { useAuth } from "./contexts/AuthContext";
+import { useEffect } from "react";
+
+function Layout({ children }) {
+  const { user } = useAuth();
+
+  useEffect(() => {
+    window.mindpalConfig = {
+      chatbotId: "course-tutor",
+      customUserId: user?.id,
+    };
+
+    const script = document.createElement("script");
+    script.src = "https://chatbot.getmindpal.com/embed.min.js";
+    document.body.appendChild(script);
+  }, [user]);
+
+  return <main>{children}</main>;
+}
+```
+
+**Result:** Logged-in students see their tutoring history, trial users can still chat anonymously.
+
+### Example 2: Membership Community
+
+**Scenario:** WordPress membership site with gated content
+
+**Setup:**
+
+- Platform: WordPress with MemberPress
+- Mode: Required (chatbot only in members area)
+- Method: Widget in footer
+
+**Code:**
+
+```php
+<?php
+// In footer.php or via Insert Headers and Footers plugin
+if (is_user_logged_in() && function_exists('mepr_is_active_member')):
+  if (mepr_is_active_member()): ?>
+    <script>
+      window.mindpalConfig = {
+        chatbotId: "member-support",
+        customUserId: "<?php echo esc_js(get_current_user_id()); ?>"
+      };
+    </script>
+    <script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+  <?php endif;
+endif;
+?>
+```
+
+**Result:** Only active members see the support bot, and all their conversations are tracked.
+
+### Example 3: Shopify Store Support
+
+**Scenario:** E-commerce store with customer support chatbot
+
+**Setup:**
+
+- Platform: Shopify
+- Mode: Optional (visitors can ask questions too)
+- Method: Widget
+
+**Code:**
+
+```liquid
+<!-- In theme.liquid before </body> -->
+<script>
+  window.mindpalConfig = {
+    chatbotId: "store-support"
+    {% if customer %}
+    , customUserId: "{{ customer.id }}"
+    {% endif %}
+  };
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+**Result:** Customers with accounts get conversation history (great for order questions), while browsers can still ask general questions.
+
+## Frequently Asked Questions
+
+### Can users see each other's conversations?
+
+No! Each user only sees their own conversations. The custom user ID ensures complete privacy and separation.
+
+### What if two users have the same user ID?
+
+This shouldn't happen if you're using your platform's built-in user IDs. If it does, both users would see the same conversation history. Make sure each user has a unique ID in your system.
+
+### Can I change a user's ID later?
+
+Not recommended. If you change someone's user ID, they'll lose access to their previous conversation history. The new ID would be treated as a different user.
+
+### Does this work with anonymous/guest users?
+
+Yes, if you use **Optional** mode:
+
+- Users with IDs get conversation history
+- Users without IDs can still chat (anonymously)
+
+With **Required** mode, guest users won't be able to use the chat.
+
+### How long are conversations stored?
+
+Conversations are stored indefinitely unless you manually delete them. Users with custom user IDs can access their full history anytime.
+
+### Can I use email addresses as user IDs?
+
+While technically possible, it's not recommended:
+
+- Emails can change, causing users to lose their history
+- Emails might contain special characters that cause issues
+- Better to use your platform's numeric or alphanumeric user IDs
+
+### Does this affect chatbot performance?
+
+No impact on performance. Whether you use custom user IDs or not, the chatbot responds at the same speed.
+
+### Can I use this with Custom Session Context?
+
+Yes! They work great together:
+
+- Custom User ID: Identifies who the user is
+- Custom Session Context: Provides additional info about them
+
+Example: Pass both user ID and their subscription level for fully personalized conversations.
+
+### What happens if I disable custom user ID later?
+
+If you turn it off:
+
+- New conversations become anonymous again
+- Existing conversations keep their user IDs in your logs
+- Users lose the ability to see conversation history
+- The chatbot still works normally
+
+You can re-enable it anytime without losing data.
+
+### Do I need technical skills to set this up?
+
+Basic skills needed:
+
+- Ability to paste code into your website
+- Access to your website's theme editor or plugin settings
+- Understanding where your users log in
+
+Most business owners with basic website management skills can do this. If you're unsure, share this guide with your developer or website manager.
