@@ -76,6 +76,15 @@ Manage who can access your workflow and how.
 - **Public URL** (required): Your workflow will be available at `mindpal.space/[your-slug]`. Choose a unique URL path for your workflow.
 - **Custom Domain** (optional): Host the form on your own domain.
 - **Restrict Embedding to Specific Domains** (optional): Limit where your workflow can be embedded. Add specific domains (one per line) that are allowed to embed your workflow form. Example: `example.com`, `subdomain.example.com`.
+- **Enable Custom User ID** (optional): Allow users to see their workflow run history by passing their user ID from your system. Choose one of three modes:
+
+  - _None (Anonymous)_ - Default setting. All workflow runs are anonymous with no user identification required. Perfect for public workflows.
+
+  - _Optional_ - Custom user ID can be passed to enable workflow run history per user. If no user ID is provided, workflow works normally (anonymous). Best for mixed audiences (some authenticated, some not).
+
+  - _Required_ - Custom user ID must be passed or the workflow won't work. Always provides workflow run history. Only use this if the workflow is behind a login wall or in a members-only area.
+
+  When enabled, you can pass a user ID from your website to MindPal, allowing users to access their workflow run history and continue from where they left off. See the [Custom User ID Guide](/guides/custom-user-id) for detailed implementation instructions.
 
 ### 5. Advanced
 

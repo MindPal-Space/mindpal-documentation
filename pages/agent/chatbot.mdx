@@ -104,6 +104,16 @@ Manage who can access your chatbot and how:
   - Add specific domains (one per line) that are allowed to embed your chatbot
   - Example: `example.com`, `subdomain.example.com`
 
+- **Enable Custom User ID** (optional): Allow users to see their conversation history by passing their user ID from your system. Choose one of three modes:
+
+  - _None (Anonymous)_ - Default setting. All conversations are anonymous with no user identification required. Perfect for public chatbots.
+
+  - _Optional_ - Custom user ID can be passed to enable conversation history per user. If no user ID is provided, chat works normally (anonymous). Best for mixed audiences (some authenticated, some not).
+
+  - _Required_ - Custom user ID must be passed or the chat won't work. Always provides conversation history. Only use this if the chatbot is behind a login wall or in a members-only area.
+
+  When enabled, you can pass a user ID from your website to MindPal, allowing users to access their conversation history whenever they return. See the [Custom User ID Guide](/guides/custom-user-id) for detailed implementation instructions.
+
 ### 7. Advanced
 
 Configure advanced features to enhance your chatbot's capabilities.
