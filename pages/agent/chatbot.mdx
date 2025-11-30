@@ -1,5 +1,7 @@
 # Chatbots
 
+import { Callout } from "nextra/components";
+
 So far, we've discussed how to build powerful AI agents with custom knowledge and capabilities. But what if you want to share your agent so anyone can use it, even without a MindPal account? That's where chatbots come in.
 
 ## What are Chatbots?
@@ -58,6 +60,17 @@ Configure how your chatbot appears to users:
 Control the initial user experience:
 
 - **Welcome Message** (required): Set the first message users see when chatting
+
+<Callout emoji="💡" type="info">
+  **Personalize with Variables**: If you've enabled [custom session
+  context](#custom-session-context), you can add personalized fields to your
+  welcome message. Click "Insert variable" to add fields like customer names or
+  account types. These will automatically be replaced with actual values when
+  users visit your chatbot. Click on any variable in your message to set a
+  fallback value that shows when the field is empty (e.g., "Hi [Customer Name:
+  there]!" will show "Hi there!" if no customer name is provided)
+</Callout>
+
 - **Conversation Starters**: Add clickable message suggestions to help users get started
 
 ### 4. Customize the Chat Interface
