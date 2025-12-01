@@ -1,6 +1,7 @@
 {
   "variables": "Variables",
   "human-input-node": "Human Input Node",
+  "info-node": "Info Node",
   "agent-node": "Agent Node",
   "evaluator-optimizer-node": "Evaluator-Optimizer Node",
   "loop-node": "Loop Node",
