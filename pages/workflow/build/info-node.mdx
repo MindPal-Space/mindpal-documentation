@@ -1,0 +1,101 @@
+# Info Node
+
+Running a workflow sometimes requires more than just processing data—you need to communicate with your users. Whether it's providing context before a critical step, explaining what's about to happen, or sharing important disclaimers, the Information Node is your way to pause and inform users before they continue.
+
+## What is an Information Node?
+
+An Information Node is a communication component that lets you:
+
+1. Display formatted information to users during workflow execution
+
+2. Provide context, instructions, or disclaimers at key moments
+
+3. Ensure users acknowledge important information before proceeding
+
+4. Guide users through complex workflows with helpful explanations
+
+Think of it as a "heads up" moment in your workflow where you want to make sure users understand what's happening or what they need to know next.
+
+## When to use an Information Node?
+
+Consider using the Information Node when:
+
+- You need to explain what happens in the next steps
+
+- Users need to understand context before AI processes their input
+
+- You want to provide instructions or guidelines
+
+- Legal disclaimers or terms need to be acknowledged
+
+- Complex workflows need explanatory text between steps
+
+Here are some common scenarios where Information Node excels:
+
+| Scenario             | Example                                                           |
+| -------------------- | ----------------------------------------------------------------- |
+| Instructions         | Explaining how to prepare documents before the AI analyzes them   |
+| Context Setting      | Providing background information before content generation begins |
+| Disclaimers          | Displaying legal notices or terms users need to acknowledge       |
+| Process Transparency | Explaining what the AI will do in upcoming steps                  |
+| Guidelines           | Sharing best practices or tips before user input collection       |
+
+## How an Information Node Works
+
+The Information Node operates through a simple process:
+
+1. Displays formatted text content to the user during workflow execution
+
+2. Pauses the workflow until the user clicks "Continue"
+
+3. Records when the user acknowledged the information
+
+4. Automatically proceeds to the next node without requiring supervisor approval (in supervised mode)
+
+**Note:** Information Nodes are designed for guiding users during execution—they don't appear in PDF exports to keep the final output focused on results.
+
+## Configuring an Information Node
+
+Setting up an Information Node is straightforward:
+
+### 1. Add Content
+
+Use the rich text editor to create your information message:
+
+- Format text with bold, italic, underline, and strikethrough
+
+- Add headings and lists for better organization
+
+- Include links to external resources
+
+- Insert images if visual guidance is needed
+
+- Create tables for structured information
+
+### 2. Label the Node
+
+Give your Information Node a clear, descriptive label that indicates what information it provides:
+
+- "Processing Instructions"
+
+- "Important Notice"
+
+- "What Happens Next"
+
+- "Terms & Conditions"
+
+This helps you identify the node in the workflow builder and makes the workflow easier to maintain.
+
+### 3. Placement
+
+Position your Information Node strategically:
+
+- **Before Human Input Nodes**: Provide instructions on what to enter
+
+- **Before Complex Processing**: Explain what the AI will do
+
+- **Between Major Workflow Sections**: Give context for the next phase
+
+- **At Decision Points**: Help users understand their options
+
+The Information Node works seamlessly in both manual and supervised run modes, ensuring users always see your message and explicitly acknowledge it before the workflow continues.
