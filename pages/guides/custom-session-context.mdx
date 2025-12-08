@@ -427,55 +427,11 @@ Add an "Embed" element to your page and paste:
 
 ### Kajabi
 
-**Method: Widget Configuration**
+See our dedicated [Kajabi Integration Guide](/guides/platforms/kajabi).
 
-1. **Go to Settings:**
+### Circle
 
-   - Navigate to "Settings" → "Tracking Code & Analytics"
-
-2. **Add to Footer Tracking Code:**
-
-```html
-<script>
-  // Kajabi provides user data via window._kAdminBar
-  if (typeof _kAdminBar !== "undefined" && _kAdminBar.user) {
-    window.mindpalConfig = {
-      chatbotId: "your-chatbot",
-      customSessionContext: {
-        "customer-name": _kAdminBar.user.name,
-        "customer-email": _kAdminBar.user.email,
-      },
-    };
-  }
-</script>
-<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
-```
-
-**For Course-Specific Context:**
-
-```html
-<script>
-  if (typeof _kAdminBar !== "undefined" && _kAdminBar.user) {
-    // You can add custom context based on the current page
-    const pageContext = {
-      "customer-name": _kAdminBar.user.name,
-      "customer-email": _kAdminBar.user.email,
-    };
-
-    // Add course info if on a course page
-    if (window.location.pathname.includes("/courses/")) {
-      pageContext["current-course"] =
-        document.querySelector(".course-title")?.textContent || "Unknown";
-    }
-
-    window.mindpalConfig = {
-      chatbotId: "your-chatbot",
-      customSessionContext: pageContext,
-    };
-  }
-</script>
-<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
-```
+See our dedicated [Circle Integration Guide](/guides/platforms/circle).
 
 ### ConvertKit
 

@@ -294,32 +294,11 @@ Shopify uses the Liquid templating language to access customer data.
 
 ### Kajabi
 
-**Method: Widget Configuration**
+See our dedicated [Kajabi Integration Guide](/guides/platforms/kajabi).
 
-Kajabi provides user data through JavaScript variables.
+### Circle
 
-1. Go to **Settings** → **Tracking Code & Analytics**
-2. Add this to **Footer Tracking Code**:
-
-```html
-<script>
-  // Kajabi provides user data in _kAdminBar
-  if (typeof _kAdminBar !== "undefined" && _kAdminBar.user) {
-    window.mindpalConfig = {
-      chatbotId: "your-chatbot",
-      customUserId: String(_kAdminBar.user.id),
-    };
-  } else {
-    // Guest users (if using Optional mode)
-    window.mindpalConfig = {
-      chatbotId: "your-chatbot",
-    };
-  }
-</script>
-<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
-```
-
-**What this does:** Automatically detects if someone is logged in and passes their user ID.
+See our dedicated [Circle Integration Guide](/guides/platforms/circle).
 
 ### Teachable
 

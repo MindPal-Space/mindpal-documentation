@@ -1,0 +1,205 @@
+# How to Embed MindPal on Kajabi
+
+import { Callout, Tabs } from "nextra/components";
+
+Learn how to embed Chatbots and Workflows on your Kajabi site, including advanced features like Custom User ID.
+
+## How to Embed
+
+### Embedding a Chatbot
+
+You can embed a chatbot as a floating widget (chat bubble) or as a dedicated section (iframe).
+
+<Tabs items={["Floating Widget", "Iframe Section"]}>
+  <Tabs.Tab>
+    1. Go to **Settings** -> **Code** in your Kajabi dashboard. 
+    2. Add the widget code to the **Footer Tracking Code** section.
+    3. Make sure to apply it to all pages where you want the chatbot to appear.
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    1. Edit the page where you want to embed your chatbot. 
+    2. Add a **Code Block** to your page.
+    3. Paste the chatbot iframe code.
+  </Tabs.Tab>
+</Tabs>
+
+### Embedding a Workflow
+
+Workflows are best embedded as forms within a page or course lesson.
+
+<Tabs items={["Iframe Section"]}>
+
+    <Tabs.Tab>
+        1. Edit the page or lesson where you want to embed your workflow.
+        2. Add a **Code Block** to your page.
+        3. Paste the workflow iframe code.
+    </Tabs.Tab>
+
+</Tabs>
+
+<Callout type="info">
+  Need help with Kajabi's custom code features? Check out Kajabi's official
+  guide for [Adding Custom Code to Your
+  Page](https://help.kajabi.com/en/articles/12695918-adding-custom-code-to-your-page).
+</Callout>
+
+## Get Your Embed Code
+
+To get your embed code:
+
+1. Go to your MindPal dashboard
+2. Open your chatbot or workflow
+3. Click **"Share & Embed"** or **"Publish"**
+4. Copy the generated embed code
+
+The code will be automatically generated based on your settings and will include the correct chatbot/workflow ID.
+
+## How to Pass Custom User ID
+
+_This section shows you how to replace the placeholder User ID in your embed code with real values from Kajabi._
+
+If you've enabled [Custom User ID](/guides/custom-user-id) in your MindPal settings, you can pass Kajabi user data to track conversation history per user.
+
+Kajabi exposes a global `window.Kajabi.currentSiteUser` object containing information about the currently logged-in user. You can choose between two identifiers depending on your needs:
+
+### Option 1: Using User ID
+
+Use the `id` property as the user identifier. This works for all users, but note that for non-logged-in users, the ID will be `-1`.
+
+**In your embed code, locate the `customUserId` line and replace the placeholder value with:**
+
+```javascript
+customUserId: window.Kajabi?.currentSiteUser?.id;
+```
+
+**Full example:**
+
+```html
+<script>
+  window.mindpalConfig = {
+    chatbotId: "YOUR_CHATBOT_ID",
+    customUserId: window.Kajabi?.currentSiteUser?.id, // ← Replace placeholder with this
+  };
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+<Callout type="info">
+  **Optional:** If you want to only track logged-in users and exclude guests
+  (who have ID `-1`), you can add a conditional check: ```javascript
+  customUserId: window.Kajabi?.currentSiteUser?.id !== "-1" ?
+  window.Kajabi?.currentSiteUser?.id : undefined; ```
+</Callout>
+
+### Option 2: Using Contact ID
+
+Alternatively, you can use the `contactId` property. This is useful if you want to track users by their contact ID in your Kajabi system.
+
+**In your embed code, locate the `customUserId` line and replace the placeholder value with:**
+
+```javascript
+customUserId: window.Kajabi?.currentSiteUser?.contactId;
+```
+
+**Full example:**
+
+```html
+<script>
+  window.mindpalConfig = {
+    chatbotId: "YOUR_CHATBOT_ID",
+    customUserId: window.Kajabi?.currentSiteUser?.contactId, // ← Replace placeholder with this
+  };
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+<Callout type="warning">
+  **Important:** Not all users have a contact ID. If you use `contactId`, the
+  custom user ID feature won't work for users who don't have a contact ID
+  assigned in your Kajabi system. Choose the identifier that best fits your use
+  case.
+</Callout>
+
+## How to Pass Custom Session Context
+
+_This section shows you how to replace the placeholder Session Context in your embed code with real values from Kajabi._
+
+If you've enabled [Custom Session Context](/guides/custom-session-context) in your MindPal settings, you can pass Kajabi user data to personalize AI conversations.
+
+**Available User Data in Kajabi:**
+
+Unfortunately, Kajabi exposes limited user data through the `window.Kajabi.currentSiteUser` object:
+
+- `id` (User ID, e.g., "2148748824")
+- `contactId` (Contact ID - may be empty string)
+- `type` ("User" or "Guest")
+
+**Recommended Approach: Pass Contact ID and Fetch Data via MCP Tools**
+
+Since Kajabi doesn't expose much user information directly, we recommend passing the `contactId` as custom session context, then using an MCP tool to fetch more detailed user data from your Kajabi system based on this contact ID.
+
+**Step 1: Pass the Contact ID in your embed code**
+
+<Callout type="warning">
+  Make sure you have defined your context keys in your MindPal Chatbot Settings
+  first. The context key in the code below (`contact-id`) is just an **example**
+  — replace it with your actual key.
+</Callout>
+
+```javascript
+customSessionContext: {
+  "contact-id": window.Kajabi?.currentSiteUser?.contactId || "",  // Example key - replace with yours
+}
+```
+
+**Full example:**
+
+```html
+<script>
+  window.mindpalConfig = {
+    chatbotId: "YOUR_CHATBOT_ID",
+    customUserId: window.Kajabi?.currentSiteUser?.id,
+    customSessionContext: {
+      // ← Replace placeholder values with Kajabi data
+      "contact-id": window.Kajabi?.currentSiteUser?.contactId || "",
+    },
+  };
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+**Step 2: Add an MCP tool to fetch user data**
+
+The easiest way to fetch enriched user data from your Kajabi system is to use MCP (Model Context Protocol) tools via automation platforms like Zapier or Make.
+
+1. Go to your MindPal chatbot settings
+2. Navigate to the **Tools** section → **MCP Tools**
+3. Set up an MCP tool that:
+   - Connects to your Kajabi system via Zapier or Make
+   - Takes the contact ID from the session context
+   - Fetches detailed user information from your Kajabi account
+   - Returns the user profile data to the AI
+
+This way, your AI can access rich user information like name, email, course enrollments, progress, and more, even though Kajabi doesn't expose this data directly in the embed code.
+
+<Callout type="info">
+  Learn more about setting up MCP tools in the [MCP Tools guide](/agent/mcp).
+</Callout>
+
+## Frequently Asked Questions
+
+### Should I use User ID or Contact ID for custom user identification?
+
+It depends on your use case:
+
+- **Use User ID (`id`)** if you want to track all users. Note that non-logged-in users will have ID `-1`.
+- **Use Contact ID (`contactId`)** if you want to track users by their contact records in Kajabi. Note that not all users have a contact ID, so this won't work for those users.
+
+### Can I access more user information without setting up MCP tools?
+
+Unfortunately, Kajabi's client-side JavaScript API exposes limited user data for security and privacy reasons. The most reliable way to access detailed user information is by using the MCP approach described above: pass the contact ID and fetch additional data through your agent's MCP tools via Zapier or Make.
+
+### Can I embed MindPal inside a course lesson?
+
+Yes! You can use Code Blocks within Kajabi course lessons to embed your MindPal chatbots or workflows directly into your course content. This is a great way to provide interactive assistance to students as they go through your lessons.
