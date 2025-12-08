@@ -1,0 +1,143 @@
+# How to Embed MindPal on Circle
+
+import { Callout, Tabs } from "nextra/components";
+
+Learn how to embed Chatbots and Workflows on your Circle community, including advanced features like Custom User ID and Session Context.
+
+## How to Embed
+
+### Embedding a Chatbot
+
+You can embed a chatbot as a floating widget (chat bubble) or as a dedicated section (iframe).
+
+<Tabs items={["Floating Widget", "Iframe Section"]}>
+  <Tabs.Tab>
+    1. Go to **Settings** -> **Code Snippets** in your Circle dashboard. 
+    2. Add the widget code to the **JavaScript code snippets** section.
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    1. Create a new post or edit an existing one. 
+    2. Use the **Custom HTML** block to embed your chatbot.
+    3. Paste the chatbot iframe code.
+  </Tabs.Tab>
+</Tabs>
+
+### Embedding a Workflow
+
+Workflows are best embedded as forms within a post or a dedicated space.
+
+<Tabs items={["Iframe Section"]}>
+
+    <Tabs.Tab>
+        1. Create a new post or edit an existing one.
+        2. Use the **Custom HTML** block to embed your workflow. 3. Paste the workflow iframe code.
+    </Tabs.Tab>
+
+</Tabs>
+
+<Callout type="info">
+  Need help with Circle's custom code features? Check out Circle's official
+  guides for [Custom Code
+  Snippets](https://help.circle.so/p/administration/site-management/custom-code-snippets)
+  and [Embed Custom HTML in
+  Posts](https://help.circle.so/p/posts/post-spaces/embed-custom-html-code-within-posts).
+</Callout>
+
+## Get Your Embed Code
+
+To get your embed code:
+
+1. Go to your MindPal dashboard
+2. Open your chatbot or workflow
+3. Click **"Share & Embed"** or **"Publish"**
+4. Copy the generated embed code
+
+The code will be automatically generated based on your settings and will include the correct chatbot/workflow ID.
+
+## How to Pass Custom User ID
+
+_This section shows you how to replace the placeholder User ID in your embed code with real values from Circle._
+
+If you've enabled [Custom User ID](/guides/custom-user-id) in your MindPal settings, you can pass Circle user data to track conversation history per user.
+
+Circle exposes a global `window.circleUser` object containing information about the currently logged-in user. Use the `publicUid` property as the user identifier.
+
+**In your embed code, locate the `customUserId` line and replace the placeholder value with:**
+
+```javascript
+customUserId: window.circleUser.publicUid;
+```
+
+**Full example:**
+
+```html
+<script>
+  window.mindpalConfig = {
+    chatbotId: "YOUR_CHATBOT_ID",
+    customUserId: window.circleUser.publicUid, // ← Replace placeholder with this
+  };
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+## How to Pass Custom Session Context
+
+_This section shows you how to replace the placeholder Session Context in your embed code with real values from Circle._
+
+If you've enabled [Custom Session Context](/guides/custom-session-context) in your MindPal settings, you can pass Circle user data to personalize AI conversations.
+
+**Available User Data in Circle:**
+
+- `firstName` (e.g., "Sylvia")
+- `lastName` (e.g., "Nguyen")
+- `name` (Full name, e.g., "Sylvia Nguyen")
+- `email` (e.g., "support@mindpal.io")
+- `location` (User's location if set)
+- `isAdmin` ("true" or "false")
+- `isModerator` ("true" or "false")
+- `headline` (User's profile headline)
+- `profileUrl` (Link to their Circle profile)
+
+<Callout type="warning">
+  Make sure you have defined your context keys in your MindPal Chatbot Settings
+  first. The context keys in the code below (`user-name`, `user-email`) are just
+  **examples** — replace them with your actual keys and map them to the Circle
+  data you want to use.
+</Callout>
+
+**In your embed code, locate the `customSessionContext` section and replace the placeholder values with Circle data:**
+
+```javascript
+customSessionContext: {
+  "user-name": window.circleUser.name,          // Example key - replace with yours
+  "user-email": window.circleUser.email,        // Example key - replace with yours
+  "user-location": window.circleUser.location,  // Example key - replace with yours
+}
+```
+
+**Full example:**
+
+```html
+<script>
+  window.mindpalConfig = {
+    chatbotId: "YOUR_CHATBOT_ID",
+    customUserId: window.circleUser.publicUid,
+    customSessionContext: {
+      // ← Replace placeholder values with Circle data
+      "user-name": window.circleUser.name,
+      "user-email": window.circleUser.email,
+      "user-location": window.circleUser.location,
+    },
+  };
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+```
+
+## Frequently Asked Questions
+
+### Can I embed MindPal inside a course lesson?
+
+Unfortunately, course lessons in Circle don't currently support custom HTML embedding like posts do, so you cannot directly embed MindPal chatbots or workflows inside a lesson.
+
+**Suggested workaround:** Create a post with your MindPal embed, then add a hyperlink in your course lesson that directs students to that post. This way, students can still access your chatbot or workflow with just one click.

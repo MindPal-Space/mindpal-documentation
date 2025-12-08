@@ -1,4 +1,6 @@
 {
   "sharing": "Sharing",
-  "custom-session-context": "Custom Session Context"
+  "custom-session-context": "Custom Session Context",
+  "custom-user-id": "Custom User ID",
+  "platforms": "Platform Integrations"
 }
