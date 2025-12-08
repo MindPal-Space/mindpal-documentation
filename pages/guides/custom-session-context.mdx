@@ -88,13 +88,13 @@ There are three ways to pass context from your website to MindPal. Choose the me
 
 **Security Comparison:**
 
-| Method                 | Security Level | Best For                              |
-| ---------------------- | -------------- | ------------------------------------- |
-| URL Query Parameters   | ⚠️ Less Secure | Non-sensitive data, email campaigns   |
-| Iframe Data Attributes | ✅ More Secure | Embedded chatbots, user-specific data |
-| Widget Configuration   | ✅ More Secure | Chat widgets, dynamic user data       |
+| Method               | Security Level | Best For                              |
+| -------------------- | -------------- | ------------------------------------- |
+| URL Query Parameters | ⚠️ Less Secure | Non-sensitive data, email campaigns   |
+| Iframe Config        | ✅ More Secure | Embedded chatbots, user-specific data |
+| Widget Configuration | ✅ More Secure | Chat widgets, dynamic user data       |
 
-**Recommendation:** For sensitive or user-specific information (names, emails, IDs), use iframe or widget methods. Only use URL parameters for non-sensitive data or when the other methods aren't feasible.
+**Recommendation:** For sensitive or user-specific information (names, emails, IDs), use iframe config or widget methods. Only use URL parameters for non-sensitive data or when the other methods aren't feasible.
 
 ### Method 1: URL Query Parameters
 
@@ -144,28 +144,38 @@ Only use this method for non-sensitive information. For sensitive or private dat
 </script>
 ```
 
-### Method 2: Iframe Data Attributes
+### Method 2: Iframe Config (Recommended)
 
 **Best for:** Embedding chatbots/workflows as iframes on your website
 
-**How it works:** Add special data attributes to your iframe, and MindPal's helper script will automatically send them.
+**How it works:** Define your context in a global configuration object. This keeps your HTML clean and makes it easy to inject dynamic values from your platform.
 
 **Basic Setup:**
 
 ```html
-<!-- Your iframe with custom context -->
+<!-- 1. The Iframe -->
 <iframe
   id="mindpal-chatbot"
   src="https://chatbot.getmindpal.com/your-chatbot"
-  data-mp-ctx-customer-name="John Doe"
-  data-mp-ctx-account-type="premium"
-  data-mp-ctx-order-id="12345"
   width="100%"
   height="600px"
   frameborder="0"
 ></iframe>
 
-<!-- MindPal helper script -->
+<!-- 2. The Config -->
+<script>
+  window.mindpalIframeConfig = {
+    "mindpal-chatbot": {
+      customSessionContext: {
+        "customer-name": "John Doe",
+        "account-type": "premium",
+        "order-id": "12345",
+      },
+    },
+  };
+</script>
+
+<!-- 3. The Script -->
 <script
   src="https://chatbot.getmindpal.com/iframe.min.js"
   data-target="mindpal-chatbot"
@@ -174,9 +184,8 @@ Only use this method for non-sensitive information. For sensitive or private dat
 
 **Important:**
 
-- Use `data-mp-ctx-` prefix followed by your generated key
-- The `data-target` attribute must match your iframe's `id`
-- Load the helper script after the iframe
+- The key in `mindpalIframeConfig` must match your iframe's `id`
+- The keys inside `customSessionContext` must match the keys you defined in your MindPal settings
 
 **Dynamic Example (JavaScript):**
 
@@ -192,23 +201,27 @@ Only use this method for non-sensitive information. For sensitive or private dat
 <script>
   // Get user data from your system
   const userData = {
-    "customer-name": "John Doe",
-    "account-type": "premium",
-    "order-id": "12345",
+    name: "John Doe",
+    plan: "premium",
+    orderId: "12345",
   };
 
-  // Set data attributes dynamically
-  const iframe = document.getElementById("mindpal-chatbot");
-  Object.entries(userData).forEach(([key, value]) => {
-    iframe.setAttribute(`data-mp-ctx-${key}`, value);
-  });
-
-  // Load helper script
-  const script = document.createElement("script");
-  script.src = "https://chatbot.getmindpal.com/iframe.min.js";
-  script.setAttribute("data-target", "mindpal-chatbot");
-  document.body.appendChild(script);
+  // Set config dynamically
+  window.mindpalIframeConfig = {
+    "mindpal-chatbot": {
+      customSessionContext: {
+        "customer-name": userData.name,
+        "account-type": userData.plan,
+        "order-id": userData.orderId,
+      },
+    },
+  };
 </script>
+
+<script
+  src="https://chatbot.getmindpal.com/iframe.min.js"
+  data-target="mindpal-chatbot"
+></script>
 ```
 
 ### Method 3: Widget Configuration
@@ -275,7 +288,7 @@ Only use this method for non-sensitive information. For sensitive or private dat
 
 ### WordPress
 
-**Method: Iframe Data Attributes**
+**Method: Iframe Config**
 
 1. **Install a Custom HTML Block:**
 
@@ -284,42 +297,25 @@ Only use this method for non-sensitive information. For sensitive or private dat
 
 2. **Add the Embed Code:**
 
-```html
+```php
 <iframe
   id="mindpal-chatbot"
   src="https://chatbot.getmindpal.com/your-chatbot"
-  data-mp-ctx-customer-name="<?php echo esc_attr(wp_get_current_user()->display_name); ?>"
-  data-mp-ctx-customer-email="<?php echo esc_attr(wp_get_current_user()->user_email); ?>"
   width="100%"
   height="600px"
   frameborder="0"
 ></iframe>
 
-<script
-  src="https://chatbot.getmindpal.com/iframe.min.js"
-  data-target="mindpal-chatbot"
-></script>
-```
-
-3. **For Dynamic Context (with PHP):**
-
-If you want to pass user information dynamically:
-
-```html
-<iframe
-  id="mindpal-chatbot"
-  src="https://chatbot.getmindpal.com/your-chatbot"
-  <?php
-  if
-  (is_user_logged_in()):
-  ?
->
-  data-mp-ctx-customer-name="<?php echo esc_attr(wp_get_current_user()->display_name);
-  ?>" data-mp-ctx-customer-email="<?php echo esc_attr(wp_get_current_user()->user_email);
-  ?>"
-  <?php endif; ?>
-  width="100%" height="600px" frameborder="0" ></iframe
->
+<script>
+  window.mindpalIframeConfig = {
+    "mindpal-chatbot": {
+      customSessionContext: {
+        "customer-name": "<?php echo esc_js(wp_get_current_user()->display_name); ?>",
+        "customer-email": "<?php echo esc_js(wp_get_current_user()->user_email); ?>"
+      }
+    }
+  };
+</script>
 
 <script
   src="https://chatbot.getmindpal.com/iframe.min.js"
@@ -407,12 +403,21 @@ Add an "Embed" element to your page and paste:
 <iframe
   id="mindpal-chatbot"
   src="https://chatbot.getmindpal.com/your-chatbot"
-  data-mp-ctx-customer-name="John Doe"
-  data-mp-ctx-account-type="premium"
   width="100%"
   height="600px"
   frameborder="0"
 ></iframe>
+
+<script>
+  window.mindpalIframeConfig = {
+    "mindpal-chatbot": {
+      customSessionContext: {
+        "customer-name": "John Doe",
+        "account-type": "premium",
+      },
+    },
+  };
+</script>
 
 <script
   src="https://chatbot.getmindpal.com/iframe.min.js"
@@ -663,12 +668,21 @@ Add an HTML iframe element to your page:
 <iframe
   id="mindpal-chatbot"
   src="https://chatbot.getmindpal.com/your-chatbot"
-  data-mp-ctx-site-name="My Wix Site"
-  data-mp-ctx-page-url="{page-url}"
   width="100%"
   height="600px"
   frameborder="0"
 ></iframe>
+
+<script>
+  window.mindpalIframeConfig = {
+    "mindpal-chatbot": {
+      customSessionContext: {
+        "site-name": "My Wix Site",
+        "page-url": window.location.href,
+      },
+    },
+  };
+</script>
 
 <script
   src="https://chatbot.getmindpal.com/iframe.min.js"
@@ -876,8 +890,9 @@ if (is_user_logged_in()) {
 
 1. Iframe `id` matches the script's `data-target` attribute
 2. Helper script loads after the iframe element
-3. Data attributes use correct format: `data-mp-ctx-your-key="value"`
-4. Check browser console for errors
+3. `window.mindpalIframeConfig` is defined with the correct iframe ID key
+4. The config key in `mindpalIframeConfig` matches your iframe's `id` exactly
+5. Check browser console for errors
 
 ### Widget Method Not Working
 
@@ -939,12 +954,21 @@ if (is_user_logged_in()) {
 <iframe
   id="onboarding-assistant"
   src="https://chatbot.getmindpal.com/onboarding"
-  data-mp-ctx-user-name="Alex Johnson"
-  data-mp-ctx-subscription-plan="Pro"
-  data-mp-ctx-onboarding-step="3"
   width="100%"
   height="600px"
 ></iframe>
+
+<script>
+  window.mindpalIframeConfig = {
+    "onboarding-assistant": {
+      customSessionContext: {
+        "user-name": "Alex Johnson",
+        "subscription-plan": "Pro",
+        "onboarding-step": "3",
+      },
+    },
+  };
+</script>
 
 <script
   src="https://chatbot.getmindpal.com/iframe.min.js"

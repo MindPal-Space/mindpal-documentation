@@ -105,7 +105,7 @@ Before setting up, you need to decide which mode fits your needs:
 After enabling custom user ID, click the "Share & Embed" button. You'll see updated code snippets that include placeholders for the user ID:
 
 - For **Direct Links**: `?cuid=USER_123`
-- For **Iframe Embeds**: `data-mp-cuid="USER_123"`
+- For **Iframe Embeds**: `customUserId: "USER_123"` in `window.mindpalIframeConfig`
 - For **Widget Embeds**: `customUserId: "USER_123"`
 
 In the publish modal, you can customize whether to use placeholders or static values for testing.
@@ -132,32 +132,40 @@ https://chatbot.getmindpal.com/your-chatbot?cuid=USER_ID_HERE
 
 **Best for:** Embedding the chatbot as a full-page element on your website
 
-Add the `data-mp-cuid` attribute to your iframe tag with the user's ID.
+Use the `window.mindpalIframeConfig` object to pass the user ID. This is cleaner and easier to manage than adding attributes directly to HTML tags, especially on platforms like Kajabi or Circle.
 
 **Basic Setup:**
 
 ```html
-<!-- Add this where you want the chatbot to appear -->
+<!-- 1. The Iframe -->
 <iframe
-  id="mindpal-chatbot"
+  id="my-chatbot"
   src="https://chatbot.getmindpal.com/your-chatbot"
-  data-mp-cuid="USER_123"
   allow="clipboard-read; clipboard-write; microphone"
   style="width: 100%; height: 100%; min-height: 700px"
 ></iframe>
 
-<!-- Add this helper script right after the iframe -->
+<!-- 2. The Config -->
+<script>
+  window.mindpalIframeConfig = {
+    "my-chatbot": {
+      customUserId: "USER_123", // Replace with actual user ID
+    },
+  };
+</script>
+
+<!-- 3. The Script -->
 <script
   src="https://chatbot.getmindpal.com/iframe.min.js"
-  data-target="mindpal-chatbot"
+  data-target="my-chatbot"
 ></script>
 ```
 
 **Important Details:**
 
-- The `data-mp-cuid` attribute is where you put the user ID
-- The `data-target` in the script must match the iframe's `id`
-- Replace `USER_123` with your user's actual ID
+- The key in `mindpalIframeConfig` (`"my-chatbot"`) must match your iframe's `id`
+- The `data-target` in the script must also match the iframe's `id`
+- You can configure multiple iframes on the same page by adding more entries to the config object
 
 **When to use:** Embedding the chatbot as a full section on a page, member dashboards, or dedicated support pages.
 
@@ -224,10 +232,18 @@ Add a Custom HTML block to any page:
 <iframe
   id="mindpal-chatbot"
   src="https://chatbot.getmindpal.com/your-chatbot"
-  data-mp-cuid="<?php echo esc_attr(get_current_user_id()); ?>"
   allow="clipboard-read; clipboard-write; microphone"
   style="width: 100%; height: 600px"
 ></iframe>
+
+<script>
+  window.mindpalIframeConfig = {
+    "mindpal-chatbot": {
+      customUserId: "<?php echo esc_js(get_current_user_id()); ?>"
+    }
+  };
+</script>
+
 <script
   src="https://chatbot.getmindpal.com/iframe.min.js"
   data-target="mindpal-chatbot"
@@ -529,7 +545,7 @@ In your chatbot's "Access & Security" settings:
 
 - Open browser developer tools (F12)
 - Look at the chatbot URL - does it have `?cuid=` in it?
-- For iframe: Check if `data-mp-cuid` attribute is present
+- For iframe: Check if `window.mindpalIframeConfig` is defined with the correct iframe ID
 - For widget: Check browser console for errors
 
 ✓ **Check:** Did you recently enable this feature?
@@ -563,7 +579,7 @@ If you're using Required mode and the chat won't load:
 
 ✓ **Check your embedding code:**
 
-- Iframe: `data-mp-cuid="..."` is present and has a value
+- Iframe: `window.mindpalIframeConfig` is defined with the correct iframe ID and `customUserId` value
 - Widget: `customUserId: "..."` is in `mindpalConfig`
 - Direct link: `?cuid=...` is in the URL
 
