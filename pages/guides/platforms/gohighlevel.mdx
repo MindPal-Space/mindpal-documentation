@@ -1,0 +1,182 @@
+# How to Embed MindPal on GoHighLevel
+
+import { Callout, Tabs } from "nextra/components";
+
+Learn how to embed Chatbots and Workflows on your GoHighLevel platform, including Membership Groups, Courses, and Sub-account Dashboards, with advanced features like Custom User ID and Session Context.
+
+## Embedding Options Overview
+
+GoHighLevel offers multiple places to embed MindPal. Each location has different capabilities and requirements:
+
+| Location                       | Chatbot Methods | Workflow Methods | Custom User ID   | Custom Session Context |
+| ------------------------------ | --------------- | ---------------- | ---------------- | ---------------------- |
+| **Membership Group Home Page** | Floating Widget | ❌ Not supported | ❌ Not supported | ❌ Not supported       |
+| **Courses - Inside Lessons**   | Iframe          | Iframe           | ✅ Supported     | ✅ Supported           |
+| **Courses - Course-wide**      | Floating Widget | ❌ Not supported | ❌ Not supported | ❌ Not supported       |
+| **Sub-account Dashboards**     | Iframe          | Iframe           | ✅ Supported     | ✅ Supported           |
+
+## Get Your Embed Code
+
+To get your embed code:
+
+1. Go to your MindPal dashboard
+2. Open your chatbot or workflow
+3. Click **"Share & Embed"** or **"Publish"**
+4. Choose your embed method:
+   - **Floating Widget**: Copy the script code for membership groups or course-wide embedding
+   - **Direct Link (Iframe)**: Copy the iframe URL for course lessons or dashboard widgets
+
+The code will be automatically generated based on your settings and will include the correct chatbot/workflow ID.
+
+## How to Embed in Membership Group Home Page
+
+### Embedding Method
+
+You can embed a chatbot as a floating widget (chat bubble) on your membership group's home page via the branding settings.
+
+1. Go to your **Membership Group** settings
+2. Navigate to the **Branding** section
+3. Paste your floating widget code in the **Tracking Code Header or Footer** (either works)
+4. Save your changes
+
+<Callout type="warning">
+  **Important:** Membership Group branding settings only support floating widget
+  embed code (script-based). Workflows cannot be embedded in this location.
+</Callout>
+
+### Custom User ID
+
+❌ **Not Supported** - Custom User ID is not available in Membership Group branding settings.
+
+### Custom Session Context
+
+❌ **Not Supported** - Custom Session Context is not available in Membership Group branding settings.
+
+## How to Embed in Courses
+
+### Embedding Methods
+
+GoHighLevel Courses offer two ways to embed MindPal:
+
+<Tabs items={["Inside Lessons (Iframe)", "Course-wide (Floating Widget)"]}>
+  <Tabs.Tab>
+    **Embed Chatbot or Workflow Inside a Lesson:**
+    
+    1. Go to your **Course**
+    2. Select a lesson and click **Edit**
+    3. Click on **Custom Code Editor**
+    4. Paste your iframe embed code
+    5. Save the lesson
+    
+    ✅ This method supports Custom User ID and Custom Session Context using GoHighLevel merge fields.
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    **Add Floating Chatbot Across Entire Course:**
+    
+    1. Go to your **Course** details
+    2. Navigate to the **Advanced** section
+    3. Add your floating widget code to the **Header or Footer Tracking Code**
+    4. Save your changes
+    
+    ❌ This method does NOT support Custom User ID or Custom Session Context.
+  </Tabs.Tab>
+</Tabs>
+
+### Custom User ID
+
+✅ **Supported** (for iframe embeds inside lessons only)
+
+<Callout type="warning">
+  **Important:** GoHighLevel's Custom Code Editor does not allow JavaScript
+  execution. You must pass Custom User ID as a **query parameter in the iframe
+  URL** instead of using the script-based approach.
+</Callout>
+
+If you've enabled [Custom User ID](/guides/custom-user-id) in your MindPal settings, add the `cuid` parameter to your iframe URL using `{{contact.id}}`:
+
+**Example:**
+
+```html
+<iframe
+  src="https://chatbot.getmindpal.com/your-chatbot-id?cuid={{contact.id}}"
+  allow="clipboard-read; clipboard-write; microphone"
+  style="width: 100%; height: 100%; min-height: 700px"
+></iframe>
+```
+
+### Custom Session Context
+
+✅ **Supported** (for iframe embeds inside lessons only)
+
+If you've enabled [Custom Session Context](/guides/custom-session-context) in your MindPal settings, add context parameters using the `ctx[key-name]` format:
+
+<Callout type="warning">
+  Make sure you have defined your context keys in your MindPal Chatbot Settings
+  first. The context keys in the example below (`user-name`, `user-email`) are
+  just **examples** — replace them with your actual keys.
+</Callout>
+
+**Example:**
+
+```html
+<iframe
+  src="https://chatbot.getmindpal.com/your-chatbot-id?ctx[user-name]={{contact.name}}&ctx[user-email]={{contact.email}}&ctx[user-phone]={{contact.phone}}"
+  allow="clipboard-read; clipboard-write; microphone"
+  style="width: 100%; height: 100%; min-height: 700px"
+></iframe>
+```
+
+<Callout type="info">
+  You can add any user or location information you need as context parameters,
+  as long as they are available in GoHighLevel's [Merge Fields
+  list](https://help.gohighlevel.com/support/solutions/articles/48001078171).
+</Callout>
+
+## How to Embed in Sub-account Dashboards
+
+### Embedding Method
+
+You can embed chatbots and workflows as iframe widgets in your sub-account dashboards:
+
+1. Open your **Sub-account Dashboard** and enter **Edit mode**
+2. Navigate to the **Objects** section
+3. Select **Embed**
+4. Enter your MindPal iframe URL with dynamic parameters
+5. Save your dashboard
+
+### Custom User ID
+
+✅ **Supported**
+
+Add the `cuid` parameter to your iframe URL using `{{user.email}}` or another user identifier:
+
+**Example:**
+
+```
+https://chatbot.getmindpal.com/your-chatbot-id?cuid={{user.email}}
+```
+
+### Custom Session Context
+
+✅ **Supported**
+
+Add context parameters using the `ctx[key-name]` format with user and location merge fields:
+
+<Callout type="warning">
+  Make sure you have defined your context keys in your MindPal Chatbot Settings
+  first. The context keys in the example below are just **examples** — replace
+  them with your actual keys.
+</Callout>
+
+**Example:**
+
+```
+https://chatbot.getmindpal.com/your-chatbot-id?ctx[user-name]={{user.name}}&ctx[user-role]={{user.role}}
+```
+
+<Callout type="info">
+  For more details, check out GoHighLevel's guide on [How to inject
+  User/Sub-account Properties in Iframes on Sub Account
+  Dashboards](https://help.gohighlevel.com/support/solutions/articles/155000001977).
+</Callout>
