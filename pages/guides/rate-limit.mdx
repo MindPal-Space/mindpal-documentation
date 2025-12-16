@@ -1,0 +1,55 @@
+# Rate Limiting for Published Agents & Workflows
+
+Protect your AI agents and workflows from abuse, control costs, and ensure fair usage for all users.
+
+## What is Rate Limiting?
+
+Rate Limiting is a security and control feature that allows you to define the maximum number of requests a user can make to your Chatbot or Published Workflow within a specific time period.
+
+Think of it as a "speed limit" for your AI agents. It ensures that no single user (or bot) can overwhelm your system by sending too many messages or running too many workflows in a short amount of time.
+
+## Key Benefits
+
+For business users, setting up Rate Limits is crucial for three main reasons:
+
+-   **Cost Control**: Every interaction with your AI agent consumes resources (AI credits). If a malicious user or a bot spams your chatbot, it could drain your credits very quickly. Rate limits stop this from happening.
+-   **Fair Usage**: It ensures that your service remains available and fast for all your customers. By preventing one user from hogging all the resources, you guarantee a smooth experience for everyone else.
+-   **Security**: It protects your public-facing agents from "Denial of Service" attacks where attackers try to crash your system by flooding it with requests.
+
+## Setting Up Rate Limits
+
+You can configure Rate Limits directly in the settings of your Chatbot or Workflow.
+
+### For Chatbots
+
+1.  Go to your Chatbot Builder.
+2.  Navigate to the **Advanced** tab.
+3.  Scroll down to the **Rate Limiting** section.
+4.  You will see a "Rate Limit Rules" builder.
+5.  Click "Add Custom Rule" to define your own limits.
+
+### For Workflows
+
+1.  Go to your Workflow Editor.
+2.  Open the **Publish Settings** panel (usually the gear icon).
+3.  Find the **Rate Limiting** section in the Advanced settings.
+4.  Use the builder to add or modify rules.
+
+### Configuring a Rule
+
+When adding a rule, you can choose:
+
+-   **Scope**: Who does this limit apply to?
+    -   **Global**: Total requests allowed for the entire agent (across all users).
+    -   **Per IP**: Limit requests per IP address (good for stopping spam from a specific location).
+    -   **Per Session**: Limit requests per browser session.
+    -   **Per User ID**: Limit requests per specific user (requires [Custom User ID](/guides/custom-user-id) to be enabled).
+-   **Max Requests**: How many requests are allowed (e.g., 50).
+-   **Time Window**: The time period for the limit (e.g., "Per Hour", "Per Day").
+
+## Best Practices & Considerations
+
+-   **Default Protection**: By default, MindPal may apply a "Standard Protection" (e.g., 100 requests/day) to keep your agent safe if you haven't configured anything.
+-   **Multiple Rules**: You can have multiple rules active at the same time. For example, you can set a strict limit per IP (to stop spammers) and a generous Global limit (to manage overall budget). The system will block a request if *any* of the rules are violated.
+-   **Custom User ID**: The "Per User ID" scope is powerful for identifying logged-in users in your own app, but it only works if you have enabled and integrated [Custom User ID](/guides/custom-user-id) in your embedding settings.
+-   **User Experience**: When a user hits the limit, they will receive an error message telling them to try again later. Make sure your limits aren't too strict for legitimate business usage.
