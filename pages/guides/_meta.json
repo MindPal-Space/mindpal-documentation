@@ -2,5 +2,6 @@
   "sharing": "Sharing",
   "custom-session-context": "Custom Session Context",
   "custom-user-id": "Custom User ID",
+  "rate-limit": "Rate Limit",
   "platforms": "Platform Integrations"
 }
