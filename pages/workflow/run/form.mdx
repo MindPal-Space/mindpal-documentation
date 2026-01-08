@@ -96,7 +96,34 @@ Get notified via email for each new submission when users submit workflow forms.
 
 #### Rate Limiting
 
-Enforce rate limits to control usage frequency. Set maximum number of conversations allowed and choose time interval: per minute, per hour, or per day.
+Protect your workflow from abuse and control usage costs by configuring flexible rate limit rules. You can define multiple concurrent rules to create granular usage policies.
+
+**What Counts as a Request?**
+
+A "request" is counted each time a user submits the form to start a new workflow run. Interactions _within_ a running workflow (like chatting with an agent or providing feedback) do **not** count towards these limits.
+
+**Rule Configuration**
+
+For each rule, you can configure:
+
+- **Scope**: Determine how requests are grouped and counted:
+  - **Global**: Enforce a limit on the total number of workflow runs across _all_ users (e.g., "Max 500 runs per day for this entire form").
+  - **IP Address**: Enforce limits per unique IP address (e.g., "Max 5 runs per hour per IP"). This is best for preventing spam from anonymous users.
+  - **User ID**: Enforce limits per specific user (e.g., "Max 50 runs per month per user"). _Note: This requires ["Enable Custom User ID"](/guides/custom-user-id) to be active._
+  - **Session**: Enforce limits per browser session.
+- **Limit**: The maximum number of times the workflow can be run within the specified time window.
+- **Time Window**: The duration in which the limit applies (e.g., 1 minute, 1 hour, 24 hours).
+
+**How It Works**
+
+The system checks **all** enabled rules before allowing a workflow to run. If _any_ rule is violated, the request is blocked.
+
+_Example Setup:_
+
+1.  **Rule 1 (Spam Protection)**: Scope: `IP Address`, Limit: `5`, Window: `1 Hour`.
+2.  **Rule 2 (Cost Control)**: Scope: `Global`, Limit: `1000`, Window: `1 Day`.
+
+In this example, no single person can spam the form (blocked by Rule 1), and the form will also stop running for everyone if it hits 1000 total runs in a day (blocked by Rule 2).
 
 #### Custom Session Context
 
