@@ -199,10 +199,35 @@ Receive email alerts when new conversations are created with your chatbot.
 
 #### Rate Limiting
 
-Enforce maximum conversation limits within specified time intervals (requires upgrade):
+Protect your chatbot from abuse and control usage costs by configuring flexible rate limit rules. You can define multiple concurrent rules to create granular usage policies.
 
-- Set maximum conversations allowed
-- Choose time interval: per minute, per hour, or per day
+**What Counts as a Request?**
+
+A "request" is counted each time a user sends a message to your chatbot. Each message submission triggers a rate limit check before the chatbot processes and responds.
+
+**Rule Configuration**
+
+For each rule, you can configure:
+
+- **Scope**: Determine how requests are grouped and counted:
+  - **Global**: Enforce a limit on the total number of messages across _all_ users (e.g., "Max 500 messages per day for this entire chatbot").
+  - **IP Address**: Enforce limits per unique IP address (e.g., "Max 20 messages per hour per IP"). This is best for preventing spam from anonymous users.
+  - **User ID**: Enforce limits per specific user (e.g., "Max 50 messages per day per user"). _Note: This requires ["Enable Custom User ID"](/guides/custom-user-id) to be active._
+  - **Session**: Enforce limits per browser session or conversation.
+- **Limit**: The maximum number of messages allowed within the specified time window.
+- **Time Window**: The duration in which the limit applies (e.g., 1 minute, 1 hour, 24 hours).
+- **Custom Error Message** (optional): Provide a user-friendly message that displays when this rule is violated. If not provided, a default message will be shown.
+
+**How It Works**
+
+The system checks **all** enabled rules before allowing a message to be sent. If _any_ rule is violated, the request is blocked and the user sees an error message.
+
+_Example Setup:_
+
+1.  **Rule 1 (Spam Protection)**: Scope: `IP Address`, Limit: `20`, Window: `1 Hour`.
+2.  **Rule 2 (Cost Control)**: Scope: `Global`, Limit: `1000`, Window: `1 Day`.
+
+In this example, no single person can spam the chatbot (blocked by Rule 1), and the chatbot will also stop accepting messages from everyone if it hits 1000 total messages in a day (blocked by Rule 2).
 
 #### Custom Session Context
 
