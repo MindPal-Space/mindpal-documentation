@@ -1,0 +1,109 @@
+# Smart Resource Mentions
+
+## What are @ mentions?
+
+On MindPal, the @ symbol is a powerful shortcut that lets you reference and connect resources directly in any text field. Think of it like tagging someone on social media—except here, you're tagging knowledge, tools, agents, and more.
+
+When you type `@`, a dropdown appears showing all your workspace resources. Select one, and it gets linked right where you need it.
+
+---
+
+## What can you mention?
+
+Here's everything you can tag with @:
+
+| Resource                | What it does                                                             |
+| ----------------------- | ------------------------------------------------------------------------ |
+| 📚 **Knowledge Source** | Connects documents, PDFs, websites, or any file from your knowledge base |
+| 📝 **Note**             | Links to custom notes you've created                                     |
+| ✍️ **Brand Voice**      | Applies a specific writing style or tone                                 |
+| 🧩 **Integration**      | Uses third-party app integrations                                        |
+| 🔌 **MCP Server**       | Connects to Model Context Protocol servers                               |
+| 🔧 **Tool**             | Enables a custom API action or tool                                      |
+| 🤖 **Agent**            | Delegates tasks to another agent (sub-agent)                             |
+| ⚡ **Workflow**         | Triggers another workflow as a tool                                      |
+
+**In workflows specifically, you can also mention:**
+| Resource | What it does |
+|----------|--------------|
+| ✨ **Workflow Node** | References output from a previous step |
+| 🔤 **Human Input Field** | References user-provided input values |
+
+## Where can you use @ mentions?
+
+### Where can you use @ mentions?
+
+- **Agent Builder**: Define what resources your agent should know about and use
+
+- **Chat Interface**: Dynamically bring in resources for specific conversations
+
+- **Workflow Builder**: Connect resources specific to each workflow step
+
+## Two ways to connect resources: UI vs @ mentions
+
+You can connect resources two ways, and they both work equally well.
+
+- **Method 1: UI Selection**: Select resources in dedicated sections like "Knowledge Sources," "Integrations," or "Tools" in your agent/workflow settings.
+
+- **Method 2: @ Mention in Prompts**: Tag resources directly in your prompt text using `@`.
+
+Both methods achieve the same end result—the resource gets connected. MindPal merges mentions from both sources automatically.
+
+## Why use @ mentioning
+
+### 1. Better instructions through context
+
+When you @ mention a resource inside your prompt, you're not just connecting it—you're **explaining when and why to use it**.
+
+**Without context (UI-only):**
+
+> Agent has: [Research Tool], [Writing Style A], [Company Docs]
+>
+> ❌ The agent might use these randomly or not at all
+
+**With contextual @ mentions:**
+
+> "First, search @[Research Tool] to find recent statistics. Then write the report using @[Writing Style A] and reference our guidelines in @[Company Docs]."
+>
+> ✅ The agent knows exactly when to use each resource
+
+This becomes critical when your agent has multiple tools or knowledge sources. Context helps the AI navigate what to use and when.
+
+### 2. Task-specific flexibility
+
+Resources added in an agent's main settings are "always on" by default. @ mentions let you **activate resources only for specific tasks**.
+
+**Example scenario:**
+
+- Your agent handles both customer support AND internal reporting
+- Customer support needs @[Support Guidelines] and @[FAQ Database]
+- Reporting needs @[Analytics Tool] and @[Report Template]
+
+Instead of cluttering your agent with everything, you can @ mention the right resources in each specific prompt or workflow step.
+
+### 3. Keep agents lightweight, workflows powerful
+
+Using @ mentions strategically means you can:
+
+- Build **one versatile agent** instead of many specialized ones
+- Keep your agent's global settings **clean and minimal**
+- Add **workflow-specific** resources only where needed
+- Reuse the same agent across different workflows without conflicts
+
+### 4. In-chat flexibility
+
+During a conversation, you might realize you need a specific document or tool. Just type @ and bring it in—no need to stop, edit agent settings, and restart.
+
+## Frequently Asked Questions
+
+### Does tagging do something different than just selecting in the UI?
+
+Functionally, no—both methods connect the resource. The difference is that @ mentions let you add **context and specificity** about when to use that resource.
+
+### Should I always list tools in the prompt even if they're in the UI?
+
+Not necessarily. If a tool should always be available, the UI is fine. But if you want the agent to use it in a specific way or at a specific moment, mention it with context in your prompt.
+
+### It feels like the agent uses the tool twice when I do both?
+
+That won't happen. MindPal deduplicates resources—if something is connected via UI AND mentioned in the prompt, it's only connected once. The @ mention just adds helpful context for how to use it.
