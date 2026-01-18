@@ -30,13 +30,40 @@ Knowledge sources are processed and stored in a way that makes them easily acces
 
 You can upload files and URLs as knowledge sources by navigating to "Assets" → "Knowledge Sources".
 
-For URLs, you can fetch sub-pages of the URL by clicking the "List all sub pages" button. Later on, if you wish to update the content of a URL, you can click the "Relearn" button available for each URL in the "Knowledge Sources" page.
+#### Supported File Formats
 
-For each knowledge source, you can optionally fine-tune the following parameters, which control how MindPal processes and uses the knowledge:
+| Type | Formats | Max Size |
+|------|---------|----------|
+| **Documents** | PDF, DOCX, XLSX, CSV, TXT, EPUB | 100 MB |
+| **Images** | JPEG, PNG, GIF, WebP | 20 MB |
+| **Media** | Video (MP4, WebM), Audio (MP3, WAV) | 100 MB |
 
-- **Chunk Size**: Determines the maximum size of each content segment when MindPal splits your knowledge source
-- **Chunk Overlap**: Specifies how much overlap occurs between consecutive chunks to maintain context
-- **Separators**: Defines special characters that guide the system in splitting your knowledge appropriately
+import { Callout } from "nextra/components";
+
+<Callout emoji="💡">
+  For best results with documents, use well-formatted PDFs with clear text. Scanned documents may have lower accuracy.
+</Callout>
+
+#### URLs and Websites
+
+For URLs, you can:
+- Add individual pages by entering the URL directly
+- Fetch sub-pages by clicking **"List all sub pages"** to discover linked pages
+- Update content later using the **"Relearn"** button
+
+#### Processing Parameters
+
+For each knowledge source, you can optionally fine-tune how MindPal processes the content:
+
+| Parameter | Description | Default |
+|-----------|-------------|---------|
+| **Chunk Size** | Maximum size of each content segment | Auto |
+| **Chunk Overlap** | Overlap between consecutive chunks for context continuity | Auto |
+| **Separators** | Characters that guide content splitting | Auto |
+
+<Callout emoji="💡">
+  For most use cases, the default "Auto" settings work well. Adjust parameters only if you notice retrieval quality issues.
+</Callout>
 
 ### Creating Notes
 

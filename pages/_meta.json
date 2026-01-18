@@ -1,10 +1,13 @@
 {
   "index": "Quick Start",
+  "getting-started": "Getting Started",
   "agent": "Agent",
   "workflow": "Multi-Agent Workflow",
   "workspace": "Workspace Management",
-  "affiliate": "Affiliate",
+  "pricing": "Pricing & Plans",
   "guides": "Guides",
+  "glossary": "Glossary",
+  "affiliate": "Affiliate",
   "about": {
     "title": "Home",
     "type": "page",

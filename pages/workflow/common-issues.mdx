@@ -1,20 +1,220 @@
-## Common Issues in Workflow
+# Common Issues in Workflows
 
-### 1. Variable Assignment
-Ensure that variables are properly assigned using the correct syntax. This is crucial for the agent on a specific step in MindPal to understand the context and perform the task correctly. Misconfigured variables may allow the workflow to run, but they will disqualify the agent's response, preventing the desired outcome.
+This guide covers common issues you might encounter when building and running workflows in MindPal.
 
-### 2. MindPal API Format
-When using the MindPal API, strictly adhere to the data format specified in the API reference page. Even minor syntax errors, such as incorrect casing, will cause the API to fail.
+## Workflow Structure Issues
 
-### 3. Error Messages
-If there's an issue with running the workflow, an error message task will typically be displayed. Use these error messages to debug and resolve workflow issues effectively.
+### 1. Multiple Starting Points
 
-### 4. Single Starting Point
-Ensure that the workflow has only one starting point. A starting point is defined as any node in the workflow with no incoming edge. Multiple starting points will prevent the workflow from running.
+**Issue:** Your workflow won't run and shows an error about the starting point.
 
-### 5. AI Credit Consumption
-To reduce AI credit consumption, use models like Gemini 2.0 Flash for most tasks. Not every step requires high-end models like o3 or Claude 3.7 Sonnet.
+**Cause:** A workflow must have exactly one starting point - a node with no incoming connections. If you have multiple nodes without incoming edges, the workflow doesn't know where to begin.
 
-### 6. Gate Node Utilization
-Utilize the gate node to hard stop the workflow when inputs may disqualify. This practice helps save AI credits in such situations.
+**Solution:**
+1. Review your workflow in the builder
+2. Ensure only one node (typically a Human Input node) has no incoming connections
+3. Connect any floating nodes to the main workflow chain
+
+### 2. Disconnected Nodes
+
+**Issue:** Some steps in your workflow are skipped during execution.
+
+**Cause:** Nodes that aren't connected to the main flow won't execute.
+
+**Solution:**
+1. Check that all nodes are properly connected
+2. Look for missing edges between nodes
+3. Use the workflow preview to trace the execution path
+
+### 3. Circular Dependencies
+
+**Issue:** Workflow enters an infinite loop or fails with a dependency error.
+
+**Cause:** A node references output from a node that comes after it, or nodes reference each other.
+
+**Solution:**
+1. Review variable references in each node
+2. Ensure variables only reference nodes that execute BEFORE the current node
+3. Reorganize the workflow to eliminate circular references
+
+## Variable Issues
+
+### 4. Variables Not Working
+
+**Issue:** Variables show as plain text instead of being replaced with values.
+
+**Symptoms:**
+- You see `{{Variable Name}}` in the output instead of the actual value
+- Agent responses mention the variable name literally
+
+**Solutions:**
+1. **Check variable highlighting** - Properly configured variables appear in purple
+2. **Use the variable picker** - Click the "+" button to insert variables correctly
+3. **Avoid manual typing** - Don't type variable syntax manually; always use the picker
+4. **Verify variable exists** - The referenced node must exist and have output
+
+### 5. Variable Contains Wrong Data
+
+**Issue:** The variable value isn't what you expected.
+
+**Solutions:**
+1. **Check the source node** - Review what that node actually outputs
+2. **Test the source node independently** - Run the workflow in supervised mode to inspect each step
+3. **Verify the correct field** - Human Input nodes may have multiple fields
+
+## Node Execution Issues
+
+### 6. Agent Node Produces Poor Results
+
+**Issue:** The agent within a workflow step gives unsatisfactory output.
+
+**Solutions:**
+1. **Improve the prompt:**
+   - Be specific about what you want
+   - Include context from previous steps using variables
+   - Provide examples of expected output
+
+2. **Use a better model:**
+   - For complex tasks: Claude 4.5 Sonnet, GPT-5
+   - For reasoning: o3, o4 Mini
+
+3. **Assign a specialized agent:**
+   - Instead of using a blank/default agent, select one with appropriate system instructions and knowledge
+
+### 7. Loop Node Processing Wrong Items
+
+**Issue:** The loop doesn't iterate over the expected items.
+
+**Solutions:**
+1. **Verify the list source prompt** - Ensure it correctly extracts items from the source
+2. **Check the source format** - The AI needs clear, separable items
+3. **Set appropriate max item count** - Start small (3-5) for testing
+4. **Use explicit formatting** in the list source:
+   ```
+   Extract each product name from {{Previous Output}}, one per line.
+   ```
+
+### 8. Router Node Takes Wrong Path
+
+**Issue:** The workflow goes down an unexpected branch.
+
+**Solutions:**
+1. **Review routing logic** - Make conditions clearer and more specific
+2. **Add explicit criteria** in the prompt:
+   ```
+   If the sentiment is POSITIVE, choose path 1.
+   If the sentiment is NEGATIVE, choose path 2.
+   Otherwise, choose path 3.
+   ```
+3. **Test with various inputs** to verify all paths work correctly
+
+### 9. Gate Node Blocks Unexpectedly
+
+**Issue:** The Gate Node stops the workflow when it shouldn't, or continues when it should stop.
+
+**Solutions:**
+1. **Clarify the stopping condition:**
+   ```
+   Return TRUE (stop) if the input is empty or contains profanity.
+   Return FALSE (continue) if the input is valid text.
+   ```
+2. **Use a smarter model** for nuanced condition evaluation
+3. **Test edge cases** with various input types
+
+## API and Trigger Issues
+
+### 10. API Trigger Not Working
+
+**Issue:** The workflow doesn't run when triggered via API.
+
+**Solutions:**
+1. **Verify API format** - Match the exact schema in your workflow's API Reference tab
+2. **Check authentication** - Ensure your API key is valid and included
+3. **Validate JSON syntax** - Use a JSON validator to check your request body
+4. **Check field names** - Names are case-sensitive
+
+### 11. Webhook Node Fails to Send
+
+**Issue:** The Webhook Node shows failed status.
+
+**Solutions:**
+1. **Verify the URL** - Ensure it's correct and accessible
+2. **Check endpoint availability** - Test with a tool like Postman
+3. **Review authentication** - Add required headers
+4. **Check payload format** - Some endpoints require specific formats
+
+### 12. Scheduled Trigger Doesn't Fire
+
+**Issue:** Workflows don't run at the scheduled time.
+
+**Solutions:**
+1. **Verify schedule configuration** - Check timezone settings
+2. **Ensure workflow is published** - Unpublished workflows won't trigger
+3. **Check your plan** - Scheduled triggers require paid plans
+
+## Performance and Credit Issues
+
+### 13. High Credit Consumption
+
+**Issue:** Workflows use more credits than expected.
+
+**Solutions:**
+1. **Use efficient models:**
+   - Gemini 2.5 Flash (1 credit)
+   - DeepSeek (0.5 credits)
+
+2. **Optimize workflow structure:**
+   - Combine steps where possible
+   - Use Gate Nodes to stop early for invalid inputs
+   - Set reasonable max items for Loop Nodes
+
+3. **Monitor credit usage:**
+   - Check the credit estimate in the workflow builder
+   - Review actual consumption in completed runs
+
+### 14. Workflow Times Out
+
+**Issue:** Long-running workflows fail or timeout.
+
+**Solutions:**
+1. **Break into smaller workflows** - Use Subflow Nodes for complex processes
+2. **Reduce loop iterations** - Process fewer items per run
+3. **Use Background Mode** - For long workflows that don't need real-time results
+4. **Optimize prompts** - Shorter, more focused prompts execute faster
+
+## Debugging Tips
+
+### Using Supervised Mode
+
+1. Run the workflow in **Supervised Mode**
+2. Review output at each step before proceeding
+3. Edit or regenerate any problematic step
+4. Identify exactly where issues occur
+
+### Reading Error Messages
+
+Error messages typically indicate:
+- **Node name** - Which step failed
+- **Error type** - What went wrong (context length, API error, etc.)
+- **Suggested fix** - How to resolve the issue
+
+### Testing Incrementally
+
+1. Start with a simple workflow (2-3 nodes)
+2. Verify each node works correctly
+3. Add nodes one at a time
+4. Test after each addition
+
+## Getting More Help
+
+If these solutions don't resolve your issue:
+
+1. **Check the [agent common issues](/agent/common-issues)** for agent-specific problems
+2. **Review the [API documentation](https://api-v3.mindpal.io/docs)** for API issues
+3. **Join our [Facebook Community](https://facebook.com/groups/mindpal)** to ask questions
+4. **Contact support** at [support@mindpal.io](mailto:support@mindpal.io)
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />
 

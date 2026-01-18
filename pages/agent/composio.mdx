@@ -1,0 +1,206 @@
+# Composio Integrations
+
+Composio enables your MindPal agents to connect with 100+ external applications and services through secure OAuth authentication. This allows your agents to perform actions in tools like Gmail, Slack, Google Calendar, Notion, and many more.
+
+## What is Composio?
+
+Composio is an integration platform that provides:
+- **Secure OAuth connections** to third-party apps
+- **Pre-built actions** for common tasks
+- **Fine-grained control** over what each agent can do
+
+Unlike [MCP integrations](/agent/mcp) which use the Model Context Protocol, Composio uses traditional OAuth authentication and provides a curated set of actions for each application.
+
+## How Composio Works
+
+1. **Connect an app** - Authenticate with the service using OAuth
+2. **Select allowed actions** - Choose which specific actions your agent can perform
+3. **Agent uses actions** - During conversations, the agent can execute allowed actions
+
+import { Callout } from "nextra/components";
+
+<Callout emoji="💡">
+  Composio connections are secured with SOC 2 compliance and AES-256 encryption at rest.
+</Callout>
+
+## Setting Up Composio Integrations
+
+### Step 1: Navigate to Integrations
+
+1. Open your agent's settings
+2. Find the **"Integrations"** or **"Composio"** section
+3. Click **"Connect an app"** or **"Add integration"**
+
+### Step 2: Choose an Application
+
+Browse the integration marketplace to find the app you want to connect:
+
+**Popular Integrations:**
+
+| Category | Applications |
+|----------|-------------|
+| **Communication** | Gmail, Slack, Discord, Microsoft Teams |
+| **Productivity** | Google Calendar, Google Drive, Notion, Airtable |
+| **Project Management** | Trello, Asana, Jira, Linear |
+| **CRM & Sales** | HubSpot, Salesforce, Pipedrive |
+| **Marketing** | Mailchimp, SendGrid, ConvertKit |
+| **Developer** | GitHub, GitLab, Vercel |
+| **E-commerce** | Shopify, Stripe, Square |
+| **Social** | LinkedIn, Twitter/X, Facebook |
+
+### Step 3: Authenticate
+
+1. Click **"Connect"** on your chosen app
+2. A popup window opens for authentication
+3. Log in to the service and authorize MindPal
+4. The popup closes automatically when complete
+
+### Step 4: Select Allowed Actions
+
+After connecting, choose which actions your agent can perform:
+
+**Example actions for Gmail:**
+- Send email
+- Read emails
+- Search emails
+- Create draft
+- Reply to email
+
+**Example actions for Slack:**
+- Send message to channel
+- Send direct message
+- Read channel messages
+- Create channel
+
+<Callout emoji="⚠️" type="warning">
+  Only enable actions that your agent actually needs. This follows the principle of least privilege and keeps your integrations secure.
+</Callout>
+
+## Using Integrations in Agents
+
+Once connected, your agent can automatically use the integrations when needed. You can guide usage through system instructions:
+
+```
+You have access to Gmail integration. When the user asks to send an email:
+1. Confirm the recipient and subject with the user
+2. Draft the email content
+3. Send the email using the Gmail integration
+4. Confirm successful delivery
+```
+
+## Managing Connections
+
+### Viewing Connected Apps
+
+1. Go to your agent settings
+2. Open the **Integrations** section
+3. View all connected apps and their status
+
+### Modifying Allowed Actions
+
+1. Click on a connected integration
+2. Enable or disable specific actions
+3. Save your changes
+
+### Disconnecting an App
+
+1. Click on the connected integration
+2. Click **"Disconnect"** or **"Remove"**
+3. Confirm the disconnection
+
+This removes MindPal's access to that service. You'll need to reconnect and re-authenticate to use it again.
+
+## Composio vs MCP
+
+Both Composio and MCP let agents connect to external services, but they work differently:
+
+| Feature | Composio | MCP |
+|---------|----------|-----|
+| **Authentication** | OAuth (per user) | Server URL (shared) |
+| **Setup Complexity** | Click to connect | Requires server URL |
+| **Action Control** | Select allowed actions | All server tools available |
+| **Best For** | Common SaaS apps | Custom/specialized tools |
+| **User-Specific** | Yes (your credentials) | No (shared server) |
+
+**When to use Composio:**
+- Connecting to popular SaaS applications
+- Need user-specific authentication
+- Want fine-grained action control
+
+**When to use MCP:**
+- Using automation platforms (Zapier, Make)
+- Need custom tools or servers
+- Sharing tools across all users
+
+## Security Best Practices
+
+### 1. Limit Actions
+Only enable actions your agent actually needs. If your agent only needs to read emails, don't enable "send email."
+
+### 2. Review Regularly
+Periodically review connected integrations and remove ones you no longer use.
+
+### 3. Use Specific Agents
+Create dedicated agents for specific integrations rather than giving one agent access to everything.
+
+### 4. Test Before Production
+Test integrations in a controlled environment before deploying them in published chatbots or workflows.
+
+## Troubleshooting
+
+### Connection Failed
+- Clear browser cache and try again
+- Ensure pop-ups are enabled for the authentication window
+- Check if the service requires additional permissions
+
+### Actions Not Working
+- Verify the action is enabled in your integration settings
+- Check if your service account has permission for that action
+- Review rate limits on the external service
+
+### Authentication Expired
+- Some services require periodic re-authentication
+- Disconnect and reconnect the integration if you see auth errors
+
+## Example Use Cases
+
+### Customer Support Agent with Gmail
+
+```
+Agent: Customer Support Assistant
+Integrations: Gmail (read, reply)
+
+System Instructions:
+"When a customer asks about their order, search their email history
+to find relevant order confirmations and shipping updates. Use this
+information to provide accurate support."
+```
+
+### Project Manager Agent with Multiple Tools
+
+```
+Agent: Project Coordinator
+Integrations:
+- Slack (send messages)
+- Asana (create tasks, update status)
+- Google Calendar (check availability, create events)
+
+System Instructions:
+"Help coordinate projects by creating tasks in Asana, scheduling
+meetings in Google Calendar, and notifying team members in Slack."
+```
+
+### Social Media Agent with LinkedIn
+
+```
+Agent: LinkedIn Content Creator
+Integrations: LinkedIn (create post)
+
+System Instructions:
+"Help users craft and publish professional LinkedIn posts. Always
+show the draft for approval before posting."
+```
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />

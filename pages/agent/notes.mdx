@@ -1,0 +1,199 @@
+# Notes
+
+Notes are a powerful way to store persistent information that your AI agents can access and remember. Unlike knowledge sources (which are typically documents and files), notes are dynamic, easily editable content that serves as your agent's long-term memory.
+
+## What are Notes?
+
+Notes are text-based knowledge entries that you create and manage within MindPal. They function as a persistent memory layer for your AI agents, allowing them to:
+
+- Remember important information across conversations
+- Access dynamic content that changes frequently
+- Store preferences, facts, and context about your business
+- Maintain consistent knowledge that doesn't need document uploads
+
+## Notes vs Knowledge Sources
+
+| Feature | Notes | Knowledge Sources |
+|---------|-------|-------------------|
+| **Content Type** | Text written directly in MindPal | Uploaded files (PDF, Word, etc.) or URLs |
+| **Editing** | Easy inline editing | Requires re-upload or re-learn |
+| **Best For** | Dynamic info, preferences, quick facts | Comprehensive documents, reference materials |
+| **Format** | Rich text with formatting | Original file format |
+| **Size** | Shorter, focused entries | Longer documents |
+
+## How Notes Work
+
+1. **You create notes** with specific information you want agents to remember
+2. **You assign notes** to agents that need this information
+3. **Agents automatically access** assigned notes during conversations
+4. **Notes update instantly** - changes are reflected immediately in agent responses
+
+## Creating and Managing Notes
+
+### Creating a Note
+
+1. Go to **"Assets"** → **"Notes"** in your workspace
+2. Click **"+ Create note"** or the create button
+3. Add a **Title** - make it descriptive so you can find it later
+4. Write your **Content** using the rich text editor
+5. Add **Categories** (optional) to organize your notes
+
+### Rich Text Editor Features
+
+The note editor supports:
+- **Headings** - Structure your content with H1, H2, H3
+- **Formatting** - Bold, italic, underline, strikethrough
+- **Lists** - Bullet points and numbered lists
+- **Links** - Add hyperlinks to external resources
+- **Tables** - Organize structured information
+- **Code blocks** - Format technical content
+
+### Organizing Notes with Categories
+
+Use categories (tags) to organize notes by topic:
+- `product-info` - Product details and specifications
+- `company-policies` - Internal guidelines and rules
+- `customer-preferences` - Client-specific information
+- `faq` - Frequently asked questions and answers
+
+You can filter and search notes by category in the sidebar.
+
+## Assigning Notes to Agents
+
+### Method 1: From Agent Settings
+
+1. Open your agent's configuration
+2. Scroll to the **Notes** section
+3. Click **"Add notes"**
+4. Select the notes you want to assign
+5. Save your agent
+
+### Method 2: From the Notes Library
+
+1. Open a note
+2. Click the share/assign button
+3. Select which agents should have access
+
+## Use Cases
+
+### 1. Product Information
+
+Store product details, pricing, and specifications that agents need to reference:
+
+```
+Title: Product Pricing 2024
+
+## Standard Plan
+- Price: $49/month
+- Features: 5 users, 10GB storage
+
+## Pro Plan
+- Price: $99/month
+- Features: 25 users, 100GB storage, priority support
+```
+
+### 2. Company Policies
+
+Keep agents informed about company guidelines:
+
+```
+Title: Refund Policy
+
+We offer a 30-day money-back guarantee on all plans.
+
+Conditions:
+- Request must be within 30 days of purchase
+- No partial refunds for unused time
+- Refund processed within 5-7 business days
+```
+
+### 3. Client Preferences
+
+Store client-specific information for personalized interactions:
+
+```
+Title: Client: Acme Corp
+
+Contact: John Smith (john@acme.com)
+Preferred communication: Email
+Time zone: EST
+Special requirements: All deliverables need legal review
+```
+
+### 4. FAQ Responses
+
+Pre-write answers to common questions:
+
+```
+Title: Common Support Questions
+
+Q: How do I reset my password?
+A: Click "Forgot Password" on the login page, enter your email, and follow the reset link sent to your inbox.
+
+Q: What payment methods do you accept?
+A: We accept all major credit cards and PayPal.
+```
+
+## Agent Memory Tools
+
+When you assign notes to an agent, the agent gains special abilities to work with that information:
+
+### Automatic Access
+Agents automatically see and use assigned notes - no special prompting required.
+
+### Memory Tools (Advanced)
+Agents can also create, update, and delete notes during conversations:
+
+- **Create notes** - Save new information from conversations
+- **Update notes** - Modify existing information
+- **Delete notes** - Remove outdated information
+
+This enables agents to maintain a learning memory that grows over time.
+
+import { Callout } from "nextra/components";
+
+<Callout emoji="💡">
+  **Tip**: Use notes for information that changes frequently. For static reference documents like user manuals or policy documents, use Knowledge Sources instead.
+</Callout>
+
+## Sharing Notes
+
+Notes can be made public for sharing:
+
+1. Open the note you want to share
+2. Click the **"Make Public"** toggle
+3. Copy the shareable link
+
+Public notes are accessible via a unique URL without requiring MindPal login.
+
+## Best Practices
+
+### Keep Notes Focused
+Each note should cover one topic. Instead of one massive "Company Info" note, create separate notes for:
+- Company Overview
+- Product Details
+- Pricing Information
+- Contact Information
+
+### Use Clear Titles
+Make titles descriptive and searchable:
+- "Refund Policy - 30 Day Guarantee"
+- "Product: Enterprise Plan Features"
+- "Client: ABC Company Preferences"
+
+### Update Regularly
+Notes are meant to be dynamic. Review and update them when:
+- Prices change
+- Policies update
+- New products launch
+- Client preferences change
+
+### Organize with Categories
+Use consistent category naming across your workspace:
+- Use lowercase with hyphens: `product-info`, `client-data`
+- Be specific: `pricing-2024` instead of just `pricing`
+- Limit to 2-4 categories per note
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />

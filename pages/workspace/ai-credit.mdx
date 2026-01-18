@@ -4,7 +4,7 @@ MindPal uses a credit-based system for AI usage, where different AI models consu
 
 ## What is an AI Credit?
 
-An AI credit is MindPal's unit of AI usage measurement. The number of credits consumed depends on the specific AI model you choose. Models like Gemini 2.5 Flash are optimized for efficiency and consume fewer credits per request, while more powerful models like Claude 37 Sonnet consume more credits but offer enhanced capabilities.
+An AI credit is MindPal's unit of AI usage measurement. The number of credits consumed depends on the specific AI model you choose. Models like Gemini 2.5 Flash are optimized for efficiency and consume fewer credits per request, while more powerful models like Claude 4.5 Sonnet consume more credits but offer enhanced capabilities.
 
 ## How are AI Credits Consumed?
 
@@ -16,6 +16,101 @@ There are four main ways your AI credits are consumed on MindPal:
 2. **Published Agent (Chatbot) Interactions**: When others use your published AI agents (chatbots), each query counts as a separate request
 3. **Multi-Agent Workflow Runs**: When running workflows inside the app, each step counts as a separate request
 4. **Published Workflow (Form) Runs**: When your published multi-agent workflows or forms are run from outside MindPal
+
+## AI Credit Costs by Model
+
+Here's a comprehensive reference of credit costs per request for each AI model:
+
+### OpenAI Models
+
+| Model | Credits per Request | Best For |
+|-------|---------------------|----------|
+| GPT-5.1 | 15 | Latest flagship model |
+| GPT-5 | 15 | High-quality general tasks |
+| GPT-5 Mini | 3 | Balanced quality and cost |
+| GPT-5 Nano | 1 | Fast, simple tasks |
+| GPT-4.1 | 15 | Complex reasoning |
+| GPT-4.1 Mini | 3 | Cost-effective quality |
+| o4 Mini | 8 | Reasoning tasks |
+| o3 | 100 | Advanced reasoning |
+| o3 Mini | 10 | Reasoning at lower cost |
+
+### Anthropic (Claude) Models
+
+| Model | Credits per Request | Best For |
+|-------|---------------------|----------|
+| Claude Opus 4.5 | 40 | Most capable, complex tasks |
+| Claude 4.5 Sonnet | 20 | Excellent balance |
+| Claude 4 Sonnet | 20 | High-quality writing |
+| Claude 3.5 Sonnet | 20 | Reliable performance |
+| Claude 4.5 Haiku | 10 | Fast responses |
+| Claude 3 Haiku | 5 | Budget-friendly |
+
+### Google (Gemini) Models
+
+| Model | Credits per Request | Best For |
+|-------|---------------------|----------|
+| Gemini 3.0 Pro | 10 | Latest Pro capabilities |
+| Gemini 3.0 Flash | 1 | Fast and efficient |
+| Gemini 2.5 Pro | 10 | Strong reasoning |
+| Gemini 2.5 Flash | 1 | Best value option |
+| Gemini 2.5 Flash Lite | 1 | Lightweight tasks |
+
+### DeepSeek Models
+
+| Model | Credits per Request | Best For |
+|-------|---------------------|----------|
+| DeepSeek V3 | 0.5 | Cost-effective coding |
+| DeepSeek R1 | 0.5 | Reasoning tasks |
+
+### Perplexity Models
+
+| Model | Credits per Request | Best For |
+|-------|---------------------|----------|
+| Sonar | 1 | Quick web search |
+| Sonar Pro | 10 | Enhanced search |
+| Sonar Reasoning | 10 | Search with reasoning |
+| Sonar Deep Research | 20 | In-depth research |
+
+### XAI (Grok) Models
+
+| Model | Credits per Request | Best For |
+|-------|---------------------|----------|
+| Grok 2 Latest | 10 | General tasks |
+| Grok 2 Vision | 10 | Image understanding |
+| Grok 4 Fast | 1 | Quick responses |
+
+### Other Models
+
+| Model | Credits per Request | Provider |
+|-------|---------------------|----------|
+| LLaMa 3.3 70b | 3 | Groq |
+| LLaMa 3.1 70b | 1 | Groq |
+| LLaMa 3.1 8b | 1 | Groq |
+| Kimi K2 | 1 | Groq |
+
+### Speech Models (Text-to-Speech)
+
+| Model | Credits per Minute | Notes |
+|-------|-------------------|-------|
+| Gemini 2.5 Pro TTS | 120 | High quality |
+| Gemini 2.5 Flash TTS | 60 | Balanced |
+| GPT-4o Mini TTS | 80 | OpenAI voice |
+
+### Video Generation Models
+
+| Model | Credits per Second | Default Video |
+|-------|-------------------|---------------|
+| Veo 3.1 Fast | 20 | ~160 credits (8s) |
+| Veo 3.1 Standard | 50 | ~400 credits (8s) |
+| Veo 3.0 Fast | 20 | ~160 credits (8s) |
+| Veo 3.0 Standard | 50 | ~400 credits (8s) |
+
+import { Callout } from "nextra/components";
+
+<Callout emoji="💡">
+  **Cost Optimization Tip**: For most tasks, start with cost-effective models like Gemini 2.5 Flash (1 credit) or GPT-5 Mini (3 credits). Upgrade to premium models only when you need higher quality output.
+</Callout>
 
 ## Checking Model-Specific Credit Consumption
 
