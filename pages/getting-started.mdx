@@ -1,0 +1,202 @@
+# Getting Started
+
+Welcome to MindPal! This guide will walk you through creating your first AI agent and workflow step-by-step.
+
+import { Steps } from "nextra/components";
+import { Callout } from "nextra/components";
+
+## Prerequisites
+
+Before you begin, make sure you have:
+1. A MindPal account (sign up at [app.mindpal.space](https://app.mindpal.space))
+2. A workspace created (this happens automatically when you sign up)
+
+## Create Your First AI Agent
+
+<Steps>
+
+### Navigate to the Agent Library
+
+1. Log in to your MindPal workspace
+2. Click on **"Agent"** in the left sidebar
+3. You'll see your agent library (empty if you're just starting)
+
+### Create a New Agent
+
+Click the **"+ New Agent"** button. You have three options:
+
+- **Let AI do the work**: Describe what you need, and MindPal will configure the agent for you
+- **Use a template**: Browse pre-made agents and customize them
+- **Start from scratch**: Build your agent manually with full control
+
+For this tutorial, choose **"Start from scratch"**.
+
+### Configure the Agent Basics
+
+Give your agent a clear identity:
+
+1. **Title**: Name your agent (e.g., "Blog Post Writer")
+2. **Background**: Describe who the agent is and what it does
+
+Example background:
+```
+You are an experienced content writer specializing in engaging blog posts.
+You write in a conversational yet professional tone, focusing on providing
+value to readers while maintaining SEO best practices.
+```
+
+### Set the Desired Output
+
+Define how you want the agent to format its responses:
+
+```
+Structure your blog posts with:
+- An attention-grabbing headline
+- A compelling introduction (2-3 sentences)
+- 3-5 main sections with subheadings
+- A conclusion with a call to action
+- Keep total length between 800-1200 words
+```
+
+### Choose a Language Model
+
+Select the AI model that powers your agent:
+
+- **GPT-4o Mini** (1 credit) - Fast and cost-effective for simple tasks
+- **Gemini 2.5 Flash** (1 credit) - Great balance of speed and quality
+- **GPT-5** (15 credits) - High-quality responses
+- **Claude 4 Sonnet** (20 credits) - Excellent for nuanced writing
+
+<Callout emoji="💡">
+  Start with a cheaper model and upgrade only if you need better quality. You can always change the model later.
+</Callout>
+
+### Test Your Agent
+
+1. Click **"Save"** to save your agent configuration
+2. Click **"Run"** or the chat icon to open the chat interface
+3. Send a message like: "Write a blog post about the benefits of morning routines"
+4. Review the response and iterate on your agent's configuration if needed
+
+### (Optional) Publish as a Chatbot
+
+To share your agent with others:
+
+1. Go to the **"Chatbot"** section in the left sidebar
+2. Click **"+ New Chatbot"**
+3. Select your agent as the "brain"
+4. Configure the chatbot appearance and settings
+5. Click **"Publish"** to get a shareable link
+
+</Steps>
+
+## Create Your First Workflow
+
+Workflows connect multiple agents to handle complex, multi-step processes.
+
+<Steps>
+
+### Navigate to the Workflow Library
+
+1. Click on **"Workflow"** in the left sidebar
+2. Click **"+ New Workflow"**
+
+### Choose Your Starting Point
+
+Like agents, you have three options:
+- **Let AI do the work**: Describe your process and let MindPal build it
+- **Use a template**: Start from a pre-made workflow
+- **Start from scratch**: Build manually using the visual builder
+
+For this tutorial, choose **"Start from scratch"**.
+
+### Add a Human Input Node
+
+Every workflow starts with collecting user input:
+
+1. In the workflow builder, you'll see a **Human Input** node already placed
+2. Click on it to configure input fields
+3. Add fields like:
+   - **Topic** (Text) - "What topic should we write about?"
+   - **Target Audience** (Text) - "Who is the target audience?"
+   - **Tone** (Select) - Options: Professional, Casual, Friendly
+
+### Add an Agent Node
+
+1. Click the **"+"** button below the Human Input node
+2. Select **"Agent Node"**
+3. Configure it:
+   - **Agent**: Select your Blog Post Writer agent (or leave blank for a general agent)
+   - **Prompt**: Write the task, referencing inputs:
+   ```
+   Write a blog post about {{Topic}} for {{Target Audience}}.
+   Use a {{Tone}} tone.
+   ```
+
+<Callout emoji="💡">
+  Variables appear in purple when properly configured. Click the "+" button in the prompt field to insert variables from previous steps.
+</Callout>
+
+### Add More Steps (Optional)
+
+Extend your workflow with additional nodes:
+
+- **Another Agent Node**: Add an editor agent to review the content
+- **Loop Node**: Process multiple topics at once
+- **Router Node**: Branch based on conditions
+- **Webhook Node**: Send results to external systems
+
+### Test Your Workflow
+
+1. Click **"Save"** to save your workflow
+2. Click **"Run"** to open the workflow runner
+3. Fill in the input fields
+4. Click **"Run Workflow"** and watch it execute
+
+### (Optional) Publish as a Form
+
+To share your workflow with others:
+
+1. Go to the **"Form"** tab in your workflow
+2. Configure the form appearance and settings
+3. Set access controls and rate limits
+4. Click **"Publish"** to get a shareable link or embed code
+
+</Steps>
+
+## Next Steps
+
+Now that you've created your first agent and workflow, explore these features:
+
+### Enhance Your Agents
+- [Add Knowledge Sources](/agent/knowledge-sources) - Train agents on your documents
+- [Configure Tools](/agent/tools) - Give agents access to external APIs
+- [Set Brand Voice](/agent/brand-voice) - Maintain consistent communication style
+- [Add Sub-agents](/agent/sub-agent) - Create hierarchical agent structures
+
+### Build Advanced Workflows
+- [Workflow Variables](/workflow/build/variables) - Pass data between steps
+- [Loop Node](/workflow/build/loop-node) - Process multiple items
+- [Router Node](/workflow/build/router-node) - Add conditional branching
+- [Orchestrator-Worker Node](/workflow/build/orchestrator-worker-node) - Coordinate multiple agents
+
+### Share and Monetize
+- [Publish Chatbots](/agent/chatbot) - Share agents publicly
+- [Publish Workflows as Forms](/workflow/run/form) - Create public workflow tools
+- [Add Payment Nodes](/workflow/build/payment-node) - Monetize your workflows
+
+### Integrate with Your Systems
+- [Public API](/workflow/trigger/api) - Trigger workflows programmatically
+- [Schedule Triggers](/workflow/trigger/schedule) - Run workflows automatically
+- [MCP Integrations](/agent/mcp) - Connect to 7000+ apps
+
+## Getting Help
+
+- **Documentation**: You're reading it! Use the sidebar to explore topics
+- **Video Tutorials**: Visit our [YouTube Channel](https://www.youtube.com/@MindPalSpace)
+- **Community**: Join our [Facebook Group](https://facebook.com/groups/mindpal)
+- **Support**: Email [support@mindpal.io](mailto:support@mindpal.io)
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />

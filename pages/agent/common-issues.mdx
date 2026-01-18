@@ -1,23 +1,226 @@
 # Common Issues and Debugging Tips
 
+This guide covers common issues you might encounter when working with AI agents in MindPal and how to resolve them.
+
+## Context and Memory Issues
+
 ### Out of Context Length
-Issue: When using an LLM in MindPal, you might encounter a context-length issue. This happens when the agent inside a workflow refers to data from many previous steps or from your own knowledge resources, exceeding the model's context-length limit.
 
-Solution: Use a larger model like Claude 3.7 Sonnet or Gemini 2.0 to handle more context.
+**Issue:** Your agent encounters an error about context length being exceeded. This happens when the conversation history, knowledge sources, and system instructions combined exceed the model's maximum context window.
 
-### Answer Quality from Agent
-Issue: The quality of responses from LLMs can sometimes be unsatisfactory due to their non-deterministic nature.
+**Symptoms:**
+- Error message mentioning "context length" or "token limit"
+- Agent stops responding mid-conversation
+- Truncated or incomplete responses
 
-Solution: Opt for a high-quality model like o3 or Claude 3.7 Sonnet to improve response quality.
+**Solutions:**
+1. **Switch to a larger context model:**
+   - Claude 4.5 Sonnet (200K context)
+   - Gemini 2.5 Pro (1M context)
+   - GPT-4.1 (128K context)
 
-### Referring Knowledge Source
-Issue: You may want the agent to use content from a specific file or URL uploaded into the knowledge source. Sometimes, the agent might not automatically use this content.
+2. **Reduce knowledge source size:**
+   - Assign only necessary knowledge sources
+   - Split large documents into smaller, focused ones
+   - Use folders to organize and selectively assign knowledge
 
-Solution: Explicitly prompt the agent to use the content from the knowledge source to generate the desired response.
+3. **Optimize system instructions:**
+   - Keep instructions concise but clear
+   - Remove redundant or repetitive instructions
 
-### Tool Use
-Issue: If the agent fails to perform tasks like finding leads, linking, or sending emails, it might be due to not having the necessary tools assigned.
+### Agent Doesn't Remember Previous Conversations
 
-Solution: Assign the appropriate tools to the agent. In MindPal, default tools include getting context from NorseSource, scraping websites, and performing web searches. For other tasks, such as deleting an image or retrieving content from specific sources like Wikipedia or Pexels, you need to explicitly assign the required tools.
+**Issue:** Your agent seems to forget what was discussed earlier in the conversation.
 
-These tips should help you troubleshoot and resolve common issues when working with AI Agents in MindPal.
+**Solutions:**
+1. **Check session continuity** - Ensure you're using the same conversation session
+2. **Use Notes** - Store important information in [Notes](/agent/notes) that persist across sessions
+3. **Enable Custom User ID** - For chatbots, use [Custom User ID](/guides/custom-user-id) to maintain conversation history
+
+## Response Quality Issues
+
+### Poor Answer Quality
+
+**Issue:** The agent's responses are vague, generic, or don't meet your expectations.
+
+**Solutions:**
+1. **Upgrade the model:**
+   - For complex reasoning: o3, o4 Mini, Claude Opus 4.5
+   - For creative writing: Claude 4.5 Sonnet, GPT-5
+   - For coding: Claude 4.5 Sonnet, DeepSeek
+
+2. **Improve system instructions:**
+   - Be specific about the expected output format
+   - Include examples of good responses
+   - Define clear constraints and guidelines
+
+3. **Lower temperature** for more consistent, focused responses
+
+4. **Provide more context** through knowledge sources or notes
+
+### Agent Gives Inconsistent Responses
+
+**Issue:** The same question produces different answers each time.
+
+**Solutions:**
+1. **Lower the temperature setting** (closer to 0 = more deterministic)
+2. **Add more specific instructions** in the system prompt
+3. **Use examples** to demonstrate desired output format
+
+### Agent Ignores Instructions
+
+**Issue:** The agent doesn't follow your system instructions.
+
+**Solutions:**
+1. **Check instruction clarity** - Avoid contradictory or ambiguous rules
+2. **Move critical instructions to the top** of the system prompt
+3. **Use explicit formatting:**
+   ```
+   IMPORTANT: Always do X before Y.
+   NEVER do Z.
+   ```
+4. **Reduce instruction complexity** - Too many rules can confuse the model
+
+## Knowledge Source Issues
+
+### Agent Doesn't Use Knowledge Sources
+
+**Issue:** You uploaded documents, but the agent doesn't reference them in responses.
+
+**Solutions:**
+1. **Verify assignment** - Ensure knowledge sources are assigned to the agent
+2. **Prompt explicitly:**
+   ```
+   Using the information from my uploaded documents, explain...
+   Based on the knowledge sources I've provided...
+   ```
+3. **Check knowledge source content** - Ensure documents were processed correctly
+4. **Re-learn URLs** - For web content, use the "Relearn" button to refresh
+
+### Inaccurate Information from Knowledge Sources
+
+**Issue:** The agent provides information that doesn't match your uploaded documents.
+
+**Solutions:**
+1. **Adjust chunk size** - Smaller chunks (500-1000 characters) for precise retrieval
+2. **Increase chunk overlap** - Helps maintain context across chunks
+3. **Use direct quotes** in your prompts to guide retrieval
+4. **Check for conflicting information** across different knowledge sources
+
+### File Upload Failed
+
+**Issue:** Knowledge source files fail to upload or process.
+
+**Solutions:**
+1. **Check file size:**
+   - Documents: Maximum 100 MB
+   - Images: Maximum 20 MB
+2. **Verify file format:**
+   - Supported: PDF, DOCX, XLSX, CSV, TXT, EPUB
+   - Images: JPEG, PNG, GIF, WebP
+3. **Try re-uploading** after clearing browser cache
+4. **Split large files** into smaller documents
+
+## Tool and Integration Issues
+
+### Tools Not Working
+
+**Issue:** The agent fails to use assigned tools (web search, APIs, etc.).
+
+**Solutions:**
+1. **Verify tool assignment** - Check that tools are enabled for the agent
+2. **Check tool configuration:**
+   - API endpoint is correct and accessible
+   - Authentication headers are properly set
+   - Request format matches the API specification
+3. **Add tool usage instructions** to the system prompt:
+   ```
+   When the user asks about current events, use the web search tool.
+   Always use the weather API when asked about weather conditions.
+   ```
+4. **Test the tool independently** - Use the tool's test feature to verify it works
+
+### MCP Server Connection Failed
+
+**Issue:** Cannot connect to an MCP server or tools aren't appearing.
+
+**Solutions:**
+1. **Verify server URL** - Ensure the URL is correct and accessible
+2. **Check server type** - MindPal only supports Streamable HTTP and SSE servers (not STDIO)
+3. **Verify authentication** - Some servers require API keys in headers
+4. **Test the server** - Use the connection test feature
+
+### Composio Integration Not Working
+
+**Issue:** Connected apps don't work as expected.
+
+**Solutions:**
+1. **Reconnect the app** - OAuth tokens may have expired
+2. **Check allowed actions** - Ensure the specific action is enabled
+3. **Verify permissions** - Your account may lack permission for certain actions
+4. **Review rate limits** - The external service may have usage limits
+
+## Published Chatbot Issues
+
+### Chatbot Not Loading
+
+**Issue:** Published chatbot doesn't appear or load on your website.
+
+**Solutions:**
+1. **Check embed code** - Ensure it's correctly pasted in your HTML
+2. **Verify domain restrictions** - If set, your domain must be in the allowed list
+3. **Check for JavaScript errors** - Open browser console (F12) for error messages
+4. **Clear browser cache** - Old cached versions may cause issues
+
+### Custom Session Context Not Working
+
+**Issue:** Personalization data isn't being passed to the chatbot.
+
+**Solutions:**
+1. **Verify configuration** - Ensure custom session context is enabled
+2. **Check key names** - Keys must match exactly (case-sensitive)
+3. **Verify script order:**
+   - Widget: `mindpalConfig` must be defined BEFORE loading the script
+   - Iframe: Include the helper script with correct `data-target`
+4. **Check domain restrictions** - Your domain must be allowed
+
+## Performance Issues
+
+### Slow Response Times
+
+**Issue:** Agent takes too long to respond.
+
+**Solutions:**
+1. **Use faster models:**
+   - Gemini 2.5 Flash (fastest)
+   - GPT-5 Mini
+   - Claude 4.5 Haiku
+2. **Reduce knowledge source size** - Large contexts slow down processing
+3. **Simplify system instructions** - Shorter prompts process faster
+4. **Check your internet connection**
+
+### High Credit Consumption
+
+**Issue:** Using more AI credits than expected.
+
+**Solutions:**
+1. **Use cost-effective models:**
+   - Gemini 2.5 Flash: 1 credit
+   - DeepSeek V3/R1: 0.5 credits
+   - GPT-5 Nano: 1 credit
+2. **Set output length limits** - Restrict maximum tokens
+3. **Review workflow efficiency** - Each node consumes credits
+4. **Use Gate Nodes** to stop workflows early when inputs are invalid
+
+## Getting More Help
+
+If these solutions don't resolve your issue:
+
+1. **Check the [workflow common issues](/workflow/common-issues)** for workflow-specific problems
+2. **Search our [YouTube tutorials](https://www.youtube.com/@MindPalSpace)** for video guides
+3. **Join our [Facebook Community](https://facebook.com/groups/mindpal)** to ask questions
+4. **Contact support** at [support@mindpal.io](mailto:support@mindpal.io)
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />

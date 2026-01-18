@@ -18,21 +18,22 @@ When you run an agent, your request is processed according to your chosen model 
 
 #### Available Models
 
-MindPal offers all state-of-the-art AI models to choose from. As of February 2024, here's our model lineup:
+MindPal offers all state-of-the-art AI models. Here's our current model lineup:
 
-| Provider    | Top Models                   |
-| ----------- | ---------------------------- |
-| OpenAI      | o3 mini, o1, o1 mini, gpt-4o |
-| Anthropic   | Claude 3.5 Sonnet            |
-| Google      | Gemini 2.0 Flash             |
-| Together AI | DeepSeek R1                  |
-| Groq        | Meta LLaMa                   |
+| Provider    | Top Models                                           | Best For |
+| ----------- | ---------------------------------------------------- | -------- |
+| OpenAI      | GPT-5, GPT-5 Mini, o3, o3 Mini, o4 Mini              | General tasks, following instructions |
+| Anthropic   | Claude Opus 4.5, Claude 4.5 Sonnet, Claude 4.5 Haiku | Writing, coding, analysis |
+| Google      | Gemini 3.0 Pro, Gemini 2.5 Pro, Gemini 2.5 Flash     | Large contexts, visual tasks |
+| DeepSeek    | DeepSeek V3, DeepSeek R1                             | Coding, cost-effective reasoning |
+| Perplexity  | Sonar, Sonar Pro, Sonar Deep Research                | Web search, research |
+| XAI         | Grok 2, Grok 4 Fast                                  | General tasks |
+| Groq        | LLaMa 3.3 70b, Kimi K2                               | Fast, cost-effective |
 
 import { Callout } from "nextra/components";
 
 <Callout emoji="💡">
-  If you don't pick a model, we'll use a default model. As of February 2024,
-  that's GPT-4o Mini.
+  If you don't pick a model, we'll use a default model (currently GPT-4o Mini). See [AI Credits](/workspace/ai-credit) for credit costs per model.
 </Callout>
 
 #### How to Choose a Model
@@ -51,7 +52,12 @@ Consider these rules of thumbs when selecting a model:
 
 2. **Don't Overkill**
 
-   For simple tasks, cheaper models like GPT-4.0 Mini or Claude 3.5 Haiku are often sufficient. There's no need to use more expensive models for simple tasks, as they'll cost you more unnecessarily.
+   For simple tasks, cost-effective models are often sufficient:
+   - **Gemini 2.5 Flash** (1 credit) - Excellent for most tasks
+   - **DeepSeek V3/R1** (0.5 credits) - Great for coding and reasoning
+   - **GPT-5 Mini** (3 credits) - Balanced quality and cost
+
+   Reserve premium models (Claude Opus 4.5, o3) for complex reasoning tasks.
 
 3. **Consider Model Strengths**
 
@@ -59,11 +65,12 @@ Consider these rules of thumbs when selecting a model:
 
    | Model Family                 | Key Strengths                                                                                               |
    | ---------------------------- | ----------------------------------------------------------------------------------------------------------- |
-   | Models from OpenAI           | • Excellent at following instructions<br/>• Consistent output quality<br/>• Strong at structured data tasks |
-   | Claude Models from Anthropic | • Superior coding abilities<br/>• Nuanced writing and analysis<br/>• Great at technical documentation       |
-   | Gemini Models from Google    | • Powerful visual understanding<br/>• Strong reasoning capabilities<br/>• Efficient with large contexts     |
-   | DeepSeek                     | • Specialized in coding tasks<br/>• Good balance of speed and quality                                       |
-   | LLaMa Models from Meta       | • Cost-effective<br/>• Open-source foundation<br/>• Good for general tasks                                  |
+   | OpenAI (GPT-5, o3)           | • Excellent at following instructions<br/>• Consistent output quality<br/>• Strong at structured data tasks |
+   | Anthropic (Claude)           | • Superior coding abilities<br/>• Nuanced writing and analysis<br/>• Great at technical documentation       |
+   | Google (Gemini)              | • Massive context windows (1M+ tokens)<br/>• Strong reasoning capabilities<br/>• Powerful visual understanding |
+   | DeepSeek                     | • Extremely cost-effective (0.5 credits)<br/>• Excellent for coding tasks<br/>• Strong reasoning            |
+   | Perplexity (Sonar)           | • Built-in web search<br/>• Real-time information<br/>• Research-focused                                    |
+   | Groq (LLaMa, Kimi)           | • Very fast responses<br/>• Cost-effective<br/>• Good for general tasks                                     |
 
 ### 2. Set Maximum Output Length
 
