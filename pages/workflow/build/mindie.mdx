@@ -1,0 +1,238 @@
+# Mindie - AI Workflow Assistant
+
+Mindie is MindPal's AI-powered workflow builder assistant that helps you create and modify workflows through natural language commands. Instead of manually dragging and configuring nodes, you can simply describe what you want to build and Mindie will do it for you.
+
+import { Callout } from "nextra/components";
+
+<Callout type="info">
+  Mindie is currently in **beta**. While it's powerful and can handle most workflow building tasks, you may occasionally need to make manual adjustments.
+</Callout>
+
+## What is Mindie?
+
+Mindie is an agentic AI assistant that lives inside the workflow builder. It understands your workflow's current state and can:
+
+- **Create nodes** - Add any type of node (Agent, Loop, Router, etc.) with proper configuration
+- **Modify nodes** - Update prompts, change settings, or reconfigure existing nodes
+- **Delete nodes** - Remove nodes and their connections cleanly
+- **Connect nodes** - Create edges between nodes to define the workflow flow
+- **Diagnose issues** - Scan your workflow for bugs or configuration problems
+- **Explain workflows** - Describe what your current workflow does
+
+## Getting Started with Mindie
+
+### Opening Mindie
+
+1. Open any workflow in the builder
+2. Click the **Mindie** button in the top toolbar (or press the keyboard shortcut)
+3. The Mindie panel will open on the right side of the screen
+
+### Your First Command
+
+Try one of these commands to get started:
+
+- `"What does this workflow do?"` - Get an explanation of your current workflow
+- `"Create a blog post writing workflow"` - Build a new workflow from scratch
+- `"Add a summarization step"` - Add a new node to your existing workflow
+- `"Check for errors"` - Diagnose any issues with your workflow
+
+## Tool Modes
+
+Mindie has two tool modes that control how changes are applied to your workflow:
+
+### Ask to Edit (Default)
+
+In this mode, Mindie will show you a preview of each change and ask for your approval before applying it. This is the recommended mode for:
+
+- Learning how Mindie works
+- Making careful modifications to important workflows
+- Understanding exactly what changes will be made
+
+When Mindie wants to make a change, you'll see:
+- **Apply** - Accept the change
+- **Skip** - Reject the change
+- **Modify** - Edit the change before applying (for node updates)
+
+### Auto Edit
+
+In this mode, Mindie applies changes automatically without asking for approval. This is faster but requires more trust. Use this mode when:
+
+- You're comfortable with Mindie's capabilities
+- You're doing rapid prototyping
+- You've cloned your workflow and can easily revert
+
+<Callout type="warning">
+  Before using Auto Edit mode, consider cloning your workflow first. This way you can easily revert if something goes wrong.
+</Callout>
+
+## Common Use Cases
+
+### Building a New Workflow
+
+Describe the workflow you want to create:
+
+```
+Create a workflow that:
+1. Takes a blog topic as input
+2. Researches the topic using web search
+3. Writes a draft blog post
+4. Reviews and edits the draft
+5. Outputs the final post
+```
+
+### Adding Nodes
+
+Add specific node types with context:
+
+```
+Add a loop node after the research step to process each source separately
+```
+
+```
+Add a router node that sends technical topics to the technical writer agent
+and marketing topics to the marketing writer agent
+```
+
+### Modifying Existing Nodes
+
+Update node configurations:
+
+```
+Update the summarizer node to produce bullet points instead of paragraphs
+```
+
+```
+Change the writer agent's prompt to focus more on SEO optimization
+```
+
+### Connecting Nodes
+
+Create connections between nodes:
+
+```
+Connect the translator node to the human input
+```
+
+```
+Make the editor node receive output from both the writer and researcher
+```
+
+### Diagnosing Issues
+
+Find and fix problems:
+
+```
+Check for errors in this workflow
+```
+
+```
+Why isn't the output node receiving data?
+```
+
+## Referencing Workflow Elements
+
+### Using @Mentions
+
+You can reference specific elements in your workflow using @mentions:
+
+- **@[Node Name]** - Reference a specific node's output
+- **@[Input Field]** - Reference a human input field
+- **@[Knowledge Source]** - Reference a knowledge source
+
+As you type `@`, you'll see a dropdown with available options to choose from.
+
+### Examples
+
+```
+Update @[Blog Writer] to use a more casual tone
+```
+
+```
+Connect @[Researcher] output to @[Summarizer] input
+```
+
+## Available Node Types
+
+Mindie can create and configure all MindPal node types:
+
+| Node Type | When to Use | Example Command |
+|-----------|-------------|-----------------|
+| [Human Input](/workflow/build/human-input-node) | Collect user input | "Add a text field for the topic" |
+| [Agent](/workflow/build/agent-node) | Single AI task | "Add an agent to write the introduction" |
+| [Evaluator-Optimizer](/workflow/build/evaluator-optimizer-node) | Quality improvement | "Add a self-improvement loop for the draft" |
+| [Loop](/workflow/build/loop-node) | Process multiple items | "Add a loop to handle each topic" |
+| [Orchestrator-Worker](/workflow/build/orchestrator-worker-node) | Complex coordination | "Add an orchestrator to manage research tasks" |
+| [Subflow](/workflow/build/subflow-node) | Reuse workflows | "Add my email template workflow as a step" |
+| [Chat](/workflow/build/chat-node) | Interactive conversation | "Add a chat node for clarification" |
+| [Canvas](/workflow/build/canvas-node) | Visual output | "Add a canvas for generating images" |
+| [Code](/workflow/build/code-node) | Custom logic | "Add a code node to format the data" |
+| [Router](/workflow/build/router-node) | Conditional branching | "Add a router based on content type" |
+| [Gate](/workflow/build/gate-node) | Stop conditions | "Add a quality gate that checks for errors" |
+| [Webhook](/workflow/build/webhook-node) | External integration | "Add a webhook to send results to Slack" |
+| [Payment](/workflow/build/payment-node) | Monetization | "Add a payment node for $5" |
+
+## Tips for Better Results
+
+### Be Specific
+
+Instead of:
+```
+Add a writing step
+```
+
+Try:
+```
+Add an agent node after the research step that writes a 500-word blog post
+using the research results, targeting beginner developers
+```
+
+### Provide Context
+
+Include relevant details about your workflow:
+```
+The summarizer is taking too long. Can you split it into two steps -
+first extract key points, then generate the summary?
+```
+
+### Use Node Names
+
+Reference existing nodes by their labels:
+```
+Update the "Content Writer" node to include a call-to-action at the end
+```
+
+### Iterate Incrementally
+
+Build workflows step by step rather than all at once:
+1. Start with the basic structure
+2. Add nodes one at a time
+3. Configure each node
+4. Test and refine
+
+## Troubleshooting
+
+### Mindie Isn't Understanding My Request
+
+- Try rephrasing your command with more specific details
+- Break down complex requests into smaller steps
+- Use node names or @mentions to be explicit about what you're referencing
+
+### Changes Aren't Applied Correctly
+
+- Use "Ask to Edit" mode to preview changes before applying
+- Check if the node configuration matches your expectations
+- Use "Check for errors" to diagnose any issues
+
+### Workflow Has Errors After Changes
+
+- Ask Mindie to diagnose the workflow: `"Check for errors"`
+- Verify all connections are properly made
+- Ensure required fields are configured on each node
+
+## Credit Usage
+
+Mindie uses AI credits when you send messages. Credits are only consumed for your messages, not for tool approvals or clarification responses. The exact credit usage depends on your workspace's AI credit allocation.
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />{" "}
