@@ -32,8 +32,9 @@ Given MCP's transformative potential, MindPal proudly leads as the **first no-co
 
 It's important to know what MindPal currently supports regarding MCP:
 
-- **Tools Only**: An MCP server can potentially offer various things like Resources, Prompts, or Sampling Routes. Right now, MindPal only supports **Tools** provided by MCP servers.
-- **Streamable HTTP/SSE Servers Only**: MCP servers can operate in different ways. MindPal supports **Streamable HTTP** and **SSE (Server-Sent Events)** servers, which are suitable for cloud-based applications like ours. We do not support STDIO servers, which are typically used for local integrations.
+- **Tools Only**: An MCP server can potentially offer various things like Resources, Prompts, or Sampling Routes. Right now, MindPal only supports Tools provided by MCP servers.
+- **Streamable HTTP/SSE Servers Only**: MCP servers can operate in different ways. MindPal supports Streamable HTTP and SSE (Server-Sent Events) servers, which are suitable for cloud-based applications like ours. We do not support STDIO servers, which are typically used for local integrations.
+- **Two Authentication Methods**: MindPal supports both Headers (API Key) and OAuth authentication. Some MCP servers require you to pass an API key in headers; others use OAuth so you can connect by authorizing in a popup – no keys to copy or manage manually. OAuth works for servers that support [OAuth 2.0 Dynamic Client Registration](https://datatracker.ietf.org/doc/html/rfc7591) and expose the standard metadata endpoints.
 
 ## How to configure MCP in MindPal
 
@@ -43,14 +44,21 @@ Setting up an MCP connection in MindPal is straightforward:
 2.  **Navigate to Agent Settings**: Go to the settings page for the AI agent you want to configure.
 3.  **Go to the MCP Section**: Find the section dedicated to MCP connections.
 4.  **Add Server**: Click on "Add new remote MCP server".
-5.  **Enter Details**: Paste your MCP server URL and give the connection a recognizable name.
+5.  **Choose your setup flow**:
+    - **OAuth servers** (e.g. Notion, HubSpot): Select the provider, then click "Connect with OAuth". A popup opens where you authorize MindPal to access your account. Once authorized, the connection is ready – no API keys needed.
+    - **API Key servers** (e.g. Zapier, Firecrawl): Paste your MCP server URL, add any required headers (like `Authorization: Bearer <API_KEY>`), and give the connection a recognizable name.
 6.  **Save & Test**: Save the configuration. MindPal will automatically test the connection to verify that the server is reachable and configured correctly, and to retrieve the list of available tools.
 
-That's it! Your AI agent is now ready to use the tools provided by the connected MCP server. It really just takes a URL.
+That's it! Your AI agent is now ready to use the tools provided by the connected MCP server.
 
-## Proven Compatible MCP Servers
+## Compatible MCP Servers
 
-Below are some of the most popular and proven compatible remote MCP servers you can use with MindPal. Each offers unique capabilities and setup flows. Pick the one that fits your workflow best.
+The following remote MCP servers are supported in MindPal. Select your provider from the guided setup when adding a new MCP server, or use "Custom" to paste any compatible server URL manually. _Servers requiring OAuth 2.1 without dynamic client registration (e.g. Atlassian, Box, GitHub, Plaid) are not yet supported._ Developer tools (IDEs, build systems, code repositories) are excluded; use "Custom" with the server URL to add those.
+
+#### [Notion MCP](https://developers.notion.com/guides/mcp/get-started-with-mcp)
+
+- **Offers:** Access to your Notion workspace – pages, databases, and blocks – for AI-assisted writing, research, and knowledge management
+- **Access:** Select "Notion" in the guided setup, click "Connect with OAuth", and authorize in the popup. No API key required
 
 #### [Zapier MCP](https://zapier.com/mcp)
 
@@ -152,7 +160,7 @@ Below are some of the most popular and proven compatible remote MCP servers you 
 - **Offers:** Instant MCP server creation for any GitHub repository by simply changing the domain from github.com to gitmcp.io. Provides AI assistants with deep code context including llms.txt, llms-full.txt, readme.md and more
 - **Access:** No setup required. Simply replace `github.com` with `gitmcp.io` in any repository URL to get an instant MCP server endpoint
 
-#### [Supermemory MCP](https://mcp.supermemory.ai/)
+#### [Supermemory MCP](https://supermemory.ai)
 
 - **Offers:** Personal, universal memory layer that travels with you across different AI platforms. Store and retrieve memories, create a persistent knowledge base
 - **Access:** Get your unique MCP URL (keep secret) on the website
@@ -161,6 +169,171 @@ Below are some of the most popular and proven compatible remote MCP servers you 
 
 - **Offers:** Web scraping, crawling, and discovery with advanced content extraction, search capabilities, deep research, and structured data extraction using LLM
 - **Access:** Server available at `https://mcp.firecrawl.dev/{FIRECRAWL_API_KEY}/sse` with API key authentication required. Get your API key from [firecrawl.dev/app/api-keys](https://firecrawl.dev/app/api-keys)
+
+#### [Asana MCP](https://developers.asana.com/docs/mcp-server)
+
+- **Offers:** Access Asana projects, tasks, and goals – create, manage, and query work from AI assistants
+- **Access:** Select in guided setup and connect with OAuth. Server: `https://mcp.asana.com/sse`
+
+#### [Canva MCP](https://www.canva.com)
+
+- **Offers:** Design tools and asset creation
+- **Access:** OAuth at `https://mcp.canva.com/mcp`
+
+#### [Cloudinary MCP](https://cloudinary.com/documentation)
+
+- **Offers:** Asset management for images and media
+- **Access:** OAuth at `https://asset-management.mcp.cloudinary.com/sse`
+
+#### [Close MCP](https://help.close.com/docs/mcp-server)
+
+- **Offers:** CRM for sales – leads, contacts, activities
+- **Access:** API key at `https://mcp.close.com/mcp` with `Authorization: Bearer <API_KEY>` header
+
+#### [Exa Search MCP](https://exa.ai)
+
+- **Offers:** Web and semantic search
+- **Access:** Open at `https://mcp.exa.ai/mcp`
+
+#### [Firefly MCP](https://fireflies.ai)
+
+- **Offers:** Meeting transcription and notes
+- **Access:** OAuth at `https://api.fireflies.ai/mcp`
+
+#### [Dialer MCP](https://getdialer.app)
+
+- **Offers:** Outbound phone calls
+- **Access:** OAuth at `https://getdialer.app/sse`
+
+#### [HubSpot MCP](https://hubspot.com)
+
+- **Offers:** CRM – contacts, companies, deals
+- **Access:** API key at `https://app.hubspot.com/mcp/v1/http`
+
+#### [Indeed MCP](https://indeed.com)
+
+- **Offers:** Job board and recruitment data
+- **Access:** OAuth at `https://mcp.indeed.com/claude/mcp`
+
+#### [Intercom MCP](https://intercom.com)
+
+- **Offers:** Customer support and messaging
+- **Access:** OAuth at `https://mcp.intercom.com/sse`
+
+#### [Invidio MCP](https://invideo.io)
+
+- **Offers:** Video creation platform
+- **Access:** OAuth at `https://mcp.invideo.io/sse`
+
+#### [Linear MCP](https://linear.app/docs/mcp)
+
+- **Offers:** Project management – issues, projects, cycles
+- **Access:** Select in guided setup and connect with OAuth. Server: `https://mcp.linear.app/sse`
+
+#### [Mercado Libre MCP](https://mcp.mercadolibre.com)
+
+- **Offers:** E-commerce – products, orders
+- **Access:** API key at `https://mcp.mercadolibre.com/mcp`
+
+#### [Mercado Pago MCP](https://mcp.mercadopago.com)
+
+- **Offers:** Payments for Latin America
+- **Access:** API key at `https://mcp.mercadopago.com/mcp`
+
+#### [Meta Ads by Pipeboard MCP](https://pipeboard.co)
+
+- **Offers:** Meta/Facebook advertising management
+- **Access:** OAuth at `https://mcp.pipeboard.co/meta-ads-mcp`
+
+#### [monday.com MCP](https://github.com/mondaycom/mcp)
+
+- **Offers:** Project management and workflows
+- **Access:** OAuth at `https://mcp.monday.com/sse`
+
+#### [MorningStar MCP](https://morningstar.com)
+
+- **Offers:** Financial and market data analysis
+- **Access:** OAuth at `https://mcp.morningstar.com/mcp`
+
+#### [Parallel Search MCP](https://parallel.ai)
+
+- **Offers:** Web search
+- **Access:** OAuth at `https://search-mcp.parallel.ai/mcp`
+
+#### [Parallel Task MCP](https://parallel.ai)
+
+- **Offers:** Web research
+- **Access:** OAuth at `https://task-mcp.parallel.ai/mcp`
+
+#### [PayPal MCP](https://paypal.com)
+
+- **Offers:** Payment processing
+- **Access:** OAuth at `https://mcp.paypal.com/sse`
+
+#### [Ramp MCP](https://ramp.com)
+
+- **Offers:** Corporate cards and spend management
+- **Access:** OAuth at `https://ramp-mcp-remote.ramp.com/mcp`
+
+#### [SearchAPI MCP](https://www.searchapi.io)
+
+- **Offers:** Web search API
+- **Access:** API key at `https://www.searchapi.io/mcp`
+
+#### [Short.io MCP](https://short.io)
+
+- **Offers:** Link shortening and management
+- **Access:** API key at `https://ai-assistant.short.io/mcp`
+
+#### [Square MCP](https://squareup.com)
+
+- **Offers:** Payments and point-of-sale
+- **Access:** OAuth at `https://mcp.squareup.com/sse`
+
+#### [Stripe MCP](https://stripe.com)
+
+- **Offers:** Payment processing
+- **Access:** OAuth or API key at `https://mcp.stripe.com/`
+
+#### [Stytch MCP](https://stytch.com)
+
+- **Offers:** Authentication and user management
+- **Access:** OAuth at `https://mcp.stytch.dev/mcp`
+
+#### [Telnyx MCP](https://telnyx.com)
+
+- **Offers:** Voice, SMS, and communications
+- **Access:** API key at `https://api.telnyx.com/v2/mcp`
+
+#### [ThoughtSpot MCP](https://thoughtspot.com)
+
+- **Offers:** Data analytics and BI
+- **Access:** OAuth at `https://agent.thoughtspot.app/mcp`
+
+#### [Turkish Airlines MCP](https://mcp.turkishtechlab.com)
+
+- **Offers:** Flight and airline information
+- **Access:** OAuth at `https://mcp.turkishtechlab.com/mcp`
+
+#### [Webflow MCP](https://webflow.com)
+
+- **Offers:** CMS and website building
+- **Access:** OAuth at `https://mcp.webflow.com/sse`
+
+#### [Wix MCP](https://wix.com)
+
+- **Offers:** CMS and website building
+- **Access:** OAuth at `https://mcp.wix.com/sse`
+
+#### [Google Big Query MCP](https://docs.cloud.google.com/bigquery/docs/reference/mcp)
+
+- **Offers:** Data analysis and SQL queries
+- **Access:** API key at `https://bigquery.googleapis.com/mcp`
+
+#### [Google Maps MCP](https://developers.google.com/maps/ai/grounding-lite/reference/mcp)
+
+- **Offers:** Mapping and location services
+- **Access:** API key at `https://mapstools.googleapis.com/mcp`
 
 We will continuously test and add more compatible MCP servers to this list as they become available.
 
