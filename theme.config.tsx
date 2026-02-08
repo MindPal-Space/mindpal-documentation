@@ -59,14 +59,6 @@ const logo = (
 const config: DocsThemeConfig = {
   // STYLING
   logo,
-  primaryHue: {
-    light: 240,
-    dark: 252,
-  },
-  primarySaturation: {
-    light: 100,
-    dark: 58,
-  },
   // LINKS
   logoLink: "https://mindpal.space/",
   project: {
@@ -126,7 +118,7 @@ const config: DocsThemeConfig = {
     );
   },
   footer: {
-    text: "MindPal - Build AI agents & multi-agent workflows to automate thousands of tasks",
+    content: "MindPal - Build AI agents & multi-agent workflows to automate thousands of tasks",
   },
 };
 

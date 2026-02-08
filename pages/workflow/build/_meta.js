@@ -1,6 +1,6 @@
-{
-  "mindie": "Mindie - AI Workflow Assistant",
-  "variables": "Variables",
+export default {
+  mindie: "Mindie - AI Workflow Assistant",
+  variables: "Variables",
   "human-input-node": "Human Input Node",
   "info-node": "Info Node",
   "agent-node": "Agent Node",
@@ -15,5 +15,5 @@
   "gate-node": "Gate Node",
   "webhook-node": "Webhook Node",
   "payment-node": "Payment Node",
-  "sticky-note-node": "Sticky Note Node"
-}
+  "sticky-note-node": "Sticky Note Node",
+};
