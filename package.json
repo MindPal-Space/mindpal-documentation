@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "Nextra docs template",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "NODE_OPTIONS='--localstorage-file=/tmp/nextra-ls' next dev",
+    "build": "NODE_OPTIONS='--localstorage-file=/tmp/nextra-ls' next build",
     "start": "next start"
   },
   "repository": {
@@ -19,8 +19,8 @@
   "homepage": "https://github.com/shuding/nextra-docs-template#readme",
   "dependencies": {
     "next": "^13.0.6",
-    "nextra": "latest",
-    "nextra-theme-docs": "latest",
+    "nextra": "^3.3.1",
+    "nextra-theme-docs": "^3.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

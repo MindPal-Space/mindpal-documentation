@@ -1,0 +1,7 @@
+export default {
+  "plan-billing": "Plan & Billing",
+  "ai-credit": "AI Credit",
+  interface: "Interface Customization",
+  members: "Member Management",
+  "custom-domain": "Custom Domain",
+};
