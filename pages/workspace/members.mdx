@@ -1,6 +1,6 @@
 # Member Management
 
-MindPal workspaces support three member roles - OWNER, EDITOR, and USER - each with different levels of access and capabilities. This guide explains how to manage your team members and their permissions effectively.
+MindPal workspaces support four member roles - OWNER, ADMIN, EDITOR, and USER - each with different levels of access and capabilities. This guide explains how to manage your team members and their permissions effectively.
 
 ## Member Roles
 
@@ -9,8 +9,17 @@ MindPal workspaces support three member roles - OWNER, EDITOR, and USER - each w
 Full workspace control with unrestricted access:
 
 - Run, create, edit and delete all agents, workflows and assets
-- Full access to workspace settings and team management
-- Cannot be removed from the workspace
+- Full access to workspace settings, team management, and billing
+- The workspace creator has permanent ownership and cannot be removed or demoted
+
+### ADMIN
+
+Full workspace control like Owner, with one restriction:
+
+- All the same capabilities as Owner — manage members, settings, billing, and content
+- Cannot remove or demote the workspace creator
+- Cannot modify Owner members' roles
+- Ideal for trusted team leads who need full administrative access
 
 ### EDITOR
 
@@ -19,6 +28,7 @@ Agent & workflow creation with limited administrative access:
 - Run, create and edit all agents, workflows and assets
 - Can only delete items they personally created
 - Can view team members but cannot modify workspace settings
+- Access can be restricted via Access Control Tags
 - Perfect for team members who need to create and manage AI solutions
 
 ### USER
@@ -32,11 +42,13 @@ Restricted run-only access:
 
 ## Access Control Tags
 
-Access Control Tags help you manage USER members' permissions by:
+Access Control Tags help you manage EDITOR and USER members' permissions by:
 
-- Restricting which agents and workflows specific users can access
-- Setting AI credit limits per user per month
-- Grouping users with similar access needs
+- Restricting which agents and workflows specific members can access
+- Setting AI credit limits per member per month
+- Grouping members with similar access needs
+
+Note: Access Control Tags cannot be assigned to Owner or Admin roles.
 
 To create or modify an access control tag:
 
@@ -44,7 +56,7 @@ To create or modify an access control tag:
 2. Set the tag name
 3. Select accessible agents and workflows
 4. Enable and set AI credit limits if needed
-5. Apply the tag to relevant users
+5. Apply the tag to relevant members
 
 ## Managing Members
 
@@ -52,15 +64,17 @@ To invite new members:
 
 1. Click the "Invite member" button
 2. Enter their email address
-3. Select their role (OWNER, EDITOR, or USER)
-4. For USERS, assign appropriate Access Control Tags if needed
+3. Select their role (OWNER, ADMIN, EDITOR, or USER)
+4. For EDITORS and USERS, assign appropriate Access Control Tags if needed
 5. Send the invitation
 
 For existing members, you can:
 
 - Edit their role
-- Modify their Access Control Tags (for USERS)
+- Modify their Access Control Tags (for EDITORS and USERS)
 - Remove them from the workspace
+
+Note: The workspace creator cannot be removed or have their role changed. They are shown with a "Creator" badge in the member table.
 
 import PageFooter from "components/PageFooter";
 
