@@ -2,6 +2,7 @@ export default {
   "smart-resource-mentions": "Smart Resource Mentions",
   sharing: "Sharing",
   embedding: "Embedding Chatbots & Workflows",
+  "audience-memory": "Audience Memory",
   "custom-session-context": "Custom Session Context",
   "custom-user-id": "Custom User ID",
   "rate-limit": "Rate Limit",

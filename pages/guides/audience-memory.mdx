@@ -1,0 +1,193 @@
+# Audience Memory
+
+Make your published chatbots and workflows remember returning users — so they can pick up right where they left off.
+
+import { Callout } from "nextra/components";
+import { Steps } from "nextra/components";
+
+## What is Audience Memory?
+
+Think of Audience Memory as giving your chatbot or workflow a "memory" for each person who uses it. Instead of treating every visit as a brand-new conversation, Audience Memory lets your AI recognize returning users and continue from where they left off.
+
+Under the hood, this works through two pieces:
+
+- **Audience ID** (`customUserId`) — a stable identifier you pass in so MindPal knows *who* is visiting
+- **Conversation state** (`ccid` for chatbots, `wrid` for workflows) — the saved conversation or run that lets users resume where they stopped
+
+### Why You'd Want This
+
+Without Audience Memory, every visit starts from scratch. With it enabled, returning users can:
+
+- **See their conversation history** — no need to re-explain anything
+- **Skip repeating profile details** — the AI already knows them
+- **Continue interrupted sessions** — come back later and pick up where they left off
+- **Get smarter responses** — the AI can reference earlier context and preferences
+
+This is especially helpful for:
+
+- Customer support bots
+- Membership or community experiences
+- Course and education assistants
+- Order and status trackers
+- Product demos with multi-step conversations
+
+## Before You Start
+
+<Callout emoji="⚠️">
+  Audience Memory only works when **both** of the following are turned on:
+  1. **Audience memory** is enabled in Advanced settings
+  2. **Custom user ID** is enabled in Control Access settings
+
+  If either one is off, the feature won't activate.
+</Callout>
+
+### Custom User ID Modes
+
+When you enable Custom User ID, you'll choose one of three modes:
+
+| Mode | What It Does | When to Use |
+| --- | --- | --- |
+| **None (Anonymous)** | No user identity — the default | When you don't need memory |
+| **Optional** | Users are identified only when you pass an ID | Most public experiences |
+| **Required** | An ID must always be passed | Protected/authenticated entry points |
+
+For most use cases, **Optional** is the way to go. Use **Required** only when your entry point is behind a login or authentication layer.
+
+## Setting Up Audience Memory for Chatbots
+
+<Steps>
+
+### Enable Audience Memory in Advanced settings
+
+Open your chatbot's publish settings, go to **Advanced**, and toggle **Audience Memory** on.
+
+### Enable Custom User ID in Control Access
+
+In the same publish settings, go to **Control Access** and set **Custom User ID** to **Optional** or **Required**.
+
+### Pass the user ID from your site
+
+When a user visits your chatbot, pass their ID using one of the methods below. MindPal will automatically create or load their audience record, and all their messages will be grouped under that identity.
+
+</Steps>
+
+### Passing the User ID
+
+**Option 1: Query string (for direct links)**
+
+Append `?cuid=` to your chatbot URL:
+
+```text
+https://chatbot.getmindpal.com/<chatbot-slug>?cuid=<USER_ID>
+```
+
+**Option 2: Iframe or widget embed**
+
+Pass the ID through the config object:
+
+```html
+<iframe id="support-bot" src="https://chatbot.getmindpal.com/<chatbot-slug>"></iframe>
+<script>
+  window.mindpalIframeConfig = {
+    "support-bot": {
+      customUserId: "USER_123",
+    },
+  };
+</script>
+<script src="https://chatbot.getmindpal.com/iframe.min.js" data-target="support-bot"></script>
+```
+
+When a user returns with the same ID, they'll see their full conversation history and can continue right where they left off.
+
+<Callout emoji="💡">
+  Each chatbot conversation also has a `ccid` in the URL (e.g., `?ccid=...`). You can use this in your app to reopen a specific conversation session.
+</Callout>
+
+## Setting Up Audience Memory for Workflows
+
+Workflow forms work the same way — the only difference is that run records are stored under workflow run IDs instead of conversation IDs.
+
+<Steps>
+
+### Enable Audience Memory in Advanced settings
+
+Open your workflow's publish settings, go to **Advanced**, and toggle **Audience Memory** on.
+
+### Enable Custom User ID in Control Access
+
+Go to **Control Access** and set **Custom User ID** to **Optional** or **Required**.
+
+### Pass the user ID from your site
+
+Pass the user's ID when they access the workflow form.
+
+</Steps>
+
+### Passing the User ID
+
+**Option 1: Query string (for direct links)**
+
+```text
+https://workflow.getmindpal.com/<workflow-slug>?cuid=<USER_ID>
+```
+
+**Option 2: Iframe embed**
+
+```html
+<iframe id="campaign-form" src="https://workflow.getmindpal.com/<workflow-slug>"></iframe>
+<script>
+  window.mindpalIframeConfig = {
+    "campaign-form": {
+      customUserId: "USER_123",
+    },
+  };
+</script>
+<script src="https://workflow.getmindpal.com/iframe.min.js" data-target="campaign-form"></script>
+```
+
+<Callout emoji="💡">
+  Each workflow run includes a `wrid` token in the URL, which you can use for resume or recovery patterns in your app.
+</Callout>
+
+## Combining Audience Memory with Session Context
+
+Audience Memory and [Custom Session Context](/guides/custom-session-context) work great together — they solve different problems:
+
+- **Audience Memory** (`customUserId`) = **who** the user is (identity + history)
+- **Session Context** (`customSessionContext`) = **what you know about them right now** (name, plan, order ID, etc.)
+
+Use both to greet returning users by name, reference their past conversations, and tailor responses based on their current account details — all at once.
+
+If you also need to pass user metadata like names or subscription plans, check out the [Custom Session Context guide](/guides/custom-session-context).
+
+## Best Practices
+
+- **Use a stable ID** — generate it from your product or database (e.g., an internal user UUID) so it stays consistent across visits.
+- **Keep IDs consistent** — pass the same ID across both chatbot and workflow experiences for a unified memory.
+- **Don't expose secrets** — avoid using sensitive data (like API keys or tokens) as user IDs.
+- **Prefer iframe/widget for authenticated contexts** — use query strings only when the other methods aren't feasible.
+- **Offer a sign-in path** — this reduces ID collisions and prevents identity mix-ups.
+
+## Troubleshooting
+
+### History isn't loading for returning users
+
+- Confirm **Audience Memory** is turned on in Advanced settings.
+- Confirm **Custom User ID** is enabled in Control Access.
+- Double-check that the ID value matches *exactly* on repeat visits (IDs are case-sensitive).
+- Verify your embed code references the correct target IDs (`id`, `data-target`, `chatbotId`).
+
+### Different users are seeing each other's history
+
+- Look for hardcoded fallback IDs in your frontend code.
+- Make sure your backend isn't sending a default placeholder ID for all users.
+- If using Optional mode, verify that anonymous users pass *no* ID (not a shared one).
+
+### IDs look correct but history still resets
+
+- Re-publish your embed code after enabling Custom User ID — older embed snippets may not include the ID.
+- Check that your URL, cookie, or domain setup preserves the same ID value when users return.
+
+import PageFooter from "components/PageFooter";
+
+<PageFooter />
